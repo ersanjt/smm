@@ -1,0 +1,41 @@
+# Application specific
+application/cache/*
+application/logs/*
+application/sessions/*
+!application/cache/index.html
+!application/logs/index.html
+!application/sessions/index.html
+
+# System files
+.DS_Store
+Thumbs.db
+*.log
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Database files
+*.sql
+*.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Node modules (if any)
+node_modules/
+
+# Composer
+vendor/
+
+# Backup files
+*.bak
+*.backup

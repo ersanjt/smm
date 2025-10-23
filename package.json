@@ -1,0 +1,22 @@
+{
+  "name": "smm-boostpanel",
+  "version": "1.0.0",
+  "description": "BoostPanel SMM Application - Social Media Marketing Panel",
+  "main": "index.php",
+  "scripts": {
+    "start": "php -S localhost:8000",
+    "dev": "php -S localhost:8000"
+  },
+  "keywords": [
+    "smm",
+    "social-media-marketing",
+    "boostpanel",
+    "codeigniter",
+    "php"
+  ],
+  "author": "Ersan",
+  "license": "MIT",
+  "engines": {
+    "php": ">=8.2"
+  }
+}
