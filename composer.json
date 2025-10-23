@@ -1,23 +1,16 @@
 {
-  "description": "The CodeIgniter framework",
-  "name": "codeigniter/framework",
+  "name": "boostpanel/smm",
+  "description": "BoostPanel SMM Application - Social Media Marketing Panel",
   "type": "project",
-  "homepage": "https://codeigniter.com",
+  "homepage": "https://github.com/ersanjt/smm",
   "license": "MIT",
-  "support": {
-	"forum": "http://forum.codeigniter.com/",
-	"wiki": "https://github.com/bcit-ci/CodeIgniter/wiki",
-	"slack": "https://codeigniterchat.slack.com",
-	"source": "https://github.com/bcit-ci/CodeIgniter"
-  },
   "require": {
 	"php": ">=7.4"
   },
-  "suggest": {
-	"paragonie/random_compat": "Provides better randomness in PHP 5.x"
+  "scripts": {
+	"start": "php -S 0.0.0.0:$PORT"
   },
-  "require-dev": {
-	"mikey179/vfsstream": "1.1.*",
-	"phpunit/phpunit": "4.* || 5.*"
+  "config": {
+	"optimize-autoloader": true
   }
 }
