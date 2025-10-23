@@ -39,3 +39,4 @@ vendor/
 # Backup files
 *.bak
 *.backup
+.vercel
