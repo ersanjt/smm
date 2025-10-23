@@ -2,7 +2,7 @@
 builder = "nixpacks"
 
 [deploy]
-startCommand = "php -S 0.0.0.0:$PORT -t public"
+startCommand = "apache2-foreground"
 healthcheckPath = "/health.php"
 healthcheckTimeout = 300
 

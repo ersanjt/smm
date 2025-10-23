@@ -37,5 +37,8 @@ RUN chmod -R 755 /var/www/html
 # Expose port
 EXPOSE 80
 
+# Copy healthcheck to root
+COPY health.php /var/www/html/health.php
+
 # Start Apache
 CMD ["apache2-foreground"]
