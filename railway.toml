@@ -3,8 +3,13 @@ builder = "nixpacks"
 
 [deploy]
 startCommand = "php -S 0.0.0.0:$PORT -t public"
-healthcheckPath = "/"
+healthcheckPath = "/health.php"
 healthcheckTimeout = 300
 
 [environments.production]
 variables = { CI_ENV = "production", APP_DEBUG = "false" }
+
+# Add PostgreSQL service
+[[services]]
+name = "postgres"
+type = "postgresql"

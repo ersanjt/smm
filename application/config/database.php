@@ -18,7 +18,7 @@ $query_builder = TRUE;
 
 // Database configuration for different environments
 if (getenv('DATABASE_URL')) {
-    // Heroku PostgreSQL
+    // Railway/Heroku PostgreSQL
     $url = parse_url(getenv('DATABASE_URL'));
     $db['default'] = array(
         'dsn'      => '',
@@ -26,6 +26,29 @@ if (getenv('DATABASE_URL')) {
         'username' => $url['user'],
         'password' => $url['pass'],
         'database' => substr($url['path'], 1),
+        'dbdriver' => 'postgre',
+        'dbprefix' => '',
+        'pconnect' => FALSE,
+        'db_debug' => (ENVIRONMENT !== 'production'),
+        'cache_on' => FALSE,
+        'cachedir' => '',
+        'char_set' => 'utf8',
+        'dbcollat' => 'utf8_general_ci',
+        'swap_pre' => '',
+        'encrypt'  => FALSE,
+        'compress' => FALSE,
+        'stricton' => FALSE,
+        'failover' => array(),
+        'save_queries' => TRUE
+    );
+} elseif (getenv('PGHOST')) {
+    // Railway PostgreSQL (alternative)
+    $db['default'] = array(
+        'dsn'      => '',
+        'hostname' => getenv('PGHOST'),
+        'username' => getenv('PGUSER'),
+        'password' => getenv('PGPASSWORD'),
+        'database' => getenv('PGDATABASE'),
         'dbdriver' => 'postgre',
         'dbprefix' => '',
         'pconnect' => FALSE,
