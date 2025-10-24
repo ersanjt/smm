@@ -11,8 +11,13 @@ class APIManager {
         console.log('API Manager initialized');
     }
     
-    // Generic API call method
+    // Generic API call method with security validation
     async apiCall(endpoint, options = {}) {
+        // Validate endpoint to prevent path traversal
+        if (!endpoint || endpoint.includes('..') || endpoint.includes('//')) {
+            throw new Error('Invalid endpoint');
+        }
+        
         const url = `${this.baseURL}${endpoint}`;
         const cacheKey = `${endpoint}_${JSON.stringify(options)}`;
         

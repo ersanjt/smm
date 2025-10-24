@@ -1,42 +1,61 @@
-# SMM Turk Panel - Apache Configuration
+# SMM Turk Panel - Public Directory Security
+# Security configuration for public directory
 
 # Security Headers
 <IfModule mod_headers.c>
+    # Prevent clickjacking
+    Header always append X-Frame-Options SAMEORIGIN
+    
+    # Prevent MIME type sniffing
     Header always set X-Content-Type-Options nosniff
-    Header always set X-Frame-Options DENY
+    
+    # Enable XSS protection
     Header always set X-XSS-Protection "1; mode=block"
-    Header always set Referrer-Policy "strict-origin-when-cross-origin"
-    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    
+    # Content Security Policy
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://smmfa.com https://smmfollows.com;"
 </IfModule>
 
-# Force HTTPS
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteCond %{HTTPS} off
-    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-</IfModule>
+# Block access to sensitive files
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|inc|bak|sql|conf)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
 
-# Redirect to public directory
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteRule ^$ public/ [L]
-    RewriteRule (.*) public/$1 [L]
-</IfModule>
+# Block access to data directory
+<Directory "data">
+    Order Allow,Deny
+    Deny from all
+</Directory>
+
+# Block access to API files from direct access
+<Files "*.php">
+    <IfModule mod_rewrite.c>
+        RewriteEngine On
+        RewriteCond %{REQUEST_METHOD} !^(GET|POST|OPTIONS)$
+        RewriteRule ^(.*)$ - [F,L]
+    </IfModule>
+</Files>
+
+# Prevent directory browsing
+Options -Indexes
+
+# Block access to hidden files
+<FilesMatch "^\.">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
 
 # Compression
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/plain
     AddOutputFilterByType DEFLATE text/html
-    AddOutputFilterByType DEFLATE text/xml
     AddOutputFilterByType DEFLATE text/css
-    AddOutputFilterByType DEFLATE application/xml
-    AddOutputFilterByType DEFLATE application/xhtml+xml
-    AddOutputFilterByType DEFLATE application/rss+xml
     AddOutputFilterByType DEFLATE application/javascript
     AddOutputFilterByType DEFLATE application/x-javascript
 </IfModule>
 
-# Cache Control
+# Cache control
 <IfModule mod_expires.c>
     ExpiresActive On
     ExpiresByType text/css "access plus 1 month"
@@ -46,31 +65,4 @@
     ExpiresByType image/jpeg "access plus 1 month"
     ExpiresByType image/gif "access plus 1 month"
     ExpiresByType image/svg+xml "access plus 1 month"
-</IfModule>
-
-# Security - Block access to sensitive files
-<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|inc|bak)$">
-    Order Allow,Deny
-    Deny from all
-</FilesMatch>
-
-# Block access to application directory
-<Directory "application">
-    Order Allow,Deny
-    Deny from all
-</Directory>
-
-# Block access to system directory
-<Directory "system">
-    Order Allow,Deny
-    Deny from all
-</Directory>
-
-# API CORS Headers
-<IfModule mod_headers.c>
-    <FilesMatch "\.(php)$">
-        Header set Access-Control-Allow-Origin "*"
-        Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
-        Header set Access-Control-Allow-Headers "Content-Type, Authorization"
-    </FilesMatch>
 </IfModule>

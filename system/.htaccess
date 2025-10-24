@@ -1,6 +1,17 @@
-<IfModule authz_core_module>
-	Require all denied
-</IfModule>
-<IfModule !authz_core_module>
-	Deny from all
-</IfModule>
+# SMM Turk Panel - System Directory Security
+# Block all access to system directory
+
+Order Allow,Deny
+Deny from all
+
+# Block access to all files
+<Files "*">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Block access to subdirectories
+<Directory "*">
+    Order Allow,Deny
+    Deny from all
+</Directory>

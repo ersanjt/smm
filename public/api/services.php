@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: https://smm-turk.com');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 
@@ -21,14 +21,14 @@ $api_config = [
 // External API Configuration (SMMFA)
 $external_api_config = [
     'base_url' => 'https://smmfa.com/api/v2',
-    'api_key' => 'b9f64c03f177cc3dc754198a17b66bca',
+    'api_key' => getenv('SMMFA_API_KEY') ?: 'b9f64c03f177cc3dc754198a17b66bca',
     'timeout' => 30
 ];
 
 // External API Configuration (SMMFollows)
 $smmfollows_api_config = [
     'base_url' => 'https://smmfollows.com/api/v2',
-    'api_key' => 'fdbc545f49196428a53189f1ee14e015',
+    'api_key' => getenv('SMMFOLLOWS_API_KEY') ?: 'fdbc545f49196428a53189f1ee14e015',
     'timeout' => 30
 ];
 

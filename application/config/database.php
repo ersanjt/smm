@@ -69,9 +69,9 @@ if (getenv('DATABASE_URL')) {
            $db['default'] = array(
                'dsn'      => '',
                'hostname' => 'localhost',
-               'username' => 'smm_bizdavar_smmuser',
+               'username' => 'bizdavar_smmuser',
                'password' => 'SMMTurk2024!',
-               'database' => 'smm_bizdavar_smmturk',
+               'database' => 'bizdavar_smmturk',
                'dbdriver' => 'mysqli',
                'dbprefix' => '',
                'pconnect' => FALSE,
