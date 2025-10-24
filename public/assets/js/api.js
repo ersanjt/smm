@@ -1,7 +1,7 @@
 // API Manager for SMM Turk Panel
 class APIManager {
     constructor() {
-        this.baseURL = 'http://localhost:8000/public/api/';
+        this.baseURL = 'https://smm-turk.com/api/';
         this.cache = new Map();
         this.cacheTimeout = 5 * 60 * 1000; // 5 minutes
         this.init();

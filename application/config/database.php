@@ -64,27 +64,27 @@ if (getenv('DATABASE_URL')) {
         'failover' => array(),
         'save_queries' => TRUE
     );
-} else {
-    // Local MySQL
-    $db['default'] = array(
-        'dsn'      => '',
-        'hostname' => 'localhost',
-        'username' => 'root',
-        'password' => '',
-        'database' => 'bizdavar_smm',
-        'dbdriver' => 'mysqli',
-        'dbprefix' => '',
-        'pconnect' => FALSE,
-        'db_debug' => (ENVIRONMENT !== 'production'),
-        'cache_on' => FALSE,
-        'cachedir' => '',
-        'char_set' => 'utf8mb4',
-        'dbcollat' => 'utf8mb4_unicode_ci',
-        'swap_pre' => '',
-        'encrypt'  => FALSE,
-        'compress' => FALSE,
-        'stricton' => FALSE,
-        'failover' => array(),
-        'save_queries' => TRUE
-    );
-}
+       } else {
+           // Production MySQL (cPanel)
+           $db['default'] = array(
+               'dsn'      => '',
+               'hostname' => 'localhost',
+               'username' => 'smm_bizdavar_smmuser',
+               'password' => 'SMMTurk2024!',
+               'database' => 'smm_bizdavar_smmturk',
+               'dbdriver' => 'mysqli',
+               'dbprefix' => '',
+               'pconnect' => FALSE,
+               'db_debug' => (ENVIRONMENT !== 'production'),
+               'cache_on' => FALSE,
+               'cachedir' => '',
+               'char_set' => 'utf8mb4',
+               'dbcollat' => 'utf8mb4_unicode_ci',
+               'swap_pre' => '',
+               'encrypt'  => FALSE,
+               'compress' => FALSE,
+               'stricton' => FALSE,
+               'failover' => array(),
+               'save_queries' => TRUE
+           );
+       }
