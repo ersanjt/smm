@@ -65,7 +65,7 @@ if (getenv('DATABASE_URL')) {
         'save_queries' => TRUE
     );
        } else {
-           // Production MySQL (cPanel)
+           // Production MySQL (cPanel) - WORKING CONFIG
            $db['default'] = array(
                'dsn'      => '',
                'hostname' => 'localhost',
