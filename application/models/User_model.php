@@ -1,154 +1,121 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-defined('BASEPATH') or exit('No direct script access allowed');
-
-class User_model extends MY_Model
-{
-	public function __construct()
-	{
-		parent::__construct();
-	}
-
-	/**
-	 * Validation Form
-	 */
-	public function validate_form($balance = null)
-	{
-		if (!isset($balance)) {
-			$this->form_validation(
-				[
-					[
-						'field' => 'new_pass',
-						'label' => lang("input_new_password"),
-						'rules' => 'required|min_length[4]|alpha_numeric',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'min_length' => lang("error_min_length"),
-						],
-					],
-					[
-						'field' => 're_pass_new',
-						'label' => lang("input_confirm_password"),
-						'rules' => 'required|min_length[4]|alpha_numeric|matches[new_pass]',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'matches' => lang("error_matches"),
-							'min_length' => lang("error_min_length"),
-						],
-					],
-				]
-			);
-		} else {
-			$this->form_validation(
-				[
-					[
-						'field' => 'amount',
-						'label' => lang("amount"),
-						'rules' => 'required|numeric|is_natural_no_zero',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'numeric' => lang("error_only_numbers"),
-							'is_natural_no_zero' => lang("error_natural_no_zero"),
-						],
-					],
-				]
-			);
-		}
-	}
-
-	/**
-	 * Validation Form Update Profile User
-	 */
-	public function validate_form_profile()
-	{
-		$this->form_validation(
-			[
-				[
-					'field' => 'name',
-					'label' => lang("input_name"),
-					'rules' => 'required|alpha_numeric_spaces',
-					'errors' => [
-						'required' => lang("error_empty_field"),
-						'alpha_numeric_spaces' => lang("error_invalid_characters"),
-					],
-				],
-				[
-					'field' => 'email',
-					'label' => lang("input_email"),
-					'rules' => 'required|valid_email|is_unique[users.email]',
-					'errors' => [
-						'required' => lang("error_empty_field"),
-						'valid_email' => lang("error_email_invalid"),
-						'is_unique' => lang('error_is_unique'),
-					],
-				],
-			]
-		);
-	}
-
-	/**
-	 * Validation Form Create user
-	 */
-	public function validate_form_create_user()
-	{
-		$this->form_validation(
-			[
-				[
-					'field' => 'name_user',
-					'label' => lang("input_name"),
-					'rules' => 'required|alpha_numeric_spaces',
-					'errors' => [
-						'required' => lang("error_empty_field"),
-						'alpha_numeric_spaces' => lang("error_invalid_characters"),
-					],
-				],
-				[
-					'field' => 'username',
-					'label' => lang("input_username"),
-					'rules' => 'required|min_length[3]|max_length[15]|alpha_dash|is_unique[users.username]',
-					'errors' => [
-						'required' => lang("error_empty_field"),
-						'min_length' => lang("error_min_length"),
-						'max_length' => lang("error_max_length"),
-						'alpha_dash' => lang("error_invalid_characters"),
-						'is_unique' => lang('error_is_unique'),
-					],
-				],
-				[
-					'field' => 'email_user',
-					'label' => lang("input_email"),
-					'rules' => 'required|valid_email|is_unique[users.email]',
-					'errors' => [
-						'required' => lang("error_empty_field"),
-						'valid_email' => lang("error_email_invalid"),
-						'is_unique' => lang('error_is_unique'),
-					],
-				],
-				[
-					'field' => 'role_user',
-					'label' => lang("role"),
-					'rules' => 'callback_select_validation[' . lang("error_no_select_role") . ']',
-				],
-				[
-					'field' => 'password_user',
-					'label' => lang("input_password"),
-					'rules' => 'required|min_length[4]',
-					'errors' => [
-						'required' => lang("error_empty_field"),
-						'min_length' => lang("error_min_length"),
-					],
-				],
-				[
-					'field' => 'cf_password_user',
-					'label' => lang("input_current_password"),
-					'rules' => 'required|min_length[4]|alpha_numeric|matches[password_user]',
-					'errors' => [
-						'required' => lang("error_empty_field"),
-						'matches' => lang("error_matches"),
-						'min_length' => lang("error_min_length"),
-					],
-				],
-			]
-		);
-	}
+/**
+ * User Model for SMM Turk
+ */
+class User_model extends SMM_Model {
+    
+    protected $table = 'users';
+    
+    public function __construct() {
+        parent::__construct();
+    }
+    
+    /**
+     * Get user by email
+     */
+    public function get_by_email($email) {
+        return $this->get_by(array('email' => $email));
+    }
+    
+    /**
+     * Get user by username
+     */
+    public function get_by_username($username) {
+        return $this->get_by(array('username' => $username));
+    }
+    
+    /**
+     * Create new user
+     */
+    public function create_user($data) {
+        $user_data = array(
+            'username' => $data['username'],
+            'email' => $data['email'],
+            'password' => password_hash($data['password'], PASSWORD_DEFAULT),
+            'first_name' => $data['first_name'] ?? '',
+            'last_name' => $data['last_name'] ?? '',
+            'phone' => $data['phone'] ?? '',
+            'balance' => 0.00,
+            'points' => 0,
+            'total_spent' => 0.00,
+            'status' => 'active',
+            'role' => 'user',
+            'email_verified' => 0,
+            'created_at' => date('Y-m-d H:i:s')
+        );
+        
+        return $this->insert($user_data);
+    }
+    
+    /**
+     * Verify user login
+     */
+    public function verify_login($email, $password) {
+        $user = $this->get_by_email($email);
+        
+        if ($user && password_verify($password, $user->password)) {
+            // Update last login
+            $this->update($user->id, array('last_login' => date('Y-m-d H:i:s')));
+            return $user;
+        }
+        
+        return false;
+    }
+    
+    /**
+     * Update user balance
+     */
+    public function update_balance($user_id, $amount, $type = 'add') {
+        $user = $this->get_by_id($user_id);
+        
+        if ($type === 'add') {
+            $new_balance = $user->balance + $amount;
+        } else {
+            $new_balance = $user->balance - $amount;
+        }
+        
+        return $this->update($user_id, array('balance' => $new_balance));
+    }
+    
+    /**
+     * Get user statistics
+     */
+    public function get_user_stats($user_id) {
+        $this->db->select('
+            COUNT(orders.id) as total_orders,
+            SUM(orders.charge) as total_spent,
+            COUNT(CASE WHEN orders.status = "completed" THEN 1 END) as completed_orders,
+            COUNT(CASE WHEN orders.status = "pending" THEN 1 END) as pending_orders
+        ');
+        $this->db->from('orders');
+        $this->db->where('orders.user_id', $user_id);
+        
+        return $this->db->get()->row();
+    }
+    
+    /**
+     * Get active users
+     */
+    public function get_active_users($limit = 10) {
+        $this->db->where('status', 'active');
+        $this->db->order_by('last_login', 'DESC');
+        $this->db->limit($limit);
+        
+        return $this->get_all();
+    }
+    
+    /**
+     * Search users
+     */
+    public function search_users($search_term, $limit = 20) {
+        $this->db->like('username', $search_term);
+        $this->db->or_like('email', $search_term);
+        $this->db->or_like('first_name', $search_term);
+        $this->db->or_like('last_name', $search_term);
+        $this->db->limit($limit);
+        
+        return $this->get_all();
+    }
 }

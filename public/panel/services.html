@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - SMM Turk Panel</title>
+    
+    <!-- CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="../assets/css/panel.css" rel="stylesheet">
+    <link href="../assets/css/order.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="#" class="sidebar-brand">
+                <i class="fas fa-rocket"></i>
+                SMM Turk
+            </a>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <div class="nav-item">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="new-order.html" class="nav-link">
+                    <i class="fas fa-plus"></i>
+                    New Order
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="mass-order.html" class="nav-link">
+                    <i class="fas fa-layer-group"></i>
+                    Mass Order
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="services.html" class="nav-link active">
+                    <i class="fas fa-list"></i>
+                    Services
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="orders.html" class="nav-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    Orders
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="add-funds.html" class="nav-link">
+                    <i class="fas fa-credit-card"></i>
+                    Add Funds
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="tickets.html" class="nav-link">
+                    <i class="fas fa-ticket-alt"></i>
+                    Tickets
+                    <span class="badge">3</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="api.html" class="nav-link">
+                    <i class="fas fa-code"></i>
+                    API
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="affiliates.html" class="nav-link">
+                    <i class="fas fa-users"></i>
+                    Affiliates
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="child-panel.html" class="nav-link">
+                    <i class="fas fa-child"></i>
+                    Child Panel
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="../index.html" class="nav-link">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </div>
+        </nav>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Header -->
+        <header class="top-header">
+            <div class="header-left">
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="breadcrumb">
+                    <span>Services</span>
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <div class="account-info">
+                    <div class="account-item">
+                        <i class="fas fa-dollar-sign"></i>
+                        <span>Balance: $45.20</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Services Content -->
+        <div class="order-content">
+            <div class="order-header">
+                <h1>All Services</h1>
+                <p>Browse and select from our wide range of SMM services</p>
+            </div>
+            
+            <!-- Services Stats -->
+            <div class="services-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-list"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h4 id="totalServices">0</h4>
+                        <p>Total Services</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h4 id="totalCategories">0</h4>
+                        <p>Categories</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h4 id="avgPrice">$0.00</h4>
+                        <p>Average Price</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h4 id="avgStartTime">0h</h4>
+                        <p>Avg Start Time</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Service Filters -->
+            <div class="services-filters">
+                <div class="filter-group">
+                    <label>Category:</label>
+                    <select id="categoryFilter" onchange="filterServices()">
+                        <option value="all">All Categories</option>
+                        <!-- Categories will be loaded dynamically -->
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Provider:</label>
+                    <select id="providerFilter" onchange="filterServices()">
+                        <option value="all">All Providers</option>
+                        <option value="local">Local</option>
+                        <option value="smmfa">SMMFA</option>
+                        <option value="smmfollows">SMMFollows</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Price Range:</label>
+                    <select id="priceFilter" onchange="filterServices()">
+                        <option value="all">All Prices</option>
+                        <option value="0-1">$0 - $1</option>
+                        <option value="1-5">$1 - $5</option>
+                        <option value="5-10">$5 - $10</option>
+                        <option value="10+">$10+</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Search:</label>
+                    <input type="text" id="searchFilter" placeholder="Search services..." onkeyup="filterServices()">
+                </div>
+                <div class="filter-group">
+                    <button class="btn-secondary" onclick="clearFilters()">
+                        <i class="fas fa-times"></i>
+                        Clear Filters
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Service Categories -->
+            <div class="service-categories">
+                <div class="category-tabs" id="categoryTabs">
+                    <button class="category-tab active" data-category="all">
+                        <i class="fas fa-th"></i>
+                        All Services
+                    </button>
+                    <!-- Categories will be loaded dynamically -->
+                </div>
+            </div>
+            
+            <!-- Services Grid -->
+            <div class="services-grid" id="servicesGrid">
+                <!-- Services will be loaded dynamically from API -->
+            </div>
+            
+            <!-- Loading State -->
+            <div class="loading-state" id="loadingState">
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+                <p>Loading services...</p>
+            </div>
+            
+            <!-- Error State -->
+            <div class="error-state" id="errorState" style="display: none;">
+                <div class="error-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h3>Failed to load services</h3>
+                <p>Please check your internet connection and try again.</p>
+                <button class="btn-primary" onclick="location.reload()">
+                    <i class="fas fa-refresh"></i>
+                    Retry
+                </button>
+            </div>
+            
+            <!-- No Services State -->
+            <div class="no-services-state" id="noServicesState" style="display: none;">
+                <div class="no-services-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>No services found</h3>
+                <p>Try adjusting your filters or search terms.</p>
+                <button class="btn-primary" onclick="clearFilters()">
+                    <i class="fas fa-refresh"></i>
+                    Clear Filters
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/panel.js"></script>
+    <script src="../assets/js/order.js"></script>
+    <script>
+        // Services page specific JavaScript
+        let allServices = [];
+        let filteredServices = [];
+        let currentCategory = 'all';
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Services page loaded');
+            
+            // Show loading state
+            showLoadingState();
+            
+            // Load services
+            loadServices();
+            
+            // Initialize category tabs
+            initCategoryTabs();
+        });
+        
+        async function loadServices() {
+            try {
+                console.log('Loading services from API...');
+                const response = await window.apiManager.getServices('all');
+                console.log('Services response:', response);
+                
+                if (response.success) {
+                    allServices = flattenServices(response.data);
+                    filteredServices = [...allServices];
+                    
+                    updateServicesStats();
+                    updateCategoryTabs();
+                    updateCategoryFilter();
+                    displayServices(filteredServices);
+                    
+                    console.log(`Loaded ${allServices.length} services`);
+                } else {
+                    showError();
+                }
+            } catch (error) {
+                console.error('Failed to load services:', error);
+                showError();
+            }
+        }
+        
+        function flattenServices(servicesData) {
+            const services = [];
+            Object.values(servicesData).forEach(categoryServices => {
+                if (Array.isArray(categoryServices)) {
+                    services.push(...categoryServices);
+                }
+            });
+            return services;
+        }
+        
+        function updateServicesStats() {
+            const totalServices = allServices.length;
+            const categories = [...new Set(allServices.map(s => s.category))].length;
+            const avgPrice = allServices.length > 0 ? 
+                (allServices.reduce((sum, s) => sum + parseFloat(s.price || s.rate || 0), 0) / allServices.length).toFixed(2) : 0;
+            const avgStartTime = allServices.length > 0 ? 
+                Math.round(allServices.reduce((sum, s) => sum + parseStartTime(s.start_time), 0) / allServices.length) : 0;
+            
+            document.getElementById('totalServices').textContent = totalServices;
+            document.getElementById('totalCategories').textContent = categories;
+            document.getElementById('avgPrice').textContent = `$${avgPrice}`;
+            document.getElementById('avgStartTime').textContent = `${avgStartTime}h`;
+        }
+        
+        function parseStartTime(startTime) {
+            if (!startTime) return 1;
+            const match = startTime.match(/(\d+)/);
+            return match ? parseInt(match[1]) : 1;
+        }
+        
+        function updateCategoryTabs() {
+            const categoryTabs = document.getElementById('categoryTabs');
+            const categories = [...new Set(allServices.map(s => s.category))];
+            
+            // Clear existing tabs except "All Services"
+            const allTab = categoryTabs.querySelector('[data-category="all"]');
+            categoryTabs.innerHTML = '';
+            categoryTabs.appendChild(allTab);
+            
+            // Add category tabs
+            categories.forEach(category => {
+                const tab = document.createElement('button');
+                tab.className = 'category-tab';
+                tab.dataset.category = category;
+                tab.innerHTML = `
+                    <i class="${getCategoryIcon(category)}"></i>
+                    ${capitalizeFirst(category)}
+                `;
+                tab.addEventListener('click', () => switchCategory(category));
+                categoryTabs.appendChild(tab);
+            });
+        }
+        
+        function updateCategoryFilter() {
+            const categoryFilter = document.getElementById('categoryFilter');
+            const categories = [...new Set(allServices.map(s => s.category))];
+            
+            // Clear existing options except "All Categories"
+            categoryFilter.innerHTML = '<option value="all">All Categories</option>';
+            
+            // Add category options
+            categories.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category;
+                option.textContent = capitalizeFirst(category);
+                categoryFilter.appendChild(option);
+            });
+        }
+        
+        function getCategoryIcon(category) {
+            const icons = {
+                'instagram': 'fab fa-instagram',
+                'facebook': 'fab fa-facebook',
+                'youtube': 'fab fa-youtube',
+                'twitter': 'fab fa-twitter',
+                'tiktok': 'fab fa-tiktok',
+                'telegram': 'fab fa-telegram',
+                'linkedin': 'fab fa-linkedin',
+                'pinterest': 'fab fa-pinterest'
+            };
+            return icons[category] || 'fas fa-globe';
+        }
+        
+        function capitalizeFirst(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+        
+        function switchCategory(category) {
+            currentCategory = category;
+            
+            // Update active tab
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelector(`[data-category="${category}"]`).classList.add('active');
+            
+            // Filter services
+            filterServices();
+        }
+        
+        function filterServices() {
+            const category = currentCategory;
+            const provider = document.getElementById('providerFilter').value;
+            const priceRange = document.getElementById('priceFilter').value;
+            const search = document.getElementById('searchFilter').value.toLowerCase();
+            
+            console.log('Filtering services:', { category, provider, priceRange, search });
+            
+            filteredServices = allServices.filter(service => {
+                // Category filter
+                if (category !== 'all' && service.category !== category) return false;
+                
+                // Provider filter
+                if (provider !== 'all') {
+                    const serviceProvider = service.provider || 'local';
+                    if (serviceProvider !== provider) return false;
+                }
+                
+                // Price range filter
+                if (priceRange !== 'all') {
+                    const price = parseFloat(service.price || service.rate || 0);
+                    switch (priceRange) {
+                        case '0-1':
+                            if (price > 1) return false;
+                            break;
+                        case '1-5':
+                            if (price < 1 || price > 5) return false;
+                            break;
+                        case '5-10':
+                            if (price < 5 || price > 10) return false;
+                            break;
+                        case '10+':
+                            if (price < 10) return false;
+                            break;
+                    }
+                }
+                
+                // Search filter
+                if (search && !service.name.toLowerCase().includes(search) && 
+                    !service.description.toLowerCase().includes(search)) return false;
+                
+                return true;
+            });
+            
+            displayServices(filteredServices);
+        }
+        
+        function clearFilters() {
+            document.getElementById('categoryFilter').value = 'all';
+            document.getElementById('providerFilter').value = 'all';
+            document.getElementById('priceFilter').value = 'all';
+            document.getElementById('searchFilter').value = '';
+            
+            // Reset category tab
+            switchCategory('all');
+        }
+        
+        function displayServices(services) {
+            const loadingState = document.getElementById('loadingState');
+            const errorState = document.getElementById('errorState');
+            const noServicesState = document.getElementById('noServicesState');
+            const servicesGrid = document.getElementById('servicesGrid');
+            
+            // Hide all states
+            loadingState.style.display = 'none';
+            errorState.style.display = 'none';
+            noServicesState.style.display = 'none';
+            
+            if (services.length === 0) {
+                servicesGrid.style.display = 'none';
+                noServicesState.style.display = 'block';
+                return;
+            }
+            
+            servicesGrid.style.display = 'grid';
+            servicesGrid.innerHTML = '';
+            
+            // Add services
+            services.forEach(service => {
+                const serviceCard = createServiceCard(service);
+                servicesGrid.appendChild(serviceCard);
+            });
+        }
+        
+        function createServiceCard(service) {
+            console.log('Creating service card for:', service);
+            
+            const card = document.createElement('div');
+            card.className = 'service-card';
+            card.dataset.category = service.category || 'other';
+            
+            const providerBadge = service.provider ? `<span class="provider-badge ${service.provider.toLowerCase()}">${service.provider}</span>` : '';
+            
+            card.innerHTML = `
+                <div class="service-header">
+                    <div class="service-icon ${service.category || 'other'}">
+                        <i class="${getCategoryIcon(service.category)}"></i>
+                    </div>
+                    <div class="service-info">
+                        <h3>${service.name} ${providerBadge}</h3>
+                        <p>${service.description || 'High quality service'}</p>
+                    </div>
+                    <div class="service-price">
+                        <span class="price">$${service.price || service.rate || '0.00'}</span>
+                        <span class="per">per 1K</span>
+                    </div>
+                </div>
+                <div class="service-details">
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Start Time: ${service.start_time || '0-1 hour'}</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Speed: ${service.speed || '100-500 per day'}</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Guarantee: ${service.guarantee || '30 days'}</span>
+                    </div>
+                    ${service.refill ? '<div class="detail-item"><i class="fas fa-sync-alt"></i><span>Refill Available</span></div>' : ''}
+                    ${service.cancel ? '<div class="detail-item"><i class="fas fa-times-circle"></i><span>Cancellation Available</span></div>' : ''}
+                </div>
+                <button class="btn-select-service" onclick="selectService('${service.id || service.service}')">
+                    Select Service
+                </button>
+            `;
+            
+            return card;
+        }
+        
+        function showLoadingState() {
+            const loadingState = document.getElementById('loadingState');
+            const servicesGrid = document.getElementById('servicesGrid');
+            
+            loadingState.style.display = 'block';
+            servicesGrid.style.display = 'none';
+        }
+        
+        function showError() {
+            const loadingState = document.getElementById('loadingState');
+            const errorState = document.getElementById('errorState');
+            const servicesGrid = document.getElementById('servicesGrid');
+            
+            loadingState.style.display = 'none';
+            servicesGrid.style.display = 'none';
+            errorState.style.display = 'block';
+        }
+        
+        function initCategoryTabs() {
+            // This will be called after services are loaded
+        }
+        
+        // Global function for service selection
+        function selectService(serviceId) {
+            console.log('Selecting service:', serviceId);
+            // Redirect to new order page with service pre-selected
+            window.location.href = `new-order.html?service=${serviceId}`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - SMM Turk Panel</title>
+    
+    <!-- CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="../assets/css/panel.css" rel="stylesheet">
+    <link href="../assets/css/dashboard.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="#" class="sidebar-brand">
+                <i class="fas fa-rocket"></i>
+                SMM Turk
+            </a>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <div class="nav-item">
+                <a href="index.html" class="nav-link active">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="new-order.html" class="nav-link">
+                    <i class="fas fa-plus"></i>
+                    New Order
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="mass-order.html" class="nav-link">
+                    <i class="fas fa-layer-group"></i>
+                    Mass Order
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="services.html" class="nav-link">
+                    <i class="fas fa-list"></i>
+                    Server 1 (SMMFA)
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="services.html" class="nav-link">
+                    <i class="fas fa-list"></i>
+                    Server 2 (SMMFollows)
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="orders.html" class="nav-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    Orders
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="add-funds.html" class="nav-link">
+                    <i class="fas fa-credit-card"></i>
+                    Add Funds
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="tickets.html" class="nav-link">
+                    <i class="fas fa-ticket-alt"></i>
+                    Tickets
+                    <span class="badge">3</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="api.html" class="nav-link">
+                    <i class="fas fa-code"></i>
+                    API
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="affiliates.html" class="nav-link">
+                    <i class="fas fa-users"></i>
+                    Affiliates
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="child-panel.html" class="nav-link">
+                    <i class="fas fa-child"></i>
+                    Child Panel
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="../index.html" class="nav-link">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </div>
+        </nav>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Header -->
+        <header class="top-header">
+            <div class="header-left">
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="breadcrumb">
+                    <span>Dashboard</span>
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <div class="account-info">
+                    <div class="account-item">
+                        <i class="fas fa-star"></i>
+                        <span>Account Points: 1,250 ≈ $12.50</span>
+                    </div>
+                    <div class="account-item">
+                        <i class="fas fa-dollar-sign"></i>
+                        <span>Account Spending: $156.80</span>
+                    </div>
+                    <div class="account-item">
+                        <i class="fas fa-building"></i>
+                        <span>Account Balance: $45.20</span>
+                    </div>
+                </div>
+                
+                <div class="header-actions">
+                    <button class="btn-icon" title="Add Funds">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button class="btn-icon" title="Settings">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                    <button class="btn-icon" title="Theme">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    <button class="btn-icon" title="Logout">
+                        <i class="fas fa-power-off"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <!-- Welcome Section -->
+            <div class="welcome-section">
+                <div class="welcome-content">
+                    <h1>Welcome back, John Doe!</h1>
+                    <p>Here's what's happening with your account today.</p>
+                </div>
+                <div class="welcome-actions">
+                    <button class="btn-primary" onclick="window.location.href='new-order.html'">
+                        <i class="fas fa-plus"></i>
+                        New Order
+                    </button>
+                    <button class="btn-secondary" onclick="window.location.href='add-funds.html'">
+                        <i class="fas fa-credit-card"></i>
+                        Add Funds
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon primary">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">$45.20</div>
+                        <div class="stat-label">Current Balance</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            +$12.50 this week
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon success">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">127</div>
+                        <div class="stat-label">Total Orders</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            +23 this month
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon warning">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">$156.80</div>
+                        <div class="stat-label">Total Spending</div>
+                        <div class="stat-change negative">
+                            <i class="fas fa-arrow-down"></i>
+                            -$8.20 this week
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon info">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">Open Tickets</div>
+                        <div class="stat-change neutral">
+                            <i class="fas fa-minus"></i>
+                            No change
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Charts Section -->
+            <div class="charts-section">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Order Statistics</h3>
+                        <div class="chart-controls">
+                            <select class="chart-period">
+                                <option value="7">Last 7 days</option>
+                                <option value="30" selected>Last 30 days</option>
+                                <option value="90">Last 90 days</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="ordersChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+                
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Revenue Overview</h3>
+                        <div class="chart-controls">
+                            <select class="chart-period">
+                                <option value="7">Last 7 days</option>
+                                <option value="30" selected>Last 30 days</option>
+                                <option value="90">Last 90 days</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="revenueChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div class="quick-actions-section">
+                <h3>Quick Actions</h3>
+                <div class="quick-actions-grid">
+                    <a href="new-order.html" class="quick-action-card">
+                        <div class="action-icon">
+                            <i class="fas fa-plus-circle"></i>
+                        </div>
+                        <div class="action-content">
+                            <h4>New Order</h4>
+                            <p>Place a new SMM order</p>
+                        </div>
+                    </a>
+                    
+                    <a href="add-funds.html" class="quick-action-card">
+                        <div class="action-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <div class="action-content">
+                            <h4>Add Funds</h4>
+                            <p>Top up your balance</p>
+                        </div>
+                    </a>
+                    
+                    <a href="services.html" class="quick-action-card">
+                        <div class="action-icon">
+                            <i class="fas fa-list"></i>
+                        </div>
+                        <div class="action-content">
+                            <h4>Browse Services</h4>
+                            <p>View all available services</p>
+                        </div>
+                    </a>
+                    
+                    <a href="tickets.html" class="quick-action-card">
+                        <div class="action-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="action-content">
+                            <h4>Support</h4>
+                            <p>Get help from our team</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Recent Activity -->
+            <div class="activity-section">
+                <div class="activity-header">
+                    <h3>Recent Activity</h3>
+                    <a href="orders.html" class="view-all">View All</a>
+                </div>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon success">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Order #1001 Completed</h4>
+                            <p>Instagram Followers - 1,000 followers delivered</p>
+                            <span class="activity-time">2 hours ago</span>
+                        </div>
+                        <div class="activity-status">
+                            <span class="status-badge completed">Completed</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon warning">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Order #1002 In Progress</h4>
+                            <p>Facebook Page Likes - 500 likes in progress</p>
+                            <span class="activity-time">4 hours ago</span>
+                        </div>
+                        <div class="activity-status">
+                            <span class="status-badge in_progress">In Progress</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon info">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Payment Received</h4>
+                            <p>Funds added: $25.00 via PayPal</p>
+                            <span class="activity-time">1 day ago</span>
+                        </div>
+                        <div class="activity-status">
+                            <span class="status-badge completed">Completed</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon error">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Order #1003 Failed</h4>
+                            <p>YouTube Views - Invalid URL provided</p>
+                            <span class="activity-time">2 days ago</span>
+                        </div>
+                        <div class="activity-status">
+                            <span class="status-badge cancelled">Failed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Service Performance -->
+            <div class="performance-section">
+                <h3>Top Performing Services</h3>
+                <div class="performance-grid">
+                    <div class="performance-card">
+                        <div class="service-icon instagram">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div class="service-info">
+                            <h4>Instagram Followers</h4>
+                            <p>Most ordered service</p>
+                        </div>
+                        <div class="service-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Orders</span>
+                                <span class="stat-value">45</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Success Rate</span>
+                                <span class="stat-value">98%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="performance-card">
+                        <div class="service-icon facebook">
+                            <i class="fab fa-facebook"></i>
+                        </div>
+                        <div class="service-info">
+                            <h4>Facebook Page Likes</h4>
+                            <p>High quality likes</p>
+                        </div>
+                        <div class="service-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Orders</span>
+                                <span class="stat-value">32</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Success Rate</span>
+                                <span class="stat-value">96%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="performance-card">
+                        <div class="service-icon youtube">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <div class="service-info">
+                            <h4>YouTube Views</h4>
+                            <p>High retention views</p>
+                        </div>
+                        <div class="service-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Orders</span>
+                                <span class="stat-value">28</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Success Rate</span>
+                                <span class="stat-value">94%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Notification Bell -->
+    <div class="notification-bell">
+        <i class="fas fa-bell"></i>
+        <span class="badge">3</span>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/panel.js"></script>
+    <script src="../assets/js/dashboard.js"></script>
+</body>
+</html>

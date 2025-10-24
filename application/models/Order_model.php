@@ -1,443 +1,193 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-defined('BASEPATH') or exit('No direct script access allowed');
-
-class Order_model extends MY_Model
-{
-	public function __construct()
-	{
-		parent::__construct();
-	}
-
-	/**
-	 * Form Validation
-	 */
-	public function validation_form($type)
-	{
-		if ($type == 'default') {
-			$this->form_validation(
-				[
-					[
-						'field' => 'link',
-						'label' => lang("link"),
-						'rules' => 'required|valid_url',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-						],
-					],
-					[
-						'field' => 'quantity',
-						'label' => lang("quantity"),
-						'rules' => 'required|numeric',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'numeric' => lang("error_only_numbers"),
-						],
-					],
-				]
-			);
-		} elseif ($type == 'custom_data') {
-			$this->form_validation(
-				[
-					[
-						'field' => 'link',
-						'label' => lang("link"),
-						'rules' => 'required|valid_url',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-						],
-					],
-					[
-						'field' => 'quantity',
-						'label' => lang("quantity"),
-						'rules' => 'required|numeric',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'numeric' => lang("error_only_numbers"),
-						],
-					],
-					[
-						'field' => 'comments_custom_package',
-						'label' => lang("comments"),
-						'rules' => 'required|alpha_numeric_punct',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'alpha_numeric_punct' => lang("error_invalid_characters"),
-						],
-					],
-				]
-			);
-		} elseif ($type == 'subscriptions') {
-			$this->form_validation(
-				[
-					[
-						'field' => 'username_subscriptions',
-						'label' => lang("input_username"),
-						'rules' => 'required|alpha_dash',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'alpha_dash' => lang("error_invalid_characters"),
-						],
-					],
-					[
-						'field' => 'new_posts_subs',
-						'label' => lang("new_posts_order"),
-						'rules' => 'required|is_natural_no_zero',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'is_natural_no_zero' => lang("error_min_one_post"),
-						],
-					],
-				]
-			);
-		} elseif ($type == 'custom_comments') {
-			$this->form_validation(
-				[
-					[
-						'field' => 'link',
-						'label' => lang("link"),
-						'rules' => 'required|valid_url',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-						],
-					],
-					[
-						'field' => 'quantity',
-						'label' => lang("quantity"),
-						'rules' => 'required|numeric',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'numeric' => lang("error_only_numbers"),
-						],
-					],
-					[
-						'field' => 'comments_custom_package',
-						'label' => lang("comments"),
-						'rules' => 'required|alpha_numeric_punct',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'alpha_numeric_punct' => lang("error_invalid_characters"),
-						],
-					],
-				]
-			);
-		} elseif ($type == 'custom_comments_package') {
-			$this->form_validation(
-				[
-					[
-						'field' => 'link',
-						'label' => lang("link"),
-						'rules' => 'required|valid_url',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-						],
-					],
-					[
-						'field' => 'comments_custom_package',
-						'label' => lang("comments"),
-						'rules' => 'required|alpha_numeric_punct',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'alpha_numeric_punct' => lang("error_invalid_characters"),
-						],
-					],
-				]
-			);
-		} elseif ($type == 'mentions_with_hashtags') {
-			$this->form_validation(
-				[
-					[
-						'field' => 'link',
-						'label' => lang("link"),
-						'rules' => 'required|valid_url',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-						],
-					],
-					[
-						'field' => 'quantity',
-						'label' => lang("quantity"),
-						'rules' => 'required|numeric',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'numeric' => lang("error_only_numbers"),
-						],
-					],
-					[
-						'field' => 'usernames_hashtags',
-						'label' => lang("usernames"),
-						'rules' => 'required|alpha_numeric_punct',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'alpha_numeric_punct' => lang("error_invalid_characters"),
-						],
-					],
-					[
-						'field' => 'mentions_with_hashtags',
-						'label' => lang("hashtags_new_order"),
-						'rules' => 'required|alpha_numeric_punct',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'alpha_numeric_punct' => lang("error_invalid_characters"),
-						],
-					],
-				]
-			);
-		} elseif ($type == 'mentions_custom_list') {
-			$this->form_validation(
-				[
-					[
-						'field' => 'link',
-						'label' => lang("link"),
-						'rules' => 'required|valid_url',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-						],
-					],
-					[
-						'field' => 'quantity',
-						'label' => lang("quantity"),
-						'rules' => 'required|numeric',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'numeric' => lang("error_only_numbers"),
-						],
-					],
-					[
-						'field' => 'usernames_hashtags',
-						'label' => lang("usernames"),
-						'rules' => 'required|alpha_numeric_punct',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'alpha_numeric_punct' => lang("error_invalid_characters"),
-						],
-					],
-				]
-			);
-		} elseif ($type == 'mentions_hashtag') {
-			$this->form_validation(
-				[
-					[
-						'field' => 'link',
-						'label' => lang("link"),
-						'rules' => 'required|valid_url',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-						],
-					],
-					[
-						'field' => 'quantity',
-						'label' => lang("quantity"),
-						'rules' => 'required|numeric',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'numeric' => lang("error_only_numbers"),
-						],
-					],
-					[
-						'field' => 'mentions_with_hashtag',
-						'label' => lang("hashtag_new_order"),
-						'rules' => 'required|alpha_numeric_punct',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'alpha_numeric_punct' => lang("error_invalid_characters"),
-						],
-					],
-				]
-			);
-		} elseif ($type == 'mentions_user_followers') {
-			$this->form_validation(
-				[
-					[
-						'field' => 'link',
-						'label' => lang("link"),
-						'rules' => 'required|valid_url',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-						],
-					],
-					[
-						'field' => 'quantity',
-						'label' => lang("quantity"),
-						'rules' => 'required|numeric',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'numeric' => lang("error_only_numbers"),
-						],
-					],
-					[
-						'field' => 'username_follower',
-						'label' => lang("input_username"),
-						'rules' => 'required|alpha_dash',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'alpha_dash' => lang("error_invalid_characters"),
-						],
-					],
-				]
-			);
-		} elseif ($type == 'mentions_media_likers') {
-			$this->form_validation(
-				[
-					[
-						'field' => 'link',
-						'label' => lang("link"),
-						'rules' => 'required|valid_url',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-						],
-					],
-					[
-						'field' => 'quantity',
-						'label' => lang("quantity"),
-						'rules' => 'required|numeric',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'numeric' => lang("error_only_numbers"),
-						],
-					],
-					[
-						'field' => 'media_url',
-						'label' => lang("media_url_new_order"),
-						'rules' => 'required|valid_url',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-						],
-					],
-				]
-			);
-		} elseif ($type == 'package') {
-			$this->form_validation(
-				[
-					[
-						'field' => 'link',
-						'label' => lang("link"),
-						'rules' => 'required|valid_url',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-						],
-					],
-				]
-			);
-		} elseif ($type == 'comment_likes') {
-			$this->form_validation(
-				[
-					[
-						'field' => 'link',
-						'label' => lang("link"),
-						'rules' => 'required|valid_url',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-						],
-					],
-					[
-						'field' => 'quantity',
-						'label' => lang("quantity"),
-						'rules' => 'required|numeric',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'numeric' => lang("error_only_numbers"),
-						],
-					],
-					[
-						'field' => 'username_follower',
-						'label' => lang("input_username"),
-						'rules' => 'required|alpha_dash',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'alpha_dash' => lang("error_invalid_characters"),
-						],
-					],
-				]
-			);
-		} elseif ($type == 'poll') {
-			$this->form_validation(
-				[
-					[
-						'field' => 'link',
-						'label' => lang("link"),
-						'rules' => 'required|valid_url',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-						],
-					],
-					[
-						'field' => 'quantity',
-						'label' => lang("quantity"),
-						'rules' => 'required|numeric',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'numeric' => lang("error_only_numbers"),
-						],
-					],
-					[
-						'field' => 'poll_answer_number',
-						'label' => lang("answer_number"),
-						'rules' => 'required|alpha_dash',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'alpha_dash' => lang("error_invalid_characters"),
-						],
-					],
-				]
-			);
-		} elseif ($type == 'seo') {
-			$this->form_validation(
-				[
-					[
-						'field' => 'link',
-						'label' => lang("link"),
-						'rules' => 'required|valid_url',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-						],
-					],
-					[
-						'field' => 'quantity',
-						'label' => lang("quantity"),
-						'rules' => 'required|numeric',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'numeric' => lang("error_only_numbers"),
-						],
-					],
-					[
-						'field' => 'seo_keywords',
-						'label' => lang("keywords_seo"),
-						'rules' => 'required|alpha_numeric_punct',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'alpha_numeric_punct' => lang("error_invalid_characters"),
-						],
-					],
-				]
-			);
-		} elseif ($type == 'mass_order') {
-			$this->form_validation(
-				[
-					[
-						'field' => 'mass_order',
-						'rules' => 'required',
-						'rules' => 'required|alpha_numeric_punct',
-						'errors' => [
-							'required' => lang("error_empty_field"),
-							'alpha_numeric_punct' => lang("error_invalid_characters"),
-						],
-					],
-				]
-			);
-		}
-
-		if ($this->form_validation->run() == false) {
-			foreach ($this->form_validation->error_array() as $key => $value) {
-				json(
-					[
-						'csrf' => $this->security->get_csrf_hash(),
-						'type' => 'error',
-						'message' => form_error($key, false, false),
-					]
-				);
-			}
-		}
-	}
+/**
+ * Order Model for SMM Turk
+ */
+class Order_model extends SMM_Model {
+    
+    protected $table = 'orders';
+    
+    public function __construct() {
+        parent::__construct();
+    }
+    
+    /**
+     * Create new order
+     */
+    public function create_order($user_id, $service_id, $link, $quantity) {
+        // Get service details
+        $this->db->select('price, name');
+        $this->db->from('services');
+        $this->db->where('id', $service_id);
+        $service = $this->db->get()->row();
+        
+        if (!$service) {
+            return false;
+        }
+        
+        $charge = $service->price * $quantity;
+        
+        $order_data = array(
+            'user_id' => $user_id,
+            'service_id' => $service_id,
+            'link' => $link,
+            'quantity' => $quantity,
+            'charge' => $charge,
+            'start_count' => 0,
+            'remains' => $quantity,
+            'status' => 'pending',
+            'created_at' => date('Y-m-d H:i:s')
+        );
+        
+        return $this->insert($order_data);
+    }
+    
+    /**
+     * Get user orders
+     */
+    public function get_user_orders($user_id, $limit = 20, $offset = 0) {
+        $this->db->select('
+            orders.*,
+            services.name as service_name,
+            services.type as service_type,
+            categories.name as category_name
+        ');
+        $this->db->from('orders');
+        $this->db->join('services', 'services.id = orders.service_id');
+        $this->db->join('categories', 'categories.id = services.category_id');
+        $this->db->where('orders.user_id', $user_id);
+        $this->db->order_by('orders.created_at', 'DESC');
+        $this->db->limit($limit, $offset);
+        
+        return $this->db->get()->result();
+    }
+    
+    /**
+     * Get order with details
+     */
+    public function get_order_details($order_id) {
+        $this->db->select('
+            orders.*,
+            services.name as service_name,
+            services.type as service_type,
+            services.description as service_description,
+            categories.name as category_name,
+            users.username,
+            users.email
+        ');
+        $this->db->from('orders');
+        $this->db->join('services', 'services.id = orders.service_id');
+        $this->db->join('categories', 'categories.id = services.category_id');
+        $this->db->join('users', 'users.id = orders.user_id');
+        $this->db->where('orders.id', $order_id);
+        
+        return $this->db->get()->row();
+    }
+    
+    /**
+     * Update order status
+     */
+    public function update_status($order_id, $status, $api_order_id = null) {
+        $update_data = array(
+            'status' => $status,
+            'updated_at' => date('Y-m-d H:i:s')
+        );
+        
+        if ($api_order_id) {
+            $update_data['api_order_id'] = $api_order_id;
+        }
+        
+        if ($status === 'in_progress') {
+            $update_data['started_at'] = date('Y-m-d H:i:s');
+        } elseif ($status === 'completed') {
+            $update_data['completed_at'] = date('Y-m-d H:i:s');
+            $update_data['remains'] = 0;
+        }
+        
+        return $this->update($order_id, $update_data);
+    }
+    
+    /**
+     * Get orders by status
+     */
+    public function get_by_status($status, $limit = 20) {
+        $this->db->select('
+            orders.*,
+            services.name as service_name,
+            users.username
+        ');
+        $this->db->from('orders');
+        $this->db->join('services', 'services.id = orders.service_id');
+        $this->db->join('users', 'users.id = orders.user_id');
+        $this->db->where('orders.status', $status);
+        $this->db->order_by('orders.created_at', 'ASC');
+        $this->db->limit($limit);
+        
+        return $this->db->get()->result();
+    }
+    
+    /**
+     * Get order statistics
+     */
+    public function get_order_stats($user_id = null) {
+        $this->db->select('
+            COUNT(*) as total_orders,
+            SUM(charge) as total_revenue,
+            COUNT(CASE WHEN status = "completed" THEN 1 END) as completed_orders,
+            COUNT(CASE WHEN status = "pending" THEN 1 END) as pending_orders,
+            COUNT(CASE WHEN status = "in_progress" THEN 1 END) as in_progress_orders,
+            COUNT(CASE WHEN status = "cancelled" THEN 1 END) as cancelled_orders
+        ');
+        $this->db->from('orders');
+        
+        if ($user_id) {
+            $this->db->where('user_id', $user_id);
+        }
+        
+        return $this->db->get()->row();
+    }
+    
+    /**
+     * Get recent orders
+     */
+    public function get_recent_orders($limit = 10) {
+        $this->db->select('
+            orders.*,
+            services.name as service_name,
+            users.username
+        ');
+        $this->db->from('orders');
+        $this->db->join('services', 'services.id = orders.service_id');
+        $this->db->join('users', 'users.id = orders.user_id');
+        $this->db->order_by('orders.created_at', 'DESC');
+        $this->db->limit($limit);
+        
+        return $this->db->get()->result();
+    }
+    
+    /**
+     * Search orders
+     */
+    public function search_orders($search_term, $user_id = null) {
+        $this->db->select('
+            orders.*,
+            services.name as service_name,
+            users.username
+        ');
+        $this->db->from('orders');
+        $this->db->join('services', 'services.id = orders.service_id');
+        $this->db->join('users', 'users.id = orders.user_id');
+        $this->db->like('orders.link', $search_term);
+        $this->db->or_like('services.name', $search_term);
+        $this->db->or_like('users.username', $search_term);
+        
+        if ($user_id) {
+            $this->db->where('orders.user_id', $user_id);
+        }
+        
+        $this->db->order_by('orders.created_at', 'DESC');
+        
+        return $this->db->get()->result();
+    }
 }

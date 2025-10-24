@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Order - SMM Turk Panel</title>
+    
+    <!-- CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="../assets/css/panel.css" rel="stylesheet">
+    <link href="../assets/css/order.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="#" class="sidebar-brand">
+                <i class="fas fa-rocket"></i>
+                SMM Turk
+            </a>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <div class="nav-item">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="new-order.html" class="nav-link active">
+                    <i class="fas fa-plus"></i>
+                    New Order
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="mass-order.html" class="nav-link">
+                    <i class="fas fa-layer-group"></i>
+                    Mass Order
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="services.html" class="nav-link">
+                    <i class="fas fa-list"></i>
+                    Server 1 (SMMFA)
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="services.html" class="nav-link">
+                    <i class="fas fa-list"></i>
+                    Server 2 (SMMFollows)
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="orders.html" class="nav-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    Orders
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="add-funds.html" class="nav-link">
+                    <i class="fas fa-credit-card"></i>
+                    Add Funds
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="tickets.html" class="nav-link">
+                    <i class="fas fa-ticket-alt"></i>
+                    Tickets
+                    <span class="badge">3</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="api.html" class="nav-link">
+                    <i class="fas fa-code"></i>
+                    API
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="affiliates.html" class="nav-link">
+                    <i class="fas fa-users"></i>
+                    Affiliates
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="child-panel.html" class="nav-link">
+                    <i class="fas fa-child"></i>
+                    Child Panel
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="../index.html" class="nav-link">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </div>
+        </nav>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Header -->
+        <header class="top-header">
+            <div class="header-left">
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="breadcrumb">
+                    <span>New Order</span>
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <div class="account-info">
+                    <div class="account-item">
+                        <i class="fas fa-dollar-sign"></i>
+                        <span>Balance: $45.20</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Order Content -->
+        <div class="order-content">
+            <div class="order-header">
+                <h1>Place New Order</h1>
+                <p>Select a service and place your order</p>
+            </div>
+            
+            <!-- Service Categories -->
+            <div class="service-categories">
+                <div class="category-tabs">
+                    <button class="category-tab active" data-category="all">
+                        <i class="fas fa-th"></i>
+                        All Services
+                    </button>
+                    <button class="category-tab" data-category="instagram">
+                        <i class="fab fa-instagram"></i>
+                        Instagram
+                    </button>
+                    <button class="category-tab" data-category="facebook">
+                        <i class="fab fa-facebook"></i>
+                        Facebook
+                    </button>
+                    <button class="category-tab" data-category="youtube">
+                        <i class="fab fa-youtube"></i>
+                        YouTube
+                    </button>
+                    <button class="category-tab" data-category="twitter">
+                        <i class="fab fa-twitter"></i>
+                        Twitter
+                    </button>
+                    <button class="category-tab" data-category="tiktok">
+                        <i class="fab fa-tiktok"></i>
+                        TikTok
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Services Grid -->
+            <div class="services-grid" id="servicesGrid">
+                <!-- Instagram Services -->
+                <div class="service-card" data-category="instagram">
+                    <div class="service-header">
+                        <div class="service-icon instagram">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div class="service-info">
+                            <h3>Instagram Followers</h3>
+                            <p>High quality followers with real profiles</p>
+                        </div>
+                        <div class="service-price">
+                            <span class="price">$0.50</span>
+                            <span class="per">per 1K</span>
+                        </div>
+                    </div>
+                    <div class="service-details">
+                        <div class="detail-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Start Time: 0-1 hour</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Speed: 100-500 per day</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Guarantee: 30 days</span>
+                        </div>
+                    </div>
+                    <button class="btn-select-service" onclick="selectService('instagram-followers')">
+                        Select Service
+                    </button>
+                </div>
+                
+                <div class="service-card" data-category="instagram">
+                    <div class="service-header">
+                        <div class="service-icon instagram">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div class="service-info">
+                            <h3>Instagram Likes</h3>
+                            <p>High quality likes for your posts</p>
+                        </div>
+                        <div class="service-price">
+                            <span class="price">$0.30</span>
+                            <span class="per">per 1K</span>
+                        </div>
+                    </div>
+                    <div class="service-details">
+                        <div class="detail-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Start Time: 0-1 hour</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Speed: 100-500 per day</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Guarantee: 30 days</span>
+                        </div>
+                    </div>
+                    <button class="btn-select-service" onclick="selectService('instagram-likes')">
+                        Select Service
+                    </button>
+                </div>
+                
+                <!-- Facebook Services -->
+                <div class="service-card" data-category="facebook">
+                    <div class="service-header">
+                        <div class="service-icon facebook">
+                            <i class="fab fa-facebook"></i>
+                        </div>
+                        <div class="service-info">
+                            <h3>Facebook Page Likes</h3>
+                            <p>Real page likes from active users</p>
+                        </div>
+                        <div class="service-price">
+                            <span class="price">$0.80</span>
+                            <span class="per">per 1K</span>
+                        </div>
+                    </div>
+                    <div class="service-details">
+                        <div class="detail-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Start Time: 0-2 hours</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Speed: 50-200 per day</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Guarantee: 30 days</span>
+                        </div>
+                    </div>
+                    <button class="btn-select-service" onclick="selectService('facebook-likes')">
+                        Select Service
+                    </button>
+                </div>
+                
+                <!-- YouTube Services -->
+                <div class="service-card" data-category="youtube">
+                    <div class="service-header">
+                        <div class="service-icon youtube">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <div class="service-info">
+                            <h3>YouTube Views</h3>
+                            <p>High retention views for your videos</p>
+                        </div>
+                        <div class="service-price">
+                            <span class="price">$1.20</span>
+                            <span class="per">per 1K</span>
+                        </div>
+                    </div>
+                    <div class="service-details">
+                        <div class="detail-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Start Time: 0-1 hour</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Speed: 100-1000 per day</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Guarantee: 30 days</span>
+                        </div>
+                    </div>
+                    <button class="btn-select-service" onclick="selectService('youtube-views')">
+                        Select Service
+                    </button>
+                </div>
+                
+                <!-- Twitter Services -->
+                <div class="service-card" data-category="twitter">
+                    <div class="service-header">
+                        <div class="service-icon twitter">
+                            <i class="fab fa-twitter"></i>
+                        </div>
+                        <div class="service-info">
+                            <h3>Twitter Followers</h3>
+                            <p>Real Twitter followers</p>
+                        </div>
+                        <div class="service-price">
+                            <span class="price">$0.40</span>
+                            <span class="per">per 1K</span>
+                        </div>
+                    </div>
+                    <div class="service-details">
+                        <div class="detail-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Start Time: 0-1 hour</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Speed: 100-500 per day</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Guarantee: 30 days</span>
+                        </div>
+                    </div>
+                    <button class="btn-select-service" onclick="selectService('twitter-followers')">
+                        Select Service
+                    </button>
+                </div>
+                
+                <!-- TikTok Services -->
+                <div class="service-card" data-category="tiktok">
+                    <div class="service-header">
+                        <div class="service-icon tiktok">
+                            <i class="fab fa-tiktok"></i>
+                        </div>
+                        <div class="service-info">
+                            <h3>TikTok Followers</h3>
+                            <p>Real TikTok followers</p>
+                        </div>
+                        <div class="service-price">
+                            <span class="price">$0.60</span>
+                            <span class="per">per 1K</span>
+                        </div>
+                    </div>
+                    <div class="service-details">
+                        <div class="detail-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Start Time: 0-1 hour</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Speed: 100-500 per day</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Guarantee: 30 days</span>
+                        </div>
+                    </div>
+                    <button class="btn-select-service" onclick="selectService('tiktok-followers')">
+                        Select Service
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Order Modal -->
+    <div class="order-modal" id="orderModal">
+        <div class="modal-overlay">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Place Order</h3>
+                    <button class="close-modal" onclick="closeOrderModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="orderForm">
+                        <div class="form-group">
+                            <label for="serviceName">Service</label>
+                            <input type="text" id="serviceName" readonly>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="link">Link/Username</label>
+                            <input type="url" id="link" placeholder="https://instagram.com/username" required>
+                            <small class="form-help">Enter the link to your profile or post</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="quantity">Quantity</label>
+                            <input type="number" id="quantity" min="100" max="100000" value="1000" required>
+                            <small class="form-help">Minimum: 100, Maximum: 100,000</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="charge">Charge</label>
+                            <input type="text" id="charge" readonly>
+                            <small class="form-help">Total cost for this order</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="terms" required>
+                                I agree to the <a href="#" target="_blank">Terms of Service</a>
+                            </label>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn-secondary" onclick="closeOrderModal()">
+                                Cancel
+                            </button>
+                            <button type="button" class="btn-primary" onclick="orderManager.submitOrder()">
+                                <i class="fas fa-shopping-cart"></i>
+                                Place Order
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/panel.js"></script>
+    <script src="../assets/js/order.js"></script>
+</body>
+</html>
