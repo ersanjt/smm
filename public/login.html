@@ -1,9 +1,15 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - SMM Turk</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon-180x180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
     
     <!-- CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -11,22 +17,129 @@
     <link href="assets/css/auth.css" rel="stylesheet">
 </head>
 <body>
+    <!-- Premium Header -->
+    <header class="premium-header">
+        <div class="premium-header-container">
+            <div class="premium-header-left">
+                <a href="index.html" class="premium-logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-name">SMM Turk</span>
+                        <span class="logo-tagline">Premium SMM Panel</span>
+                    </div>
+                </a>
+            </div>
+            
+            <nav class="premium-header-nav">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="index.html#services" class="nav-link">
+                    <i class="fas fa-layer-group"></i>
+                    <span>Services</span>
+                </a>
+                <a href="index.html#why-choose" class="nav-link">
+                    <i class="fas fa-star"></i>
+                    <span>Why Us</span>
+                </a>
+                <a href="index.html#reseller" class="nav-link">
+                    <i class="fas fa-crown"></i>
+                    <span>Reseller</span>
+                </a>
+                <a href="index.html#faq" class="nav-link">
+                    <i class="fas fa-question-circle"></i>
+                    <span>FAQ</span>
+                </a>
+            </nav>
+            
+            <div class="premium-header-right">
+                <div class="header-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-bolt"></i>
+                        <span>Fast Start</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>100% Secure</span>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <a href="register.html" class="btn-premium-signup">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Sign Up</span>
+                    </a>
+                </div>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-nav-menu" id="mobileMenu">
+            <div class="mobile-nav-header">
+                <span class="mobile-nav-title">Menu</span>
+                <button class="mobile-nav-close" onclick="toggleMobileMenu()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="mobile-nav-links">
+                <a href="index.html" class="mobile-nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="index.html#services" class="mobile-nav-link">
+                    <i class="fas fa-layer-group"></i>
+                    <span>Services</span>
+                </a>
+                <a href="index.html#why-choose" class="mobile-nav-link">
+                    <i class="fas fa-star"></i>
+                    <span>Why Choose Us</span>
+                </a>
+                <a href="index.html#reseller" class="mobile-nav-link">
+                    <i class="fas fa-crown"></i>
+                    <span>Reseller Panel</span>
+                </a>
+                <a href="index.html#faq" class="mobile-nav-link">
+                    <i class="fas fa-question-circle"></i>
+                    <span>FAQ</span>
+                </a>
+            </nav>
+            <div class="mobile-nav-footer">
+                <a href="register.html" class="mobile-nav-signup">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Create Account</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
     <div class="auth-container">
         <div class="auth-background">
             <div class="auth-pattern"></div>
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
         </div>
         
-        <div class="auth-card">
-            <div class="auth-header">
-                <div class="logo">
-                    <i class="fas fa-rocket"></i>
-                    <span>SMM Turk</span>
+        <div class="auth-wrapper">
+            <!-- Main Form Card -->
+            <div class="auth-card">
+                <div class="auth-header">
+                    <div class="auth-badge">
+                        <i class="fas fa-lock"></i>
+                        <span>Secure Sign In</span>
+                    </div>
+                    <h1>Welcome Back</h1>
+                    <p>ğŸš€ Sign in to access 1000+ services â€¢ âš¡ Lightning fast delivery â€¢ ğŸ’° Best prices guaranteed</p>
                 </div>
-                <h1>Welcome Back</h1>
-                <p>Sign in to your account to continue</p>
-            </div>
-            
-            <form class="auth-form" onsubmit="handleLogin(event)">
+                
+                <form class="auth-form" onsubmit="handleLogin(event)">
                 <div class="form-group">
                     <label class="form-label">Email Address</label>
                     <div class="input-group">
@@ -39,7 +152,7 @@
                     <label class="form-label">Password</label>
                     <div class="input-group">
                         <i class="fas fa-lock"></i>
-                        <input type="password" name="password" id="password" placeholder="••••••••" required>
+                        <input type="password" name="password" id="password" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" required>
                         <button type="button" class="password-toggle" onclick="togglePassword()">
                             <i class="fas fa-eye" id="password-icon"></i>
                         </button>
@@ -62,29 +175,88 @@
                         Signing in...
                     </span>
                 </button>
+                </form>
                 
-                <div class="divider">
-                    <span>or</span>
+                <div class="auth-footer">
+                    <p>Don't have an account? <a href="register.html">Sign up here</a></p>
                 </div>
-                
-                <div class="social-login">
-                    <button type="button" class="btn-social google" onclick="socialLogin('google')">
-                        <i class="fab fa-google"></i>
-                        Continue with Google
-                    </button>
-                    <button type="button" class="btn-social facebook" onclick="socialLogin('facebook')">
-                        <i class="fab fa-facebook-f"></i>
-                        Continue with Facebook
-                    </button>
-                    <button type="button" class="btn-social apple" onclick="socialLogin('apple')">
-                        <i class="fab fa-apple"></i>
-                        Continue with Apple
-                    </button>
-                </div>
-            </form>
+            </div>
             
-            <div class="auth-footer">
-                <p>Don't have an account? <a href="register.html">Sign up here</a></p>
+            <!-- Side Benefits Panel -->
+            <div class="benefits-sidebar">
+                <div class="sidebar-header">
+                    <h3>Why Join SMM Turk?</h3>
+                    <p>Join thousands of satisfied customers worldwide</p>
+                </div>
+                
+                <div class="benefits-list">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Cheapest Prices</h4>
+                            <p>Starting from $0.01 per 1K</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Lightning Fast</h4>
+                            <p>0.3 seconds average delivery</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>100% Secure</h4>
+                            <p>SSL encrypted transactions</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>24/7 Support</h4>
+                            <p>Always here to help you</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>50,000+ Orders</h4>
+                            <p>Completed successfully daily</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Worldwide</h4>
+                            <p>Serving customers globally</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-footer">
+                    <div class="trust-badge">
+                        <i class="fas fa-shield-check"></i>
+                        <span>ğŸ”’ 100% Secure & Encrypted</span>
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -105,7 +277,7 @@
         </div>
     </div>
     
-    <!-- JavaScript -->
+    <!-- JavaScript -->`r`n    <script src="assets/js/error-suppress.js"></script>
     <script src="assets/js/auth.js"></script>
     <script>
         function handleLogin(event) {
@@ -121,16 +293,50 @@
             btnLoading.style.display = 'inline-flex';
             submitBtn.disabled = true;
             
-            // Simulate login process
-            setTimeout(() => {
+            // Get form data
+            const email = form.querySelector('input[name="email"]').value;
+            const password = form.querySelector('input[name="password"]').value;
+            
+            // Send login request
+            fetch('../api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: email,
+                    password: password
+                })
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    // Show success message
+                    showSuccessMessage(result.message);
+                    
+                    // Redirect after 1 second
+                    setTimeout(() => {
+                        window.location.href = result.redirect || 'panel/';
+                    }, 1000);
+                } else {
+                    // Reset button state
+                    btnText.style.display = 'inline';
+                    btnLoading.style.display = 'none';
+                    submitBtn.disabled = false;
+                    
+                    // Show error message
+                    showErrorMessage(result.message);
+                }
+            })
+            .catch(error => {
                 // Reset button state
                 btnText.style.display = 'inline';
                 btnLoading.style.display = 'none';
                 submitBtn.disabled = false;
                 
-                // Redirect to dashboard
-                window.location.href = 'panel/';
-            }, 2000);
+                // Show error message
+                showErrorMessage('Login failed. Please try again.');
+            });
         }
         
         function togglePassword() {
@@ -144,6 +350,46 @@
                 passwordInput.type = 'password';
                 passwordIcon.className = 'fas fa-eye';
             }
+        }
+        
+        function showSuccessMessage(message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = 'notification success';
+            notification.innerHTML = `
+                <i class="fas fa-check-circle"></i>
+                <span>${message}</span>
+            `;
+            document.body.appendChild(notification);
+            
+            // Show notification
+            setTimeout(() => notification.classList.add('show'), 100);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+        
+        function showErrorMessage(message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = 'notification error';
+            notification.innerHTML = `
+                <i class="fas fa-exclamation-circle"></i>
+                <span>${message}</span>
+            `;
+            document.body.appendChild(notification);
+            
+            // Show notification
+            setTimeout(() => notification.classList.add('show'), 100);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
         }
         
         function socialLogin(provider) {

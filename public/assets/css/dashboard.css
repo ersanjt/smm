@@ -84,20 +84,20 @@
 }
 
 .stat-card {
-    background: white;
+    background: var(--bg-secondary);
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    box-shadow: var(--shadow-sm);
     display: flex;
     align-items: center;
     gap: 20px;
     transition: all 0.3s ease;
-    border: 1px solid #f0f0f0;
+    border: 1px solid var(--border-color);
 }
 
 .stat-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    box-shadow: var(--shadow-md);
 }
 
 .stat-icon {
@@ -134,14 +134,16 @@
 .stat-value {
     font-size: 2rem;
     font-weight: 700;
-    color: #2d3748;
+    color: var(--text-primary);
     margin-bottom: 5px;
+    transition: color 0.3s ease;
 }
 
 .stat-label {
-    color: #718096;
+    color: var(--text-secondary);
     font-size: 0.9rem;
     margin-bottom: 8px;
+    transition: color 0.3s ease;
 }
 
 .stat-change {
@@ -216,8 +218,9 @@
 .quick-actions-section h3 {
     font-size: 1.3rem;
     font-weight: 600;
-    color: #2d3748;
+    color: var(--text-primary);
     margin-bottom: 20px;
+    transition: color 0.3s ease;
 }
 
 .quick-actions-grid {
@@ -227,11 +230,13 @@
 }
 
 .quick-action-card {
-    background: white;
+    background: var(--bg-secondary);
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
     text-decoration: none;
+    transition: all 0.3s ease;
     color: inherit;
     display: flex;
     align-items: center;
@@ -242,9 +247,10 @@
 
 .quick-action-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    box-shadow: var(--shadow-md);
     text-decoration: none;
     color: inherit;
+    background: var(--bg-primary);
 }
 
 .action-icon {
@@ -303,10 +309,10 @@
 }
 
 .activity-list {
-    background: white;
+    background: var(--bg-secondary);
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    border: 1px solid #f0f0f0;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
     overflow: hidden;
 }
 
@@ -315,7 +321,7 @@
     align-items: center;
     gap: 15px;
     padding: 20px;
-    border-bottom: 1px solid #f7fafc;
+    border-bottom: 1px solid var(--border-color);
     transition: background-color 0.2s ease;
 }
 
@@ -324,7 +330,7 @@
 }
 
 .activity-item:hover {
-    background-color: #f7fafc;
+    background-color: var(--bg-primary);
 }
 
 .activity-icon {
@@ -361,19 +367,22 @@
 .activity-content h4 {
     font-size: 1rem;
     font-weight: 600;
-    color: #2d3748;
+    color: var(--text-primary);
     margin: 0 0 5px 0;
+    transition: color 0.3s ease;
 }
 
 .activity-content p {
     font-size: 0.9rem;
-    color: #718096;
+    color: var(--text-secondary);
     margin: 0 0 5px 0;
+    transition: color 0.3s ease;
 }
 
 .activity-time {
     font-size: 0.8rem;
-    color: #a0aec0;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
 }
 
 .activity-status {
@@ -423,11 +432,11 @@
 }
 
 .performance-card {
-    background: white;
+    background: var(--bg-secondary);
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    border: 1px solid #f0f0f0;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
     display: flex;
     align-items: center;
     gap: 20px;
@@ -436,7 +445,7 @@
 
 .performance-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    box-shadow: var(--shadow-md);
 }
 
 .service-icon {
@@ -469,14 +478,16 @@
 .service-info h4 {
     font-size: 1.1rem;
     font-weight: 600;
-    color: #2d3748;
+    color: var(--text-primary);
     margin: 0 0 5px 0;
+    transition: color 0.3s ease;
 }
 
 .service-info p {
     font-size: 0.9rem;
-    color: #718096;
+    color: var(--text-secondary);
     margin: 0;
+    transition: color 0.3s ease;
 }
 
 .service-stats {
@@ -490,15 +501,17 @@
 
 .stat-item .stat-label {
     font-size: 0.8rem;
-    color: #a0aec0;
+    color: var(--text-secondary);
     margin-bottom: 5px;
     display: block;
+    transition: color 0.3s ease;
 }
 
 .stat-item .stat-value {
     font-size: 1.2rem;
     font-weight: 700;
-    color: #2d3748;
+    color: var(--text-primary);
+    transition: color 0.3s ease;
 }
 
 /* Notification Bell */

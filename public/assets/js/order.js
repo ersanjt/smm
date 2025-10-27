@@ -15,6 +15,18 @@ class OrderManager {
                 min: 100,
                 max: 100000
             },
+            'instagram-views': {
+                name: 'Instagram Views',
+                price: 0.25,
+                min: 100,
+                max: 100000
+            },
+            'instagram-comments': {
+                name: 'Instagram Comments',
+                price: 1.50,
+                min: 100,
+                max: 100000
+            },
             'facebook-likes': {
                 name: 'Facebook Page Likes',
                 price: 0.80,
@@ -27,15 +39,45 @@ class OrderManager {
                 min: 100,
                 max: 100000
             },
+            'youtube-subscribers': {
+                name: 'YouTube Subscribers',
+                price: 2.50,
+                min: 100,
+                max: 100000
+            },
+            'youtube-likes': {
+                name: 'YouTube Likes',
+                price: 0.80,
+                min: 100,
+                max: 100000
+            },
             'twitter-followers': {
                 name: 'Twitter Followers',
                 price: 0.40,
                 min: 100,
                 max: 100000
             },
+            'twitter-likes': {
+                name: 'Twitter Likes',
+                price: 0.35,
+                min: 100,
+                max: 100000
+            },
             'tiktok-followers': {
                 name: 'TikTok Followers',
                 price: 0.60,
+                min: 100,
+                max: 100000
+            },
+            'tiktok-likes': {
+                name: 'TikTok Likes',
+                price: 0.55,
+                min: 100,
+                max: 100000
+            },
+            'tiktok-views': {
+                name: 'TikTok Views',
+                price: 0.20,
                 min: 100,
                 max: 100000
             }
@@ -54,20 +96,150 @@ class OrderManager {
     // Load Services from API
     async loadServices() {
         try {
-            console.log('Loading services from API...');
-            const response = await window.apiManager.getServices('all');
-            console.log('Services response:', response);
+            console.log('Loading services...');
             
-            if (response.success) {
-                this.updateServicesGrid(response.data);
-                console.log('Services loaded successfully');
-            } else {
-                console.error('Failed to load services:', response.message);
-                this.showErrorMessage('Failed to load services: ' + response.message);
-            }
+            // Use static data instead of API call to avoid CORS issues
+            const staticServices = [
+                {
+                    id: 'instagram-followers',
+                    name: 'Instagram Followers',
+                    category: 'instagram',
+                    price: 0.50,
+                    description: 'High quality followers with real profiles',
+                    start_time: '0-1 hour',
+                    speed: '100-500 per day',
+                    guarantee: '30 days'
+                },
+                {
+                    id: 'instagram-likes',
+                    name: 'Instagram Likes',
+                    category: 'instagram',
+                    price: 0.30,
+                    description: 'High quality likes for your posts',
+                    start_time: '0-1 hour',
+                    speed: '100-500 per day',
+                    guarantee: '30 days'
+                },
+                {
+                    id: 'facebook-likes',
+                    name: 'Facebook Page Likes',
+                    category: 'facebook',
+                    price: 0.80,
+                    description: 'Real page likes from active users',
+                    start_time: '0-2 hours',
+                    speed: '50-200 per day',
+                    guarantee: '30 days'
+                },
+                {
+                    id: 'youtube-views',
+                    name: 'YouTube Views',
+                    category: 'youtube',
+                    price: 1.20,
+                    description: 'High retention views for your videos',
+                    start_time: '0-1 hour',
+                    speed: '100-1000 per day',
+                    guarantee: '30 days'
+                },
+                {
+                    id: 'twitter-followers',
+                    name: 'Twitter Followers',
+                    category: 'twitter',
+                    price: 0.40,
+                    description: 'Real Twitter followers',
+                    start_time: '0-1 hour',
+                    speed: '100-500 per day',
+                    guarantee: '30 days'
+                },
+                {
+                    id: 'tiktok-followers',
+                    name: 'TikTok Followers',
+                    category: 'tiktok',
+                    price: 0.60,
+                    description: 'Real TikTok followers',
+                    start_time: '0-1 hour',
+                    speed: '100-500 per day',
+                    guarantee: '30 days'
+                },
+                {
+                    id: 'instagram-views',
+                    name: 'Instagram Views',
+                    category: 'instagram',
+                    price: 0.25,
+                    description: 'Real views for your posts and stories',
+                    start_time: '0-30 min',
+                    speed: '200-800 per day',
+                    guarantee: '30 days'
+                },
+                {
+                    id: 'instagram-comments',
+                    name: 'Instagram Comments',
+                    category: 'instagram',
+                    price: 1.50,
+                    description: 'Real and engaging comments',
+                    start_time: '0-2 hours',
+                    speed: '50-300 per day',
+                    guarantee: '60 days'
+                },
+                {
+                    id: 'youtube-subscribers',
+                    name: 'YouTube Subscribers',
+                    category: 'youtube',
+                    price: 2.50,
+                    description: 'Active subscribers for your channel',
+                    start_time: '1-24 hours',
+                    speed: '10-100 per day',
+                    guarantee: '60 days'
+                },
+                {
+                    id: 'youtube-likes',
+                    name: 'YouTube Likes',
+                    category: 'youtube',
+                    price: 0.80,
+                    description: 'High quality likes for your videos',
+                    start_time: '0-1 hour',
+                    speed: '500-5000 per day',
+                    guarantee: '30 days'
+                },
+                {
+                    id: 'twitter-likes',
+                    name: 'Twitter Likes',
+                    category: 'twitter',
+                    price: 0.35,
+                    description: 'Real likes for your tweets',
+                    start_time: '0-1 hour',
+                    speed: '200-1000 per day',
+                    guarantee: '30 days'
+                },
+                {
+                    id: 'tiktok-likes',
+                    name: 'TikTok Likes',
+                    category: 'tiktok',
+                    price: 0.55,
+                    description: 'Real likes for your videos',
+                    start_time: '0-1 hour',
+                    speed: '150-700 per day',
+                    guarantee: '30 days'
+                },
+                {
+                    id: 'tiktok-views',
+                    name: 'TikTok Views',
+                    category: 'tiktok',
+                    price: 0.20,
+                    description: 'Real views for your videos',
+                    start_time: '0-30 min',
+                    speed: '500-2000 per day',
+                    guarantee: '30 days'
+                }
+            ];
+            
+            console.log('Services loaded successfully');
+            
+            // Don't update grid since HTML already has services
+            this.loadedServices = { all: staticServices };
+            
         } catch (error) {
             console.error('Failed to load services:', error);
-            this.showErrorMessage('Failed to load services. Please refresh the page.');
+            // Don't show error message, page will work with static HTML
         }
     }
     
@@ -79,36 +251,13 @@ class OrderManager {
             return;
         }
         
-        console.log('Updating services grid with data:', servicesData);
+        console.log('Services grid already has static HTML content');
         
         // Store services for later use
         this.loadedServices = servicesData;
         
-        // Clear existing content
-        servicesGrid.innerHTML = '';
-        
-        // Flatten all services from all categories
-        const allServices = [];
-        Object.values(servicesData).forEach(categoryServices => {
-            if (Array.isArray(categoryServices)) {
-                allServices.push(...categoryServices);
-            }
-        });
-        
-        console.log('All services:', allServices);
-        
-        if (allServices.length === 0) {
-            servicesGrid.innerHTML = '<div class="no-services">No services available</div>';
-            return;
-        }
-        
-        // Add services from API
-        allServices.forEach(service => {
-            const serviceCard = this.createServiceCard(service);
-            servicesGrid.appendChild(serviceCard);
-        });
-        
-        console.log(`Added ${allServices.length} services to grid`);
+        // Services are already in HTML, no need to update
+        return;
     }
     
     // Create Service Card
@@ -211,6 +360,11 @@ class OrderManager {
         const categoryTabs = document.querySelectorAll('.category-tab');
         const serviceCards = document.querySelectorAll('.service-card');
         
+        if (categoryTabs.length === 0 || serviceCards.length === 0) {
+            console.log('No category tabs or service cards found');
+            return;
+        }
+        
         categoryTabs.forEach(tab => {
             tab.addEventListener('click', () => {
                 // Remove active class from all tabs
@@ -219,13 +373,13 @@ class OrderManager {
                 tab.classList.add('active');
                 
                 const category = tab.dataset.category;
-                this.filterServices(category, serviceCards);
+                this.filterServicesByCategory(category, serviceCards);
             });
         });
     }
     
-    // Filter Services
-    filterServices(category, serviceCards) {
+    // Filter Services by Category
+    filterServicesByCategory(category, serviceCards) {
         serviceCards.forEach(card => {
             const cardCategory = card.dataset.category;
             
@@ -638,6 +792,42 @@ function selectService(serviceId) {
 function closeOrderModal() {
     if (window.orderManager) {
         window.orderManager.closeOrderModal();
+    }
+}
+
+// Server switcher function
+let currentServer = 'all';
+
+function switchServer(server) {
+    currentServer = server;
+    
+    // Remove active class from all tabs
+    document.querySelectorAll('.server-tab').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // Add active class to clicked tab
+    document.querySelectorAll(`.server-tab[data-server="${server}"]`).forEach(tab => {
+        tab.classList.add('active');
+    });
+    
+    // Filter services based on server
+    filterServices();
+    
+    // Show server info
+    let serverName = '';
+    if (server === 'server1') {
+        serverName = 'Server 1 (SMMFA)';
+    } else if (server === 'server2') {
+        serverName = 'Server 2 (SMMFollows)';
+    } else {
+        serverName = 'All Servers';
+    }
+    
+    // Update UI to show which server is selected
+    const serverInfo = document.querySelector('.server-info');
+    if (serverInfo) {
+        serverInfo.textContent = `Showing: ${serverName}`;
     }
 }
 

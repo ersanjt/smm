@@ -1,4 +1,4 @@
-/* Order Styles */
+/* Order Styles - Using CSS Variables for Dark Mode */
 .order-content {
     padding: 20px;
     max-width: 1400px;
@@ -13,14 +13,141 @@
 .order-header h1 {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #2d3748;
+    color: var(--text-primary);
     margin-bottom: 10px;
+    transition: color 0.3s ease;
 }
 
 .order-header p {
     font-size: 1.1rem;
-    color: #718096;
+    color: var(--text-secondary);
     margin: 0;
+    transition: color 0.3s ease;
+}
+
+/* Server Tabs */
+.server-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    padding: 15px;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.server-tab {
+    flex: 1;
+    background: var(--bg-primary);
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    padding: 15px 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 0.95rem;
+}
+
+.server-tab:hover {
+    border-color: var(--accent-red);
+    color: var(--accent-red);
+    background: #fff5f5;
+    transform: translateY(-2px);
+}
+
+body.dark-mode .server-tab:hover {
+    background: var(--bg-secondary);
+}
+
+.server-tab.active {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    border-color: #dc2626;
+    color: white;
+    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+}
+
+.server-tab i {
+    font-size: 1.1rem;
+}
+
+/* Search and Filter Bar */
+.search-filter-bar {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.search-box {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-box i {
+    position: absolute;
+    left: 1rem;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    z-index: 1;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--accent-red);
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.sort-options {
+    display: flex;
+    align-items: center;
+}
+
+.sort-options select {
+    padding: 1rem 2rem 1rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    min-width: 200px;
+}
+
+.sort-options select:focus {
+    outline: none;
+    border-color: var(--accent-red);
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
 }
 
 /* Service Categories */
@@ -36,12 +163,12 @@
 }
 
 .category-tab {
-    background: white;
-    border: 2px solid #e2e8f0;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
     border-radius: 8px;
     padding: 12px 20px;
     font-weight: 500;
-    color: #4a5568;
+    color: var(--text-primary);
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
@@ -50,16 +177,20 @@
 }
 
 .category-tab:hover {
-    border-color: #667eea;
-    color: #667eea;
+    border-color: var(--accent-red);
+    color: var(--accent-red);
     transform: translateY(-2px);
 }
 
+body.dark-mode .category-tab:hover {
+    background: var(--bg-secondary);
+}
+
 .category-tab.active {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-color: #667eea;
+    background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-red-dark) 100%);
+    border-color: var(--accent-red);
     color: white;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
 }
 
 /* Services Grid */
@@ -71,10 +202,10 @@
 }
 
 .service-card {
-    background: white;
+    background: var(--bg-secondary);
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    border: 1px solid #f0f0f0;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
     padding: 25px;
     transition: all 0.3s ease;
     position: relative;
@@ -93,7 +224,7 @@
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
 }
 
 .service-header {
@@ -206,7 +337,7 @@
 .services-stats .stat-content h4 {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #1e293b;
+    color: #ffffff;
     margin: 0;
 }
 
@@ -761,20 +892,39 @@
 }
 
 /* Filter Animation */
-.service-card.hidden {
-    opacity: 0;
-    transform: scale(0.8);
-    pointer-events: none;
+.service-card {
+    display: block;
+    animation: fadeIn 0.3s ease;
 }
 
-.service-card.visible {
-    opacity: 1;
-    transform: scale(1);
-    pointer-events: auto;
+.service-card.hidden {
+    display: none !important;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .search-filter-bar {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .search-box input,
+    .sort-options select {
+        width: 100%;
+    }
+    
     .order-content {
         padding: 15px;
     }

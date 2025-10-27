@@ -1,9 +1,15 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>API Documentation - SMM Turk Panel</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon-180x180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
     
     <!-- CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -63,7 +69,7 @@
                 <a href="tickets.html" class="nav-link">
                     <i class="fas fa-ticket-alt"></i>
                     Tickets
-                    <span class="badge">1</span>
+                    <span class="badge">1
                 </a>
             </div>
             <div class="nav-item">
@@ -80,12 +86,18 @@
             </div>
             <div class="nav-item">
                 <a href="child-panel.html" class="nav-link">
-                    <i class="fas fa-child"></i>
+                    <i class="fas fa-share-alt"></i>
                     Child Panel
                 </a>
             </div>
             <div class="nav-item">
-                <a href="../index.html" class="nav-link">
+                <a href="settings.html" class="nav-link">
+                    <i class="fas fa-cog"></i>
+                    Settings
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="../login.html" class="nav-link logout">
                     <i class="fas fa-sign-out-alt"></i>
                     Logout
                 </a>
@@ -102,7 +114,7 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="breadcrumb">
-                    <span>API Documentation</span>
+                    API Documentation
                 </div>
             </div>
             
@@ -110,29 +122,29 @@
                 <div class="account-info">
                     <div class="account-item">
                         <i class="fas fa-star"></i>
-                        <span>Account Points: 0 ≈ $0.00</span>
+                        Account Points: 0 â‰ˆ $0.00
                     </div>
                     <div class="account-item">
                         <i class="fas fa-dollar-sign"></i>
-                        <span>Account Spending: $0</span>
+                        Account Spending: $0
                     </div>
                     <div class="account-item">
-                        <i class="fas fa-building"></i>
-                        <span>Account Balance: $0</span>
+                        <i class="fas fa-wallet"></i>
+                        Account Balance: $0
                     </div>
                 </div>
                 
                 <div class="header-actions">
-                    <button class="btn-icon" title="Add Funds">
+                    <button class="btn-icon" title="Add Funds" onclick="handleAddFunds()">
                         <i class="fas fa-plus"></i>
                     </button>
-                    <button class="btn-icon" title="Settings">
+                    <button class="btn-icon" title="Settings" onclick="handleSettings()">
                         <i class="fas fa-cog"></i>
                     </button>
-                    <button class="btn-icon" title="Theme">
+                    <button class="btn-icon" title="Theme" onclick="toggleTheme()">
                         <i class="fas fa-sun"></i>
                     </button>
-                    <button class="btn-icon" title="Logout">
+                    <button class="btn-icon" title="Logout" onclick="handleLogout()">
                         <i class="fas fa-power-off"></i>
                     </button>
                 </div>
@@ -165,8 +177,7 @@
                         <div class="api-key-display">
                             <code id="api-key">8b8e733ae816f10b6955250ace84c019</code>
                             <div class="key-status">
-                                <span class="status-indicator active"></span>
-                                <span>Active</span>
+                                <span class="status-indicator active">
                             </div>
                         </div>
                         <div class="key-info">
@@ -301,8 +312,8 @@
                     
                     <div class="endpoint-item">
                         <div class="endpoint-header">
-                            <span class="method post">POST</span>
-                            <span class="endpoint-url">/api/v2</span>
+                            <span class="method post">POST
+                            <span class="endpoint-url">/api/v2
                         </div>
                         <div class="endpoint-content">
                             <h4>Create Order</h4>
@@ -331,8 +342,8 @@
                     
                     <div class="endpoint-item">
                         <div class="endpoint-header">
-                            <span class="method post">POST</span>
-                            <span class="endpoint-url">/api/v2</span>
+                            <span class="method post">POST
+                            <span class="endpoint-url">/api/v2
                         </div>
                         <div class="endpoint-content">
                             <h4>Check Order Status</h4>
@@ -362,8 +373,8 @@
                     
                     <div class="endpoint-item">
                         <div class="endpoint-header">
-                            <span class="method post">POST</span>
-                            <span class="endpoint-url">/api/v2</span>
+                            <span class="method post">POST
+                            <span class="endpoint-url">/api/v2
                         </div>
                         <div class="endpoint-content">
                             <h4>Get Services</h4>
@@ -395,8 +406,8 @@
                     
                     <div class="endpoint-item">
                         <div class="endpoint-header">
-                            <span class="method post">POST</span>
-                            <span class="endpoint-url">/api/v2</span>
+                            <span class="method post">POST
+                            <span class="endpoint-url">/api/v2
                         </div>
                         <div class="endpoint-content">
                             <h4>Get Balance</h4>
@@ -644,19 +655,19 @@ curl -X POST https://smmturk.com/api/v2 \
                                     <div class="event-checkboxes">
                                         <label class="checkbox-label">
                                             <input type="checkbox" value="order.completed">
-                                            <span>Order Completed</span>
+                                            Order Completed
                                         </label>
                                         <label class="checkbox-label">
                                             <input type="checkbox" value="order.failed">
-                                            <span>Order Failed</span>
+                                            Order Failed
                                         </label>
                                         <label class="checkbox-label">
                                             <input type="checkbox" value="order.refilled">
-                                            <span>Order Refilled</span>
+                                            Order Refilled
                                         </label>
                                         <label class="checkbox-label">
                                             <input type="checkbox" value="order.cancelled">
-                                            <span>Order Cancelled</span>
+                                            Order Cancelled
                                         </label>
                                     </div>
                                 </div>
@@ -678,12 +689,12 @@ curl -X POST https://smmturk.com/api/v2 \
                                     <div class="webhook-info">
                                         <div class="webhook-url">https://example.com/webhook</div>
                                         <div class="webhook-events">
-                                            <span class="event-tag">Order Completed</span>
-                                            <span class="event-tag">Order Failed</span>
+                                            <span class="event-tag">Order Completed
+                                            <span class="event-tag">Order Failed
                                         </div>
                                     </div>
                                     <div class="webhook-status">
-                                        <span class="status-badge success">Active</span>
+                                        <span class="status-badge success">Active
                                     </div>
                                     <div class="webhook-actions">
                                         <button class="btn-icon" onclick="testWebhook(1)" title="Test Webhook">
@@ -936,8 +947,8 @@ curl -X POST https://smmturk.com/api/v2 \
                                 </div>
                             </div>
                             <div class="response-info">
-                                <span class="response-status" id="response-status">Ready</span>
-                                <span class="response-time" id="response-time"></span>
+                                <span class="response-status" id="response-status">Ready
+                                <span class="response-time" id="response-time">
                             </div>
                             <pre id="api-response">Click "Test API" to see the response</pre>
                         </div>
@@ -963,10 +974,11 @@ curl -X POST https://smmturk.com/api/v2 \
     <!-- Notification Bell -->
     <div class="notification-bell">
         <i class="fas fa-bell"></i>
-        <span class="badge">1</span>
+        <span class="badge">1
     </div>
     
     <!-- JavaScript -->
+    <script src="../assets/js/error-suppress.js"></script>
     <script src="../assets/js/panel.js"></script>
     <script src="../assets/js/api.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -1345,7 +1357,8 @@ curl -X POST https://smmturk.com/api/v2 \
         function showNotification(message, type) {
             // Create notification element
             const notification = document.createElement('div');
-            notification.className = `notification ${type}`;
+            notification.className = 
+otification ${type}`;
             notification.textContent = message;
             
             // Add to page

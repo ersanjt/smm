@@ -1,9 +1,15 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tickets - SMM Turk Panel</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon-180x180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
     
     <!-- CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -62,7 +68,7 @@
                 <a href="tickets.html" class="nav-link active">
                     <i class="fas fa-ticket-alt"></i>
                     Tickets
-                    <span class="badge">1</span>
+                    <span class="badge">1
                 </a>
             </div>
             <div class="nav-item">
@@ -79,12 +85,18 @@
             </div>
             <div class="nav-item">
                 <a href="child-panel.html" class="nav-link">
-                    <i class="fas fa-child"></i>
+                    <i class="fas fa-share-alt"></i>
                     Child Panel
                 </a>
             </div>
             <div class="nav-item">
-                <a href="../index.html" class="nav-link">
+                <a href="settings.html" class="nav-link">
+                    <i class="fas fa-cog"></i>
+                    Settings
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="../login.html" class="nav-link logout">
                     <i class="fas fa-sign-out-alt"></i>
                     Logout
                 </a>
@@ -101,7 +113,6 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="breadcrumb">
-                    <span>Tickets</span>
                 </div>
             </div>
             
@@ -109,29 +120,29 @@
                 <div class="account-info">
                     <div class="account-item">
                         <i class="fas fa-star"></i>
-                        <span>Account Points: 0 ≈ $0.00</span>
+                        Account Points: 0 â‰ˆ $0.00
                     </div>
                     <div class="account-item">
                         <i class="fas fa-dollar-sign"></i>
-                        <span>Account Spending: $0</span>
+                        Account Spending: $0
                     </div>
                     <div class="account-item">
-                        <i class="fas fa-building"></i>
-                        <span>Account Balance: $0</span>
+                        <i class="fas fa-wallet"></i>
+                        Account Balance: $0
                     </div>
                 </div>
                 
                 <div class="header-actions">
-                    <button class="btn-icon" title="Add Funds">
+                    <button class="btn-icon" title="Add Funds" onclick="handleAddFunds()">
                         <i class="fas fa-plus"></i>
                     </button>
-                    <button class="btn-icon" title="Settings">
+                    <button class="btn-icon" title="Settings" onclick="handleSettings()">
                         <i class="fas fa-cog"></i>
                     </button>
-                    <button class="btn-icon" title="Theme">
+                    <button class="btn-icon" title="Theme" onclick="toggleTheme()">
                         <i class="fas fa-sun"></i>
                     </button>
-                    <button class="btn-icon" title="Logout">
+                    <button class="btn-icon" title="Logout" onclick="handleLogout()">
                         <i class="fas fa-power-off"></i>
                     </button>
                 </div>
@@ -243,11 +254,11 @@
                             <div class="ticket-header">
                                 <div class="ticket-info">
                                     <h4>Order #1001 - Instagram Followers Not Delivered</h4>
-                                    <p>Created 2 hours ago • Order Issue</p>
+                                    <p>Created 2 hours ago â€¢ Order Issue</p>
                                 </div>
                                 <div class="ticket-status">
-                                    <span class="status-badge open">Open</span>
-                                    <span class="priority-badge medium">Medium</span>
+                                    <span class="status-badge open">Open
+                                    <span class="priority-badge medium">Medium
                                 </div>
                             </div>
                             
@@ -255,9 +266,9 @@
                                 <p>I ordered 1000 Instagram followers for my account @myaccount but they haven't been delivered yet. The order was placed 3 days ago and it's still showing as "In Progress". Can you please check what's happening?</p>
                                 
                                 <div class="ticket-meta">
-                                    <span><i class="fas fa-user"></i> John Doe</span>
-                                    <span><i class="fas fa-clock"></i> 2 hours ago</span>
-                                    <span><i class="fas fa-comments"></i> 3 replies</span>
+                                    <i class="fas fa-user"></i> John Doe
+                                    <i class="fas fa-clock"></i> 2 hours ago
+                                    <i class="fas fa-comments"></i> 3 replies
                                 </div>
                             </div>
                             
@@ -281,11 +292,11 @@
                             <div class="ticket-header">
                                 <div class="ticket-info">
                                     <h4>Payment Issue - Refund Request</h4>
-                                    <p>Created 1 day ago • Payment</p>
+                                    <p>Created 1 day ago â€¢ Payment</p>
                                 </div>
                                 <div class="ticket-status">
-                                    <span class="status-badge pending">Pending</span>
-                                    <span class="priority-badge high">High</span>
+                                    <span class="status-badge pending">Pending
+                                    <span class="priority-badge high">High
                                 </div>
                             </div>
                             
@@ -293,9 +304,9 @@
                                 <p>I need a refund for order #1002. The service was not delivered as promised and I want my money back. Please process the refund as soon as possible.</p>
                                 
                                 <div class="ticket-meta">
-                                    <span><i class="fas fa-user"></i> Jane Smith</span>
-                                    <span><i class="fas fa-clock"></i> 1 day ago</span>
-                                    <span><i class="fas fa-comments"></i> 1 reply</span>
+                                    <i class="fas fa-user"></i> Jane Smith
+                                    <i class="fas fa-clock"></i> 1 day ago
+                                    <i class="fas fa-comments"></i> 1 reply
                                 </div>
                             </div>
                             
@@ -319,11 +330,11 @@
                             <div class="ticket-header">
                                 <div class="ticket-info">
                                     <h4>API Documentation Question</h4>
-                                    <p>Created 3 days ago • Technical</p>
+                                    <p>Created 3 days ago â€¢ Technical</p>
                                 </div>
                                 <div class="ticket-status">
-                                    <span class="status-badge resolved">Resolved</span>
-                                    <span class="priority-badge low">Low</span>
+                                    <span class="status-badge resolved">Resolved
+                                    <span class="priority-badge low">Low
                                 </div>
                             </div>
                             
@@ -331,9 +342,9 @@
                                 <p>I'm having trouble integrating your API. Can you provide more detailed documentation for the authentication process?</p>
                                 
                                 <div class="ticket-meta">
-                                    <span><i class="fas fa-user"></i> Mike Johnson</span>
-                                    <span><i class="fas fa-clock"></i> 3 days ago</span>
-                                    <span><i class="fas fa-comments"></i> 5 replies</span>
+                                    <i class="fas fa-user"></i> Mike Johnson
+                                    <i class="fas fa-clock"></i> 3 days ago
+                                    <i class="fas fa-comments"></i> 5 replies
                                 </div>
                             </div>
                             
@@ -438,17 +449,17 @@
                                 <div class="ticket-header">
                                     <h4 id="modalTicketSubject">Order #1001 - Instagram Followers Not Delivered</h4>
                                     <div class="ticket-meta">
-                                        <span class="status-badge open">Open</span>
-                                        <span class="priority-badge medium">Medium</span>
-                                        <span>Created 2 hours ago</span>
+                                        <span class="status-badge open">Open
+                                        <span class="priority-badge medium">Medium
+                                        Created 2 hours ago
                                     </div>
                                 </div>
                                 
                                 <div class="ticket-conversation">
                                     <div class="message user-message">
                                         <div class="message-header">
-                                            <span class="message-author">John Doe</span>
-                                            <span class="message-time">2 hours ago</span>
+                                            <span class="message-author">John Doe
+                                            <span class="message-time">2 hours ago
                                         </div>
                                         <div class="message-content">
                                             <p>I ordered 1000 Instagram followers for my account @myaccount but they haven't been delivered yet. The order was placed 3 days ago and it's still showing as "In Progress". Can you please check what's happening?</p>
@@ -457,8 +468,8 @@
                                     
                                     <div class="message admin-message">
                                         <div class="message-header">
-                                            <span class="message-author">Support Team</span>
-                                            <span class="message-time">1 hour ago</span>
+                                            <span class="message-author">Support Team
+                                            <span class="message-time">1 hour ago
                                         </div>
                                         <div class="message-content">
                                             <p>Hello John,</p>
@@ -491,10 +502,11 @@
 <!-- Notification Bell -->
 <div class="notification-bell">
     <i class="fas fa-bell"></i>
-    <span class="badge">1</span>
+    <span class="badge">1
 </div>
 
 <!-- JavaScript -->
+    <script src="../assets/js/error-suppress.js"></script>
 <script src="../assets/js/panel.js"></script>
 <script>
     function switchTicketTab(tabName) {

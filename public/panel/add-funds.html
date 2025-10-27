@@ -1,9 +1,15 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Funds - SMM Turk Panel</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon-180x180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
     
     <!-- CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -62,7 +68,7 @@
                 <a href="tickets.html" class="nav-link">
                     <i class="fas fa-ticket-alt"></i>
                     Tickets
-                    <span class="badge">1</span>
+                    <span class="badge">1
                 </a>
             </div>
             <div class="nav-item">
@@ -79,12 +85,18 @@
             </div>
             <div class="nav-item">
                 <a href="child-panel.html" class="nav-link">
-                    <i class="fas fa-child"></i>
+                    <i class="fas fa-share-alt"></i>
                     Child Panel
                 </a>
             </div>
             <div class="nav-item">
-                <a href="../index.html" class="nav-link">
+                <a href="settings.html" class="nav-link">
+                    <i class="fas fa-cog"></i>
+                    Settings
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="../login.html" class="nav-link logout">
                     <i class="fas fa-sign-out-alt"></i>
                     Logout
                 </a>
@@ -101,7 +113,7 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="breadcrumb">
-                    <span>Add Funds</span>
+                    Add Funds
                 </div>
             </div>
             
@@ -109,29 +121,29 @@
                 <div class="account-info">
                     <div class="account-item">
                         <i class="fas fa-star"></i>
-                        <span>Account Points: 0 ≈ $0.00</span>
+                        Account Points: 0 â‰ˆ $0.00
                     </div>
                     <div class="account-item">
                         <i class="fas fa-dollar-sign"></i>
-                        <span>Account Spending: $0</span>
+                        Account Spending: $0
                     </div>
                     <div class="account-item">
-                        <i class="fas fa-building"></i>
-                        <span>Account Balance: $0</span>
+                        <i class="fas fa-wallet"></i>
+                        Account Balance: $0
                     </div>
                 </div>
                 
                 <div class="header-actions">
-                    <button class="btn-icon" title="Add Funds">
+                    <button class="btn-icon" title="Add Funds" onclick="handleAddFunds()">
                         <i class="fas fa-plus"></i>
                     </button>
-                    <button class="btn-icon" title="Settings">
+                    <button class="btn-icon" title="Settings" onclick="handleSettings()">
                         <i class="fas fa-cog"></i>
                     </button>
-                    <button class="btn-icon" title="Theme">
+                    <button class="btn-icon" title="Theme" onclick="toggleTheme()">
                         <i class="fas fa-sun"></i>
                     </button>
-                    <button class="btn-icon" title="Logout">
+                    <button class="btn-icon" title="Logout" onclick="handleLogout()">
                         <i class="fas fa-power-off"></i>
                     </button>
                 </div>
@@ -180,7 +192,7 @@
             <div class="payment-warning">
                 <div class="warning-content">
                     <i class="fas fa-info-circle"></i>
-                    <span>Choose from multiple payment options. If one fails, try another payment method. Multiple attempts with the same method may lead to account suspension.</span>
+                    Choose from multiple payment options. If one fails, try another payment method. Multiple attempts with the same method may lead to account suspension.
                 </div>
             </div>
             
@@ -236,7 +248,7 @@
                         <div class="form-group">
                             <label class="form-label">Amount</label>
                             <div class="amount-input">
-                                <span class="currency">$</span>
+                                <span class="currency">$
                                 <input type="number" class="form-control" name="amount" placeholder="0.00" min="5" step="0.01" required>
                             </div>
                         </div>
@@ -245,9 +257,9 @@
                         <div class="form-group">
                             <label class="form-label">After Bonus Amount</label>
                             <div class="bonus-display">
-                                <span class="bonus-amount">$0.00</span>
+                                <span class="bonus-amount">$0.00
                                 <i class="fas fa-gift"></i>
-                                <span class="bonus-text">This is your bonus after applying the promotion.</span>
+                                <span class="bonus-text">This is your bonus after applying the promotion.
                             </div>
                         </div>
                         
@@ -255,7 +267,7 @@
                         <div class="form-group">
                             <label class="checkbox-label">
                                 <input type="checkbox" name="consent" required>
-                                <span class="checkmark"></span>
+                                <span class="checkmark">
                                 By submitting this payment, I consent that it is not fraudulent.
                             </label>
                         </div>
@@ -283,13 +295,13 @@
                             <h4>Credit/Debit Card</h4>
                             <p>Visa, Mastercard, American Express</p>
                             <div class="method-details">
-                                <span class="min-amount">Min: $10</span>
-                                <span class="bonus-rate">15% Bonus</span>
+                                <span class="min-amount">Min: $10
+                                <span class="bonus-rate">15% Bonus
                             </div>
                             <div class="method-features">
-                                <span class="feature">✓ Secure</span>
-                                <span class="feature">✓ Instant</span>
-                                <span class="feature">✓ 15% Bonus</span>
+                                <span class="feature">âœ“ Secure
+                                <span class="feature">âœ“ Instant
+                                <span class="feature">âœ“ 15% Bonus
                             </div>
                         </div>
                         
@@ -300,13 +312,13 @@
                             <h4>PayPal</h4>
                             <p>Pay with your PayPal account</p>
                             <div class="method-details">
-                                <span class="min-amount">Min: $5</span>
-                                <span class="bonus-rate">10% Bonus</span>
+                                <span class="min-amount">Min: $5
+                                <span class="bonus-rate">10% Bonus
                             </div>
                             <div class="method-features">
-                                <span class="feature">✓ Secure</span>
-                                <span class="feature">✓ Fast</span>
-                                <span class="feature">✓ 10% Bonus</span>
+                                <span class="feature">âœ“ Secure
+                                <span class="feature">âœ“ Fast
+                                <span class="feature">âœ“ 10% Bonus
                             </div>
                         </div>
                         
@@ -317,13 +329,13 @@
                             <h4>Stripe</h4>
                             <p>Secure payment processing</p>
                             <div class="method-details">
-                                <span class="min-amount">Min: $5</span>
-                                <span class="bonus-rate">5% Bonus</span>
+                                <span class="min-amount">Min: $5
+                                <span class="bonus-rate">5% Bonus
                             </div>
                             <div class="method-features">
-                                <span class="feature">✓ Secure</span>
-                                <span class="feature">✓ Reliable</span>
-                                <span class="feature">✓ 5% Bonus</span>
+                                <span class="feature">âœ“ Secure
+                                <span class="feature">âœ“ Reliable
+                                <span class="feature">âœ“ 5% Bonus
                             </div>
                         </div>
                         
@@ -334,13 +346,13 @@
                             <h4>Cryptocurrency</h4>
                             <p>Bitcoin, Ethereum, Litecoin</p>
                             <div class="method-details">
-                                <span class="min-amount">Min: $10</span>
-                                <span class="bonus-rate">20% Bonus</span>
+                                <span class="min-amount">Min: $10
+                                <span class="bonus-rate">20% Bonus
                             </div>
                             <div class="method-features">
-                                <span class="feature">✓ Anonymous</span>
-                                <span class="feature">✓ Decentralized</span>
-                                <span class="feature">✓ 20% Bonus</span>
+                                <span class="feature">âœ“ Anonymous
+                                <span class="feature">âœ“ Decentralized
+                                <span class="feature">âœ“ 20% Bonus
                             </div>
                         </div>
                         
@@ -351,13 +363,13 @@
                             <h4>Bank Transfer</h4>
                             <p>Direct bank transfer</p>
                             <div class="method-details">
-                                <span class="min-amount">Min: $25</span>
-                                <span class="bonus-rate">No Bonus</span>
+                                <span class="min-amount">Min: $25
+                                <span class="bonus-rate">No Bonus
                             </div>
                             <div class="method-features">
-                                <span class="feature">✓ Secure</span>
-                                <span class="feature">✓ Low Fees</span>
-                                <span class="feature">✓ 1-3 Days</span>
+                                <span class="feature">âœ“ Secure
+                                <span class="feature">âœ“ Low Fees
+                                <span class="feature">âœ“ 1-3 Days
                             </div>
                         </div>
                         
@@ -368,13 +380,13 @@
                             <h4>Mobile Payment</h4>
                             <p>Apple Pay, Google Pay</p>
                             <div class="method-details">
-                                <span class="min-amount">Min: $5</span>
-                                <span class="bonus-rate">8% Bonus</span>
+                                <span class="min-amount">Min: $5
+                                <span class="bonus-rate">8% Bonus
                             </div>
                             <div class="method-features">
-                                <span class="feature">✓ Mobile</span>
-                                <span class="feature">✓ Fast</span>
-                                <span class="feature">✓ 8% Bonus</span>
+                                <span class="feature">âœ“ Mobile
+                                <span class="feature">âœ“ Fast
+                                <span class="feature">âœ“ 8% Bonus
                             </div>
                         </div>
                     </div>
@@ -384,19 +396,19 @@
                         <div class="security-features">
                             <div class="security-item">
                                 <i class="fas fa-shield-alt"></i>
-                                <span>SSL Encryption</span>
+                                SSL Encryption
                             </div>
                             <div class="security-item">
                                 <i class="fas fa-lock"></i>
-                                <span>PCI DSS Compliant</span>
+                                PCI DSS Compliant
                             </div>
                             <div class="security-item">
                                 <i class="fas fa-user-shield"></i>
-                                <span>Fraud Protection</span>
+                                Fraud Protection
                             </div>
                             <div class="security-item">
                                 <i class="fas fa-check-circle"></i>
-                                <span>Verified Secure</span>
+                                Verified Secure
                             </div>
                         </div>
                     </div>
@@ -440,16 +452,16 @@
                             </div>
                             <div class="bonus-result">
                                 <div class="result-item">
-                                    <span>Original Amount:</span>
-                                    <span id="originalAmount">$0.00</span>
+                                    Original Amount:
+                                    <span id="originalAmount">$0.00
                                 </div>
                                 <div class="result-item">
-                                    <span>Bonus Amount:</span>
-                                    <span id="bonusAmountResult">$0.00</span>
+                                    Bonus Amount:
+                                    <span id="bonusAmountResult">$0.00
                                 </div>
                                 <div class="result-item total">
-                                    <span>Total Balance:</span>
-                                    <span id="totalBalance">$0.00</span>
+                                    Total Balance:
+                                    <span id="totalBalance">$0.00
                                 </div>
                             </div>
                         </div>
@@ -461,15 +473,15 @@
                             <div class="bonus-item">
                                 <div class="bonus-date">2024-01-15</div>
                                 <div class="bonus-details">
-                                    <span class="bonus-method">Credit Card</span>
-                                    <span class="bonus-amount">+$15.00</span>
+                                    <span class="bonus-method">Credit Card
+                                    <span class="bonus-amount">+$15.00
                                 </div>
                             </div>
                             <div class="bonus-item">
                                 <div class="bonus-date">2024-01-10</div>
                                 <div class="bonus-details">
-                                    <span class="bonus-method">PayPal</span>
-                                    <span class="bonus-amount">+$5.00</span>
+                                    <span class="bonus-method">PayPal
+                                    <span class="bonus-amount">+$5.00
                                 </div>
                             </div>
                         </div>
@@ -507,10 +519,11 @@
     <!-- Notification Bell -->
     <div class="notification-bell">
         <i class="fas fa-bell"></i>
-        <span class="badge">1</span>
+        <span class="badge">1
     </div>
     
     <!-- JavaScript -->
+    <script src="../assets/js/error-suppress.js"></script>
     <script src="../assets/js/panel.js"></script>
     <script src="../assets/js/api.js"></script>
     <script>
@@ -699,7 +712,7 @@
             notification.innerHTML = `
                 <div class="notification-content">
                     <i class="fas fa-spinner fa-spin"></i>
-                    <span>Processing your payment...</span>
+                    Processing your payment...
                 </div>
             `;
             document.body.appendChild(notification);
@@ -717,7 +730,7 @@
             notification.innerHTML = `
                 <div class="notification-content">
                     <i class="fas fa-check-circle"></i>
-                    <span>Payment successful! $${paymentData.amount} added to your account</span>
+                    Payment successful! $${paymentData.amount} added to your account
                 </div>
             `;
             document.body.appendChild(notification);
@@ -739,7 +752,7 @@
             notification.innerHTML = `
                 <div class="notification-content">
                     <i class="fas fa-times-circle"></i>
-                    <span>Payment failed. Please try again or contact support.</span>
+                    Payment failed. Please try again or contact support.
                 </div>
             `;
             document.body.appendChild(notification);
@@ -810,7 +823,7 @@
                     <td>$${item.amount.toFixed(2)}</td>
                     <td>$${item.bonus.toFixed(2)}</td>
                     <td>$${item.total.toFixed(2)}</td>
-                    <td><span class="status-badge success">${item.status}</span></td>
+                    <td><span class="status-badge success">${item.status}</td>
                 `;
                 tbody.appendChild(row);
             });

@@ -1,9 +1,15 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mass Order - SMM Turk Panel</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon-180x180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
     
     <!-- CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -62,7 +68,7 @@
                 <a href="tickets.html" class="nav-link">
                     <i class="fas fa-ticket-alt"></i>
                     Tickets
-                    <span class="badge">1</span>
+                    <span class="badge">1
                 </a>
             </div>
             <div class="nav-item">
@@ -79,12 +85,18 @@
             </div>
             <div class="nav-item">
                 <a href="child-panel.html" class="nav-link">
-                    <i class="fas fa-child"></i>
+                    <i class="fas fa-share-alt"></i>
                     Child Panel
                 </a>
             </div>
             <div class="nav-item">
-                <a href="../index.html" class="nav-link">
+                <a href="settings.html" class="nav-link">
+                    <i class="fas fa-cog"></i>
+                    Settings
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="../login.html" class="nav-link logout">
                     <i class="fas fa-sign-out-alt"></i>
                     Logout
                 </a>
@@ -101,7 +113,7 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="breadcrumb">
-                    <span>Mass Order</span>
+                    Mass Order
                 </div>
             </div>
             
@@ -109,29 +121,29 @@
                 <div class="account-info">
                     <div class="account-item">
                         <i class="fas fa-star"></i>
-                        <span>Account Points: 0 ≈ $0.00</span>
+                        Account Points: 0 â‰ˆ $0.00
                     </div>
                     <div class="account-item">
                         <i class="fas fa-dollar-sign"></i>
-                        <span>Account Spending: $0</span>
+                        Account Spending: $0
                     </div>
                     <div class="account-item">
-                        <i class="fas fa-building"></i>
-                        <span>Account Balance: $0</span>
+                        <i class="fas fa-wallet"></i>
+                        Account Balance: $0
                     </div>
                 </div>
                 
                 <div class="header-actions">
-                    <button class="btn-icon" title="Add Funds">
+                    <button class="btn-icon" title="Add Funds" onclick="handleAddFunds()">
                         <i class="fas fa-plus"></i>
                     </button>
-                    <button class="btn-icon" title="Settings">
+                    <button class="btn-icon" title="Settings" onclick="handleSettings()">
                         <i class="fas fa-cog"></i>
                     </button>
-                    <button class="btn-icon" title="Theme">
+                    <button class="btn-icon" title="Theme" onclick="toggleTheme()">
                         <i class="fas fa-sun"></i>
                     </button>
-                    <button class="btn-icon" title="Logout">
+                    <button class="btn-icon" title="Logout" onclick="handleLogout()">
                         <i class="fas fa-power-off"></i>
                     </button>
                 </div>
@@ -253,7 +265,7 @@
                                 <div class="form-group">
                                     <label class="form-label">Total Orders</label>
                                     <div class="total-orders-display">
-                                        <span id="total-orders">0</span>
+                                        <span id="total-orders">0
                                         <small>orders will be created</small>
                                     </div>
                                 </div>
@@ -354,19 +366,14 @@
                             <h4>Template Format:</h4>
                             <div class="csv-preview">
                                 <div class="csv-row header">
-                                    <span>Service ID</span>
-                                    <span>Link</span>
-                                    <span>Quantity</span>
+                                    Service ID
+                                    Quantity
                                 </div>
                                 <div class="csv-row">
-                                    <span>1</span>
-                                    <span>https://facebook.com/yourpage</span>
-                                    <span>1000</span>
+                                    https://facebook.com/yourpage
                                 </div>
                                 <div class="csv-row">
-                                    <span>3</span>
-                                    <span>https://instagram.com/yourprofile</span>
-                                    <span>500</span>
+                                    https://instagram.com/yourprofile
                                 </div>
                             </div>
                         </div>
@@ -425,16 +432,16 @@
                         
                         <div class="history-stats">
                             <div class="stat-item">
-                                <span class="stat-label">Total Mass Orders</span>
-                                <span class="stat-value" id="historyTotalOrders">0</span>
+                                <span class="stat-label">Total Mass Orders
+                                <span class="stat-value" id="historyTotalOrders">0
                             </div>
                             <div class="stat-item">
-                                <span class="stat-label">Total Amount</span>
-                                <span class="stat-value" id="historyTotalAmount">$0.00</span>
+                                <span class="stat-label">Total Amount
+                                <span class="stat-value" id="historyTotalAmount">$0.00
                             </div>
                             <div class="stat-item">
-                                <span class="stat-label">Success Rate</span>
-                                <span class="stat-value" id="historySuccessRate">0%</span>
+                                <span class="stat-label">Success Rate
+                                <span class="stat-value" id="historySuccessRate">0%
                             </div>
                         </div>
                         
@@ -455,7 +462,7 @@
                                         <td>2024-01-15 14:30</td>
                                         <td>25</td>
                                         <td>$125.50</td>
-                                        <td><span class="status-badge success">Completed</span></td>
+                                        <td><span class="status-badge success">Completed</td>
                                         <td>CSV Upload</td>
                                         <td>
                                             <button class="btn-icon" onclick="viewOrderDetails(1)" title="View Details">
@@ -474,7 +481,7 @@
                             <button class="btn-pagination" onclick="previousPage()">
                                 <i class="fas fa-chevron-left"></i>
                             </button>
-                            <span class="page-info">Page 1 of 1</span>
+                            <span class="page-info">Page 1 of 1
                             <button class="btn-pagination" onclick="nextPage()">
                                 <i class="fas fa-chevron-right"></i>
                             </button>
@@ -503,12 +510,12 @@
                     
                     <div class="preview-summary">
                         <div class="summary-item">
-                            <span>Total Orders:</span>
-                            <span id="preview-total-orders">0</span>
+                            Total Orders:
+                            <span id="preview-total-orders">0
                         </div>
                         <div class="summary-item">
-                            <span>Total Charge:</span>
-                            <span id="preview-total-charge">$0.00</span>
+                            Total Charge:
+                            <span id="preview-total-charge">$0.00
                         </div>
                     </div>
                     
@@ -524,10 +531,11 @@
     <!-- Notification Bell -->
     <div class="notification-bell">
         <i class="fas fa-bell"></i>
-        <span class="badge">1</span>
+        <span class="badge">1
     </div>
     
     <!-- JavaScript -->
+    <script src="../assets/js/error-suppress.js"></script>
     <script src="../assets/js/panel.js"></script>
     <script src="../assets/js/api.js"></script>
     <script>
@@ -806,7 +814,7 @@
                     <td>${item.date}</td>
                     <td>${item.orders}</td>
                     <td>$${item.amount.toFixed(2)}</td>
-                    <td><span class="status-badge success">${item.status}</span></td>
+                    <td><span class="status-badge success">${item.status}</td>
                     <td>${item.method}</td>
                     <td>
                         <button class="btn-icon" onclick="viewOrderDetails(${item.id})" title="View Details">
@@ -847,10 +855,11 @@
         
         function showNotification(message, type = 'info') {
             const notification = document.createElement('div');
-            notification.className = `notification ${type}`;
+            notification.className = 
+otification ${type}`;
             notification.innerHTML = `
                 <i class="fas fa-${type === 'success' ? 'check' : type === 'error' ? 'times' : 'info'}-circle"></i>
-                <span>${message}</span>
+                ${message}
             `;
             
             document.body.appendChild(notification);

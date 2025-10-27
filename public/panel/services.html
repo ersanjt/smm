@@ -1,9 +1,15 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services - SMM Turk Panel</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon-180x180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
     
     <!-- CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -62,7 +68,7 @@
                 <a href="tickets.html" class="nav-link">
                     <i class="fas fa-ticket-alt"></i>
                     Tickets
-                    <span class="badge">3</span>
+                    <span class="badge">3
                 </a>
             </div>
             <div class="nav-item">
@@ -79,12 +85,18 @@
             </div>
             <div class="nav-item">
                 <a href="child-panel.html" class="nav-link">
-                    <i class="fas fa-child"></i>
+                    <i class="fas fa-share-alt"></i>
                     Child Panel
                 </a>
             </div>
             <div class="nav-item">
-                <a href="../index.html" class="nav-link">
+                <a href="settings.html" class="nav-link">
+                    <i class="fas fa-cog"></i>
+                    Settings
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="../login.html" class="nav-link logout">
                     <i class="fas fa-sign-out-alt"></i>
                     Logout
                 </a>
@@ -101,16 +113,38 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="breadcrumb">
-                    <span>Services</span>
                 </div>
             </div>
             
             <div class="header-right">
                 <div class="account-info">
                     <div class="account-item">
-                        <i class="fas fa-dollar-sign"></i>
-                        <span>Balance: $45.20</span>
+                        <i class="fas fa-star"></i>
+                        Account Points: 1,250 â‰ˆ $12.50
                     </div>
+                    <div class="account-item">
+                        <i class="fas fa-dollar-sign"></i>
+                        Account Spending: $156.80
+                    </div>
+                    <div class="account-item">
+                        <i class="fas fa-wallet"></i>
+                        Account Balance: $45.20
+                    </div>
+                </div>
+                
+                <div class="header-actions">
+                    <button class="btn-icon" title="Add Funds" onclick="handleAddFunds()">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button class="btn-icon" title="Settings" onclick="handleSettings()">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                    <button class="btn-icon" title="Theme" onclick="toggleTheme()">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    <button class="btn-icon" title="Logout" onclick="handleLogout()">
+                        <i class="fas fa-power-off"></i>
+                    </button>
                 </div>
             </div>
         </header>
@@ -202,6 +236,22 @@
                 </div>
             </div>
             
+            <!-- Server Tabs -->
+            <div class="server-tabs">
+                <button class="server-tab active" data-server="all" onclick="switchServer('all')">
+                    <i class="fas fa-server"></i>
+                    All Servers
+                </button>
+                <button class="server-tab" data-server="server1" onclick="switchServer('server1')">
+                    <i class="fas fa-network-wired"></i>
+                    Server 1 (SMMFA)
+                </button>
+                <button class="server-tab" data-server="server2" onclick="switchServer('server2')">
+                    <i class="fas fa-network-wired"></i>
+                    Server 2 (SMMFollows)
+                </button>
+            </div>
+            
             <!-- Service Categories -->
             <div class="service-categories">
                 <div class="category-tabs" id="categoryTabs">
@@ -255,6 +305,7 @@
     </div>
     
     <!-- JavaScript -->
+    <script src="../assets/js/error-suppress.js"></script>
     <script src="../assets/js/api.js"></script>
     <script src="../assets/js/panel.js"></script>
     <script src="../assets/js/order.js"></script>
@@ -493,7 +544,7 @@
             card.className = 'service-card';
             card.dataset.category = service.category || 'other';
             
-            const providerBadge = service.provider ? `<span class="provider-badge ${service.provider.toLowerCase()}">${service.provider}</span>` : '';
+            const providerBadge = service.provider ? `<span class="provider-badge ${service.provider.toLowerCase()}">${service.provider}` : '';
             
             card.innerHTML = `
                 <div class="service-header">
@@ -505,25 +556,25 @@
                         <p>${service.description || 'High quality service'}</p>
                     </div>
                     <div class="service-price">
-                        <span class="price">$${service.price || service.rate || '0.00'}</span>
-                        <span class="per">per 1K</span>
+                        <span class="price">$${service.price || service.rate || '0.00'}
+                        <span class="per">per 1K
                     </div>
                 </div>
                 <div class="service-details">
                     <div class="detail-item">
                         <i class="fas fa-clock"></i>
-                        <span>Start Time: ${service.start_time || '0-1 hour'}</span>
+                        Start Time: ${service.start_time || '0-1 hour'}
                     </div>
                     <div class="detail-item">
                         <i class="fas fa-tachometer-alt"></i>
-                        <span>Speed: ${service.speed || '100-500 per day'}</span>
+                        Speed: ${service.speed || '100-500 per day'}
                     </div>
                     <div class="detail-item">
                         <i class="fas fa-shield-alt"></i>
-                        <span>Guarantee: ${service.guarantee || '30 days'}</span>
+                        Guarantee: ${service.guarantee || '30 days'}
                     </div>
-                    ${service.refill ? '<div class="detail-item"><i class="fas fa-sync-alt"></i><span>Refill Available</span></div>' : ''}
-                    ${service.cancel ? '<div class="detail-item"><i class="fas fa-times-circle"></i><span>Cancellation Available</span></div>' : ''}
+                    ${service.refill ? '<div class="detail-item"><i class="fas fa-sync-alt"></i>Refill Available</div>' : ''}
+                    ${service.cancel ? '<div class="detail-item"><i class="fas fa-times-circle"></i>Cancellation Available</div>' : ''}
                 </div>
                 <button class="btn-select-service" onclick="selectService('${service.id || service.service}')">
                     Select Service
@@ -559,7 +610,8 @@
         function selectService(serviceId) {
             console.log('Selecting service:', serviceId);
             // Redirect to new order page with service pre-selected
-            window.location.href = `new-order.html?service=${serviceId}`;
+            window.location.href = 
+ew-order.html?service=${serviceId}`;
         }
     </script>
 </body>

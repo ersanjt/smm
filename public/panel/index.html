@@ -1,9 +1,15 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - SMM Turk Panel</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon-180x180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
     
     <!-- CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -43,13 +49,7 @@
             <div class="nav-item">
                 <a href="services.html" class="nav-link">
                     <i class="fas fa-list"></i>
-                    Server 1 (SMMFA)
-                </a>
-            </div>
-            <div class="nav-item">
-                <a href="services.html" class="nav-link">
-                    <i class="fas fa-list"></i>
-                    Server 2 (SMMFollows)
+                    Services
                 </a>
             </div>
             <div class="nav-item">
@@ -68,7 +68,7 @@
                 <a href="tickets.html" class="nav-link">
                     <i class="fas fa-ticket-alt"></i>
                     Tickets
-                    <span class="badge">3</span>
+                    <span class="badge">3
                 </a>
             </div>
             <div class="nav-item">
@@ -85,12 +85,18 @@
             </div>
             <div class="nav-item">
                 <a href="child-panel.html" class="nav-link">
-                    <i class="fas fa-child"></i>
+                    <i class="fas fa-share-alt"></i>
                     Child Panel
                 </a>
             </div>
             <div class="nav-item">
-                <a href="../index.html" class="nav-link">
+                <a href="settings.html" class="nav-link">
+                    <i class="fas fa-cog"></i>
+                    Settings
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="../login.html" class="nav-link logout">
                     <i class="fas fa-sign-out-alt"></i>
                     Logout
                 </a>
@@ -107,7 +113,6 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="breadcrumb">
-                    <span>Dashboard</span>
                 </div>
             </div>
             
@@ -115,29 +120,29 @@
                 <div class="account-info">
                     <div class="account-item">
                         <i class="fas fa-star"></i>
-                        <span>Account Points: 1,250 ≈ $12.50</span>
+                        Account Points: 1,250 â‰ˆ $12.50
                     </div>
                     <div class="account-item">
                         <i class="fas fa-dollar-sign"></i>
-                        <span>Account Spending: $156.80</span>
+                        Account Spending: $156.80
                     </div>
                     <div class="account-item">
-                        <i class="fas fa-building"></i>
-                        <span>Account Balance: $45.20</span>
+                        <i class="fas fa-wallet"></i>
+                        Account Balance: $45.20
                     </div>
                 </div>
                 
                 <div class="header-actions">
-                    <button class="btn-icon" title="Add Funds">
+                    <button class="btn-icon" title="Add Funds" onclick="handleAddFunds()">
                         <i class="fas fa-plus"></i>
                     </button>
-                    <button class="btn-icon" title="Settings">
+                    <button class="btn-icon" title="Settings" onclick="handleSettings()">
                         <i class="fas fa-cog"></i>
                     </button>
-                    <button class="btn-icon" title="Theme">
+                    <button class="btn-icon" title="Theme" onclick="toggleTheme()">
                         <i class="fas fa-sun"></i>
                     </button>
-                    <button class="btn-icon" title="Logout">
+                    <button class="btn-icon" title="Logout" onclick="handleLogout()">
                         <i class="fas fa-power-off"></i>
                     </button>
                 </div>
@@ -318,10 +323,10 @@
                         <div class="activity-content">
                             <h4>Order #1001 Completed</h4>
                             <p>Instagram Followers - 1,000 followers delivered</p>
-                            <span class="activity-time">2 hours ago</span>
+                            <span class="activity-time">2 hours ago
                         </div>
                         <div class="activity-status">
-                            <span class="status-badge completed">Completed</span>
+                            <span class="status-badge completed">Completed
                         </div>
                     </div>
                     
@@ -332,10 +337,10 @@
                         <div class="activity-content">
                             <h4>Order #1002 In Progress</h4>
                             <p>Facebook Page Likes - 500 likes in progress</p>
-                            <span class="activity-time">4 hours ago</span>
+                            <span class="activity-time">4 hours ago
                         </div>
                         <div class="activity-status">
-                            <span class="status-badge in_progress">In Progress</span>
+                            <span class="status-badge in_progress">In Progress
                         </div>
                     </div>
                     
@@ -346,10 +351,10 @@
                         <div class="activity-content">
                             <h4>Payment Received</h4>
                             <p>Funds added: $25.00 via PayPal</p>
-                            <span class="activity-time">1 day ago</span>
+                            <span class="activity-time">1 day ago
                         </div>
                         <div class="activity-status">
-                            <span class="status-badge completed">Completed</span>
+                            <span class="status-badge completed">Completed
                         </div>
                     </div>
                     
@@ -360,10 +365,10 @@
                         <div class="activity-content">
                             <h4>Order #1003 Failed</h4>
                             <p>YouTube Views - Invalid URL provided</p>
-                            <span class="activity-time">2 days ago</span>
+                            <span class="activity-time">2 days ago
                         </div>
                         <div class="activity-status">
-                            <span class="status-badge cancelled">Failed</span>
+                            <span class="status-badge cancelled">Failed
                         </div>
                     </div>
                 </div>
@@ -383,12 +388,12 @@
                         </div>
                         <div class="service-stats">
                             <div class="stat-item">
-                                <span class="stat-label">Orders</span>
-                                <span class="stat-value">45</span>
+                                <span class="stat-label">Orders
+                                <span class="stat-value">45
                             </div>
                             <div class="stat-item">
-                                <span class="stat-label">Success Rate</span>
-                                <span class="stat-value">98%</span>
+                                <span class="stat-label">Success Rate
+                                <span class="stat-value">98%
                             </div>
                         </div>
                     </div>
@@ -403,12 +408,12 @@
                         </div>
                         <div class="service-stats">
                             <div class="stat-item">
-                                <span class="stat-label">Orders</span>
-                                <span class="stat-value">32</span>
+                                <span class="stat-label">Orders
+                                <span class="stat-value">32
                             </div>
                             <div class="stat-item">
-                                <span class="stat-label">Success Rate</span>
-                                <span class="stat-value">96%</span>
+                                <span class="stat-label">Success Rate
+                                <span class="stat-value">96%
                             </div>
                         </div>
                     </div>
@@ -423,12 +428,12 @@
                         </div>
                         <div class="service-stats">
                             <div class="stat-item">
-                                <span class="stat-label">Orders</span>
-                                <span class="stat-value">28</span>
+                                <span class="stat-label">Orders
+                                <span class="stat-value">28
                             </div>
                             <div class="stat-item">
-                                <span class="stat-label">Success Rate</span>
-                                <span class="stat-value">94%</span>
+                                <span class="stat-label">Success Rate
+                                <span class="stat-value">94%
                             </div>
                         </div>
                     </div>
@@ -440,10 +445,11 @@
     <!-- Notification Bell -->
     <div class="notification-bell">
         <i class="fas fa-bell"></i>
-        <span class="badge">3</span>
+        <span class="badge">3
     </div>
     
     <!-- JavaScript -->
+    <script src="../assets/js/error-suppress.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../assets/js/api.js"></script>
     <script src="../assets/js/panel.js"></script>

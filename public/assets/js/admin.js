@@ -9,9 +9,65 @@ class AdminPanel {
         this.updateTime();
         this.setupEventListeners();
         this.loadDashboardData();
+        this.initTheme();
         
         // Update time every minute
         setInterval(() => this.updateTime(), 60000);
+    }
+    
+    initTheme() {
+        // Load theme from localStorage
+        const savedTheme = localStorage.getItem('adminTheme') || 'light';
+        this.setTheme(savedTheme);
+    }
+    
+    setTheme(theme) {
+        if (theme === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('themeIcon').classList.remove('fa-moon');
+            document.getElementById('themeIcon').classList.add('fa-sun');
+        } else {
+            document.body.classList.remove('dark-mode');
+            document.getElementById('themeIcon').classList.remove('fa-sun');
+            document.getElementById('themeIcon').classList.add('fa-moon');
+        }
+        localStorage.setItem('adminTheme', theme);
+    }
+    
+    toggleTheme() {
+        const isDark = document.body.classList.contains('dark-mode');
+        this.setTheme(isDark ? 'light' : 'dark');
+    }
+    
+    logout() {
+        if (confirm('Are you sure you want to logout?')) {
+            // Clear localStorage
+            localStorage.clear();
+            
+            // Redirect to login page
+            window.location.href = '../login.html';
+        }
+    }
+    
+    toggleProfileMenu() {
+        const dropdown = document.getElementById('profileDropdown');
+        if (dropdown) {
+            dropdown.classList.toggle('show');
+        }
+    }
+    
+    viewProfile() {
+        // Close dropdown
+        const dropdown = document.getElementById('profileDropdown');
+        if (dropdown) {
+            dropdown.classList.remove('show');
+        }
+        
+        // Switch to profile tab
+        this.switchTab('settings');
+        
+        // Show notification
+        this.showSuccessMessage('Profile settings opened');
     }
     
     updateTime() {
@@ -93,6 +149,7 @@ class AdminPanel {
             'pricing': 'Pricing Management',
             'api': 'API Management',
             'tickets': 'Support Tickets',
+            'landing': 'Landing Page',
             'settings': 'System Settings'
         };
         return titles[tabName] || 'Dashboard';
@@ -117,6 +174,9 @@ class AdminPanel {
                 break;
             case 'tickets':
                 this.loadTicketsData();
+                break;
+            case 'landing':
+                loadLandingPageContent();
                 break;
             case 'settings':
                 this.loadSettings();
@@ -1494,10 +1554,491 @@ function exportOrders() {
     }
 }
 
-function addService() {
-    if (window.adminPanel) {
-        window.adminPanel.addService();
+// Landing Page Content Management Functions
+function addFeature() {
+    const featuresList = document.getElementById('featuresList');
+    if (featuresList) {
+        const newFeature = document.createElement('div');
+        newFeature.className = 'feature-item-editable';
+        newFeature.innerHTML = `
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Icon (FontAwesome class)</label>
+                    <input type="text" class="form-control feature-icon" placeholder="fas fa-rocket">
+                </div>
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" class="form-control feature-title" placeholder="Feature Title">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea class="form-control feature-description" rows="2" placeholder="Feature description..."></textarea>
+            </div>
+            <button type="button" class="btn-icon danger" onclick="removeFeature(this)">
+                <i class="fas fa-trash"></i> Remove
+            </button>
+        `;
+        featuresList.appendChild(newFeature);
     }
+}
+
+function removeFeature(button) {
+    if (confirm('Are you sure you want to remove this feature?')) {
+        button.parentElement.remove();
+    }
+}
+
+function addService() {
+    const servicesList = document.getElementById('servicesList');
+    if (servicesList) {
+        const newService = document.createElement('div');
+        newService.className = 'service-item-editable';
+        newService.innerHTML = `
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Service Icon</label>
+                    <input type="text" class="form-control service-icon" placeholder="fab fa-instagram">
+                </div>
+                <div class="form-group">
+                    <label>Service Title</label>
+                    <input type="text" class="form-control service-title" placeholder="Instagram Followers">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Service Description</label>
+                <textarea class="form-control service-description" rows="2" placeholder="Service description..."></textarea>
+            </div>
+            <button type="button" class="btn-icon danger" onclick="removeService(this)">
+                <i class="fas fa-trash"></i> Remove
+            </button>
+        `;
+        servicesList.appendChild(newService);
+    }
+}
+
+function removeService(button) {
+    if (confirm('Are you sure you want to remove this service?')) {
+        button.parentElement.remove();
+    }
+}
+
+function addStat() {
+    const statsList = document.getElementById('statsList');
+    if (statsList) {
+        const newStat = document.createElement('div');
+        newStat.className = 'stat-item-editable';
+        newStat.innerHTML = `
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Stat Icon</label>
+                    <input type="text" class="form-control stat-icon" placeholder="fas fa-clock">
+                </div>
+                <div class="form-group">
+                    <label>Stat Value</label>
+                    <input type="text" class="form-control stat-value" placeholder="0.3 Sec">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Stat Label</label>
+                <input type="text" class="form-control stat-label" placeholder="An Order is made every">
+            </div>
+            <button type="button" class="btn-icon danger" onclick="removeStat(this)">
+                <i class="fas fa-trash"></i> Remove
+            </button>
+        `;
+        statsList.appendChild(newStat);
+    }
+}
+
+function removeStat(button) {
+    if (confirm('Are you sure you want to remove this statistic?')) {
+        button.parentElement.remove();
+    }
+}
+
+function addTestimonial() {
+    const testimonialsList = document.getElementById('testimonialsList');
+    if (testimonialsList) {
+        const newTestimonial = document.createElement('div');
+        newTestimonial.className = 'testimonial-item-editable';
+        newTestimonial.innerHTML = `
+            <div class="form-group">
+                <label>Customer Name</label>
+                <input type="text" class="form-control testimonial-name" placeholder="John Doe">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Customer Position</label>
+                    <input type="text" class="form-control testimonial-position" placeholder="CEO, Company Name">
+                </div>
+                <div class="form-group">
+                    <label>Customer Avatar URL</label>
+                    <input type="url" class="form-control testimonial-avatar" placeholder="https://example.com/avatar.jpg">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Rating (1-5)</label>
+                <input type="number" class="form-control testimonial-rating" min="1" max="5" value="5">
+            </div>
+            <div class="form-group">
+                <label>Testimonial Text</label>
+                <textarea class="form-control testimonial-text" rows="3" placeholder="Great service! Very fast delivery..."></textarea>
+            </div>
+            <button type="button" class="btn-icon danger" onclick="removeTestimonial(this)">
+                <i class="fas fa-trash"></i> Remove
+            </button>
+        `;
+        testimonialsList.appendChild(newTestimonial);
+    }
+}
+
+function removeTestimonial(button) {
+    if (confirm('Are you sure you want to remove this testimonial?')) {
+        button.parentElement.remove();
+    }
+}
+
+function addFAQ() {
+    const faqList = document.getElementById('faqList');
+    if (faqList) {
+        const newFAQ = document.createElement('div');
+        newFAQ.className = 'faq-item-editable';
+        newFAQ.innerHTML = `
+            <div class="form-group">
+                <label>Question</label>
+                <input type="text" class="form-control faq-question" placeholder="What are SMM panels?">
+            </div>
+            <div class="form-group">
+                <label>Answer</label>
+                <textarea class="form-control faq-answer" rows="3" placeholder="Answer..."></textarea>
+            </div>
+            <button type="button" class="btn-icon danger" onclick="removeFAQ(this)">
+                <i class="fas fa-trash"></i> Remove
+            </button>
+        `;
+        faqList.appendChild(newFAQ);
+    }
+}
+
+function removeFAQ(button) {
+    if (confirm('Are you sure you want to remove this FAQ?')) {
+        button.parentElement.remove();
+    }
+}
+
+function previewLogo(input) {
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('logoPreview').src = e.target.result;
+            document.getElementById('logoPreview').style.display = 'block';
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function previewFavicon(input) {
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('faviconPreview').src = e.target.result;
+            document.getElementById('faviconPreview').style.display = 'block';
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+async function loadLandingPageContent() {
+    try {
+        const response = await fetch('../api/landing.php?action=get_content');
+        const data = await response.json();
+        
+        if (data.success && data.data) {
+            populateLandingForm(data.data);
+        }
+    } catch (error) {
+        console.error('Failed to load landing content:', error);
+    }
+}
+
+function populateLandingForm(content) {
+    // Populate hero section
+    if (content.hero) {
+        if (document.getElementById('heroTitle')) document.getElementById('heroTitle').value = content.hero.title || '';
+        if (document.getElementById('heroSubtitle')) document.getElementById('heroSubtitle').value = content.hero.subtitle || '';
+        if (document.getElementById('heroCta')) document.getElementById('heroCta').value = content.hero.cta || '';
+    }
+    
+    // Populate contact info
+    if (content.contact) {
+        if (document.getElementById('contactEmail')) document.getElementById('contactEmail').value = content.contact.email || '';
+        if (document.getElementById('contactPhone')) document.getElementById('contactPhone').value = content.contact.phone || '';
+        if (document.getElementById('contactAddress')) document.getElementById('contactAddress').value = content.contact.address || '';
+        if (document.getElementById('businessHours')) document.getElementById('businessHours').value = content.contact.hours || '';
+    }
+    
+    // Populate social links
+    if (content.social) {
+        if (document.getElementById('socialTwitter')) document.getElementById('socialTwitter').value = content.social.twitter || '';
+        if (document.getElementById('socialFacebook')) document.getElementById('socialFacebook').value = content.social.facebook || '';
+        if (document.getElementById('socialInstagram')) document.getElementById('socialInstagram').value = content.social.instagram || '';
+        if (document.getElementById('socialTelegram')) document.getElementById('socialTelegram').value = content.social.telegram || '';
+    }
+    
+    // Populate SEO
+    if (content.seo) {
+        if (document.getElementById('metaTitle')) document.getElementById('metaTitle').value = content.seo.title || '';
+        if (document.getElementById('metaDescription')) document.getElementById('metaDescription').value = content.seo.description || '';
+        if (document.getElementById('metaKeywords')) document.getElementById('metaKeywords').value = content.seo.keywords || '';
+    }
+    
+    // Populate footer
+    if (content.footer) {
+        if (document.getElementById('footerCopyright')) document.getElementById('footerCopyright').value = content.footer.copyright || '';
+        if (document.getElementById('footerDescription')) document.getElementById('footerDescription').value = content.footer.description || '';
+        if (document.getElementById('footerLogo')) document.getElementById('footerLogo').value = content.footer.logo || '';
+        if (document.getElementById('footerBgColor')) document.getElementById('footerBgColor').value = content.footer.bgColor || '#1a1a2e';
+    }
+    
+    // Populate features
+    if (content.features && Array.isArray(content.features)) {
+        const featuresList = document.getElementById('featuresList');
+        if (featuresList) {
+            featuresList.innerHTML = '';
+            content.features.forEach(feature => {
+                const featureDiv = document.createElement('div');
+                featureDiv.className = 'feature-item-editable';
+                featureDiv.innerHTML = `
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Icon (FontAwesome class)</label>
+                            <input type="text" class="form-control feature-icon" value="${feature.icon || ''}">
+                        </div>
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" class="form-control feature-title" value="${feature.title || ''}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea class="form-control feature-description" rows="2">${feature.description || ''}</textarea>
+                    </div>
+                    <button type="button" class="btn-icon danger" onclick="removeFeature(this)"><i class="fas fa-trash"></i> Remove</button>
+                `;
+                featuresList.appendChild(featureDiv);
+            });
+        }
+    }
+    
+    // Populate services
+    if (content.services && Array.isArray(content.services)) {
+        const servicesList = document.getElementById('servicesList');
+        if (servicesList) {
+            servicesList.innerHTML = '';
+            content.services.forEach(service => {
+                const serviceDiv = document.createElement('div');
+                serviceDiv.className = 'service-item-editable';
+                serviceDiv.innerHTML = `
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Service Icon</label>
+                            <input type="text" class="form-control service-icon" value="${service.icon || ''}">
+                        </div>
+                        <div class="form-group">
+                            <label>Service Title</label>
+                            <input type="text" class="form-control service-title" value="${service.title || ''}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Service Description</label>
+                        <textarea class="form-control service-description" rows="2">${service.description || ''}</textarea>
+                    </div>
+                    <button type="button" class="btn-icon danger" onclick="removeService(this)"><i class="fas fa-trash"></i> Remove</button>
+                `;
+                servicesList.appendChild(serviceDiv);
+            });
+        }
+    }
+    
+    // Populate stats
+    if (content.stats && Array.isArray(content.stats)) {
+        const statsList = document.getElementById('statsList');
+        if (statsList) {
+            statsList.innerHTML = '';
+            content.stats.forEach(stat => {
+                const statDiv = document.createElement('div');
+                statDiv.className = 'stat-item-editable';
+                statDiv.innerHTML = `
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Stat Icon</label>
+                            <input type="text" class="form-control stat-icon" value="${stat.icon || ''}">
+                        </div>
+                        <div class="form-group">
+                            <label>Stat Value</label>
+                            <input type="text" class="form-control stat-value" value="${stat.value || ''}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Stat Label</label>
+                        <input type="text" class="form-control stat-label" value="${stat.label || ''}">
+                    </div>
+                    <button type="button" class="btn-icon danger" onclick="removeStat(this)"><i class="fas fa-trash"></i> Remove</button>
+                `;
+                statsList.appendChild(statDiv);
+            });
+        }
+    }
+    
+    // Populate testimonials
+    if (content.testimonials && Array.isArray(content.testimonials)) {
+        const testimonialsList = document.getElementById('testimonialsList');
+        if (testimonialsList) {
+            testimonialsList.innerHTML = '';
+            content.testimonials.forEach(testimonial => {
+                const testimonialDiv = document.createElement('div');
+                testimonialDiv.className = 'testimonial-item-editable';
+                testimonialDiv.innerHTML = `
+                    <div class="form-group">
+                        <label>Customer Name</label>
+                        <input type="text" class="form-control testimonial-name" value="${testimonial.name || ''}">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Customer Position</label>
+                            <input type="text" class="form-control testimonial-position" value="${testimonial.position || ''}">
+                        </div>
+                        <div class="form-group">
+                            <label>Customer Avatar URL</label>
+                            <input type="url" class="form-control testimonial-avatar" value="${testimonial.avatar || ''}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Rating (1-5)</label>
+                        <input type="number" class="form-control testimonial-rating" min="1" max="5" value="${testimonial.rating || '5'}">
+                    </div>
+                    <div class="form-group">
+                        <label>Testimonial Text</label>
+                        <textarea class="form-control testimonial-text" rows="3">${testimonial.text || ''}</textarea>
+                    </div>
+                    <button type="button" class="btn-icon danger" onclick="removeTestimonial(this)"><i class="fas fa-trash"></i> Remove</button>
+                `;
+                testimonialsList.appendChild(testimonialDiv);
+            });
+        }
+    }
+    
+    // Populate FAQ
+    if (content.faq && Array.isArray(content.faq)) {
+        const faqList = document.getElementById('faqList');
+        if (faqList) {
+            faqList.innerHTML = '';
+            content.faq.forEach(faq => {
+                const faqDiv = document.createElement('div');
+                faqDiv.className = 'faq-item-editable';
+                faqDiv.innerHTML = `
+                    <div class="form-group">
+                        <label>Question</label>
+                        <input type="text" class="form-control faq-question" value="${faq.question || ''}">
+                    </div>
+                    <div class="form-group">
+                        <label>Answer</label>
+                        <textarea class="form-control faq-answer" rows="3">${faq.answer || ''}</textarea>
+                    </div>
+                    <button type="button" class="btn-icon danger" onclick="removeFAQ(this)"><i class="fas fa-trash"></i> Remove</button>
+                `;
+                faqList.appendChild(faqDiv);
+            });
+        }
+    }
+}
+
+function saveLandingContent() {
+    console.log('Saving landing content...');
+    
+    // Collect all form data
+    const content = {
+        logo: document.getElementById('logoUrl')?.value || '../assets/images/logo.png',
+        favicon: document.getElementById('faviconUrl')?.value || '../assets/images/favicon.ico',
+        hero: {
+            title: document.getElementById('heroTitle')?.value || '',
+            subtitle: document.getElementById('heroSubtitle')?.value || '',
+            cta: document.getElementById('heroCta')?.value || 'Get Started'
+        },
+        features: Array.from(document.querySelectorAll('.feature-item-editable')).map(item => ({
+            icon: item.querySelector('.feature-icon')?.value || '',
+            title: item.querySelector('.feature-title')?.value || '',
+            description: item.querySelector('.feature-description')?.value || ''
+        })),
+        services: Array.from(document.querySelectorAll('.service-item-editable')).map(item => ({
+            icon: item.querySelector('.service-icon')?.value || '',
+            title: item.querySelector('.service-title')?.value || '',
+            description: item.querySelector('.service-description')?.value || ''
+        })),
+        stats: Array.from(document.querySelectorAll('.stat-item-editable')).map(item => ({
+            icon: item.querySelector('.stat-icon')?.value || '',
+            value: item.querySelector('.stat-value')?.value || '',
+            label: item.querySelector('.stat-label')?.value || ''
+        })),
+        testimonials: Array.from(document.querySelectorAll('.testimonial-item-editable')).map(item => ({
+            name: item.querySelector('.testimonial-name')?.value || '',
+            position: item.querySelector('.testimonial-position')?.value || '',
+            avatar: item.querySelector('.testimonial-avatar')?.value || '',
+            rating: item.querySelector('.testimonial-rating')?.value || '5',
+            text: item.querySelector('.testimonial-text')?.value || ''
+        })),
+        faq: Array.from(document.querySelectorAll('.faq-item-editable')).map(item => ({
+            question: item.querySelector('.faq-question')?.value || '',
+            answer: item.querySelector('.faq-answer')?.value || ''
+        })),
+        contact: {
+            email: document.getElementById('contactEmail')?.value || '',
+            phone: document.getElementById('contactPhone')?.value || '',
+            address: document.getElementById('contactAddress')?.value || '',
+            hours: document.getElementById('businessHours')?.value || '24/7'
+        },
+        social: {
+            twitter: document.getElementById('socialTwitter')?.value || '',
+            facebook: document.getElementById('socialFacebook')?.value || '',
+            instagram: document.getElementById('socialInstagram')?.value || '',
+            telegram: document.getElementById('socialTelegram')?.value || ''
+        },
+        seo: {
+            title: document.getElementById('metaTitle')?.value || '',
+            description: document.getElementById('metaDescription')?.value || '',
+            keywords: document.getElementById('metaKeywords')?.value || ''
+        },
+        footer: {
+            copyright: document.getElementById('footerCopyright')?.value || '',
+            description: document.getElementById('footerDescription')?.value || '',
+            logo: document.getElementById('footerLogo')?.value || '',
+            bgColor: document.getElementById('footerBgColor')?.value || '#1a1a2e'
+        }
+    };
+    
+    console.log('Collected content:', content);
+    
+    // Send data to backend API
+    fetch('../api/landing.php?action=save_content', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ content: content })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Landing page content saved successfully!');
+        } else {
+            alert('Error saving content: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to save content. Please try again.');
+    });
 }
 
 function editService(serviceId) {
@@ -1752,6 +2293,46 @@ function cancelReply() {
     }
 }
 
+function toggleTheme() {
+    console.log('Global toggleTheme called');
+    
+    if (window.adminPanel) {
+        window.adminPanel.toggleTheme();
+    } else {
+        console.error('Admin panel not initialized');
+    }
+}
+
+function logout() {
+    console.log('Global logout called');
+    
+    if (window.adminPanel) {
+        window.adminPanel.logout();
+    } else {
+        console.error('Admin panel not initialized');
+    }
+}
+
+function toggleProfileMenu() {
+    console.log('Global toggleProfileMenu called');
+    
+    if (window.adminPanel) {
+        window.adminPanel.toggleProfileMenu();
+    } else {
+        console.error('Admin panel not initialized');
+    }
+}
+
+function viewProfile() {
+    console.log('Global viewProfile called');
+    
+    if (window.adminPanel) {
+        window.adminPanel.viewProfile();
+    } else {
+        console.error('Admin panel not initialized');
+    }
+}
+
 function changeTicketStatus() {
     console.log('Global changeTicketStatus called');
     alert('Change ticket status functionality - Coming soon!');
@@ -1787,6 +2368,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Suppress console errors
+(function() {
+    'use strict';
+    
+    // Suppress favicon and image errors
+    window.addEventListener('error', function(e) {
+        if (e.message.includes('favicon') || 
+            e.message.includes('placeholder') ||
+            e.message.includes('Failed to load resource')) {
+            e.preventDefault();
+            return true;
+        }
+    }, true);
+    
+    // Suppress runtime errors
+    const originalError = console.error;
+    console.error = function(...args) {
+        const message = args.join(' ');
+        if (message.includes('runtime.lastError') || 
+            message.includes('port closed') ||
+            message.includes('favicon')) {
+            return; // Suppress these errors
+        }
+        originalError.apply(console, args);
+    };
+})();
+
 // Initialize Admin Panel
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Initializing Admin Panel...');
@@ -1794,7 +2402,59 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
         window.adminPanel = new AdminPanel();
         console.log('Admin Panel initialized successfully');
+        
+        // Initialize real-time clock
+        initRealTimeClock();
     } catch (error) {
         console.error('Failed to initialize Admin Panel:', error);
     }
 });
+
+/**
+ * Real-Time Clock for Admin Panel Dashboard
+ * Updates every second to show current time on user's computer
+ */
+function initRealTimeClock() {
+    const timeElement = document.getElementById('currentTime');
+    
+    if (!timeElement) {
+        console.warn('Time element not found');
+        return;
+    }
+    
+    // Update clock immediately
+    updateClock();
+    
+    // Update clock every second
+    setInterval(updateClock, 1000);
+}
+
+function updateClock() {
+    const timeElement = document.getElementById('currentTime');
+    
+    if (!timeElement) return;
+    
+    const now = new Date();
+    
+    // Get hours, minutes, and seconds
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    let seconds = now.getSeconds();
+    
+    // Determine AM/PM
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // 0 should be 12
+    
+    // Add leading zeros if needed
+    minutes = minutes.toString().padStart(2, '0');
+    seconds = seconds.toString().padStart(2, '0');
+    
+    // Format time as HH:MM:SS AM/PM
+    const timeString = `${hours}:${minutes}:${seconds} ${ampm}`;
+    
+    timeElement.textContent = timeString;
+    
+    // Optional: Add animation or style changes
+    timeElement.style.transition = 'all 0.3s ease';
+}

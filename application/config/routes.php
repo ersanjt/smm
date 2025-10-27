@@ -64,6 +64,12 @@ $route['install'] = 'install/install/index';
 $route['register'] = 'register/index';
 $route['activation/account/(:any)'] = 'register/activation/$1';
 
+// Auth API
+$route['api/auth/register'] = 'auth/register';
+$route['api/auth/login'] = 'auth/login';
+$route['api/auth/logout'] = 'auth/logout';
+$route['api/auth/check'] = 'auth/checkExists';
+
 // Login
 $route['login'] = 'login/index';
 $route['logoff'] = 'login/destroy';
@@ -272,3 +278,17 @@ $route['language/no-select/idiom'] = 'setlanguage/no_select_language';
 // API
 $route['api'] = 'panel/admin/management/api/index';
 $route['api/v2'] = 'panel/admin/management/api/v2';
+
+// Admin API
+$route['api/admin/stats'] = 'admin/stats';
+$route['api/admin/users'] = 'admin/users';
+$route['api/admin/orders'] = 'admin/orders';
+$route['api/admin/services'] = 'admin/services';
+$route['api/admin/tickets'] = 'admin/tickets';
+$route['api/admin/update_user'] = 'admin/update_user';
+$route['api/admin/update_order'] = 'admin/update_order';
+$route['api/admin/update_service'] = 'admin/update_service';
+
+// Landing Page API
+$route['api/landing/get'] = 'landing/get_content';
+$route['api/landing/save'] = 'landing/save_content';

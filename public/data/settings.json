@@ -1,0 +1,84 @@
+{
+    "general": {
+        "site_name": "SMM Turk Panel",
+        "site_description": "Best SMM Panel for Social Media Marketing",
+        "site_url": "http:\/\/localhost:8000",
+        "default_currency": "USD",
+        "timezone": "UTC",
+        "language": "en",
+        "maintenance_mode": false,
+        "maintenance_message": "Site is under maintenance. Please check back later."
+    },
+    "security": {
+        "enable_2fa": true,
+        "session_timeout": 30,
+        "max_login_attempts": 5,
+        "password_min_length": 8,
+        "require_strong_password": true,
+        "enable_captcha": true,
+        "ip_whitelist": [],
+        "blocked_ips": []
+    },
+    "email": {
+        "smtp_host": "smtp.gmail.com",
+        "smtp_port": 587,
+        "smtp_username": "your-email@gmail.com",
+        "smtp_password": "",
+        "smtp_encryption": "tls",
+        "from_email": "noreply@smmturk.com",
+        "from_name": "SMM Turk Panel",
+        "admin_email": "admin@smmturk.com"
+    },
+    "payment": {
+        "default_payment_method": "paypal",
+        "paypal_client_id": "",
+        "paypal_client_secret": "",
+        "stripe_public_key": "",
+        "stripe_secret_key": "",
+        "minimum_deposit": 5,
+        "maximum_deposit": 1000,
+        "currency_symbol": "$"
+    },
+    "api": {
+        "smmfa_api_key": "b9f64c03f177cc3dc754198a17b66bca",
+        "smmfa_api_url": "https:\/\/smmfa.com\/api\/v2",
+        "smmfollows_api_key": "fdbc545f49196428a53189f1ee14e015",
+        "smmfollows_api_url": "https:\/\/smmfollows.com\/api\/v2",
+        "api_rate_limit": 1000,
+        "api_timeout": 30
+    },
+    "notifications": {
+        "email_notifications": true,
+        "sms_notifications": false,
+        "push_notifications": true,
+        "order_completed_email": true,
+        "order_failed_email": true,
+        "low_balance_email": true,
+        "admin_notifications": true
+    },
+    "appearance": {
+        "theme": "default",
+        "primary_color": "#f59e0b",
+        "secondary_color": "#1e293b",
+        "logo_url": "\/assets\/images\/logo.png",
+        "favicon_url": "\/assets\/images\/favicon.ico",
+        "custom_css": "",
+        "custom_js": ""
+    },
+    "social": {
+        "google_client_id": "",
+        "google_client_secret": "",
+        "facebook_app_id": "",
+        "facebook_app_secret": "",
+        "apple_client_id": "",
+        "apple_client_secret": "",
+        "enable_social_login": true
+    },
+    "backup": {
+        "auto_backup": true,
+        "backup_frequency": "daily",
+        "backup_retention": 30,
+        "backup_location": "..\/backups\/",
+        "backup_email": "admin@smmturk.com"
+    }
+}

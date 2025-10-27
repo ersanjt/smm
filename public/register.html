@@ -1,9 +1,15 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - SMM Turk</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon-180x180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
     
     <!-- CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -11,23 +17,193 @@
     <link href="assets/css/auth.css" rel="stylesheet">
 </head>
 <body>
+    <!-- Premium Header -->
+    <header class="premium-header">
+        <div class="premium-header-container">
+            <div class="premium-header-left">
+                <a href="index.html" class="premium-logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-name">SMM Turk</span>
+                        <span class="logo-tagline">Premium SMM Panel</span>
+                    </div>
+                </a>
+            </div>
+            
+            <nav class="premium-header-nav">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="index.html#services" class="nav-link">
+                    <i class="fas fa-layer-group"></i>
+                    <span>Services</span>
+                </a>
+                <a href="index.html#why-choose" class="nav-link">
+                    <i class="fas fa-star"></i>
+                    <span>Why Us</span>
+                </a>
+                <a href="index.html#reseller" class="nav-link">
+                    <i class="fas fa-crown"></i>
+                    <span>Reseller</span>
+                </a>
+                <a href="index.html#faq" class="nav-link">
+                    <i class="fas fa-question-circle"></i>
+                    <span>FAQ</span>
+                </a>
+            </nav>
+            
+            <div class="premium-header-right">
+                <div class="header-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-bolt"></i>
+                        <span>Fast Start</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>100% Secure</span>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <a href="login.html" class="btn-premium-signup">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>Sign In</span>
+                    </a>
+                </div>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-nav-menu" id="mobileMenu">
+            <div class="mobile-nav-header">
+                <span class="mobile-nav-title">Menu</span>
+                <button class="mobile-nav-close" onclick="toggleMobileMenu()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="mobile-nav-links">
+                <a href="index.html" class="mobile-nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="index.html#services" class="mobile-nav-link">
+                    <i class="fas fa-layer-group"></i>
+                    <span>Services</span>
+                </a>
+                <a href="index.html#why-choose" class="mobile-nav-link">
+                    <i class="fas fa-star"></i>
+                    <span>Why Choose Us</span>
+                </a>
+                <a href="index.html#reseller" class="mobile-nav-link">
+                    <i class="fas fa-crown"></i>
+                    <span>Reseller Panel</span>
+                </a>
+                <a href="index.html#faq" class="mobile-nav-link">
+                    <i class="fas fa-question-circle"></i>
+                    <span>FAQ</span>
+                </a>
+            </nav>
+            <div class="mobile-nav-footer">
+                <a href="login.html" class="mobile-nav-signup">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Sign In</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
     <div class="auth-container">
         <div class="auth-background">
             <div class="auth-pattern"></div>
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
         </div>
         
-        <div class="auth-card">
-            <div class="auth-header">
-                <div class="logo">
-                    <i class="fas fa-rocket"></i>
-                    <span>SMM Turk</span>
+        <div class="auth-wrapper">
+            <!-- Main Form Card -->
+            <div class="auth-card">
+                <div class="auth-header">
+                <div class="auth-badge">
+                    <i class="fas fa-star"></i>
+                    <span>Join 50,000+ Happy Customers</span>
                 </div>
-                <h1>Create Account</h1>
-                <p>Join thousands of satisfied customers</p>
+                <h1>Create Your Account</h1>
+                <p>ğŸ¯ Get started in 30 seconds • 🚀 Instant access to 1000+ services • ğŸ’° Best prices guaranteed</p>
             </div>
             
-            <form class="auth-form" onsubmit="handleRegister(event)">
-                <div class="form-row">
+            <!-- Multi-Step Form Progress -->
+            <div class="form-steps">
+                <div class="step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Account Type</div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Basic Info</div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Details</div>
+                </div>
+            </div>
+            
+            <form class="auth-form" id="registerForm" onsubmit="handleRegister(event)">
+                <!-- Step 1: Account Type -->
+                <div class="form-step active" id="step1">
+                    <h3 class="step-title">Choose Your Account Type</h3>
+                    <p class="step-subtitle">Select the type that best describes you</p>
+                    
+                    <div class="user-type-selection">
+                        <label class="user-type-option">
+                            <input type="radio" name="user_type" value="individual" checked onchange="changeUserType(this.value)">
+                            <div class="option-card">
+                                <i class="fas fa-user"></i>
+                                <span>Individual</span>
+                                <small>For personal use</small>
+                            </div>
+                        </label>
+                        <label class="user-type-option">
+                            <input type="radio" name="user_type" value="agency" onchange="changeUserType(this.value)">
+                            <div class="option-card">
+                                <i class="fas fa-building"></i>
+                                <span>Agency</span>
+                                <small>For marketing agencies</small>
+                            </div>
+                        </label>
+                        <label class="user-type-option">
+                            <input type="radio" name="user_type" value="company" onchange="changeUserType(this.value)">
+                            <div class="option-card">
+                                <i class="fas fa-briefcase"></i>
+                                <span>Company</span>
+                                <small>For businesses</small>
+                            </div>
+                        </label>
+                    </div>
+                    
+                    <div class="step-actions">
+                        <button type="button" class="btn-primary" onclick="nextStep()">
+                            Continue
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Step 2: Basic Information -->
+                <div class="form-step" id="step2">
+                    <h3 class="step-title">Create Your Account</h3>
+                    <p class="step-subtitle">We'll use this to create your profile</p>
+                    
+                    <div class="form-row">
                     <div class="form-group">
                         <label class="form-label">First Name</label>
                         <div class="input-group">
@@ -60,167 +236,325 @@
                     </div>
                 </div>
                 
-                <div class="form-group">
-                    <label class="form-label">Password</label>
-                    <div class="input-group">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" name="password" id="password" placeholder="••••••••" required>
-                        <button type="button" class="password-toggle" onclick="togglePassword()">
-                            <i class="fas fa-eye" id="password-icon"></i>
-                        </button>
-                    </div>
-                    <div class="password-strength">
-                        <div class="strength-bar">
-                            <div class="strength-fill" id="strength-fill"></div>
+                <!-- Agency/Company Specific Fields -->
+                <div class="agency-fields" id="agencyFields" style="display: none;">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Company Name <span class="required">*</span></label>
+                            <div class="input-group">
+                                <i class="fas fa-building"></i>
+                                <input type="text" name="company_name" placeholder="Enter company name" id="companyName">
+                            </div>
                         </div>
-                        <span class="strength-text" id="strength-text">Password strength</span>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Phone Number <span class="required">*</span></label>
+                            <div class="input-group">
+                                <i class="fas fa-phone"></i>
+                                <input type="tel" name="phone" placeholder="+1 (555) 123-4567" id="phoneNumber">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Website</label>
+                            <div class="input-group">
+                                <i class="fas fa-globe"></i>
+                                <input type="url" name="website" placeholder="https://example.com">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Tax ID / Business ID</label>
+                            <div class="input-group">
+                                <i class="fas fa-id-card"></i>
+                                <input type="text" name="tax_id" placeholder="Enter tax ID">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Address</label>
+                        <div class="input-group">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <input type="text" name="address" placeholder="Street address">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">City</label>
+                            <div class="input-group">
+                                <i class="fas fa-city"></i>
+                                <input type="text" name="city" placeholder="City">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">State / Province</label>
+                            <div class="input-group">
+                                <i class="fas fa-map"></i>
+                                <input type="text" name="state" placeholder="State">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">ZIP / Postal Code</label>
+                            <div class="input-group">
+                                <i class="fas fa-mail-bulk"></i>
+                                <input type="text" name="zip_code" placeholder="ZIP code">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Country</label>
+                        <div class="input-group">
+                            <i class="fas fa-flag"></i>
+                            <select name="country" class="form-select">
+                                <option value="">Select country</option>
+                                <option value="AF">Afghanistan</option>
+                                <option value="AL">Albania</option>
+                                <option value="DZ">Algeria</option>
+                                <option value="AR">Argentina</option>
+                                <option value="AU">Australia</option>
+                                <option value="AT">Austria</option>
+                                <option value="BH">Bahrain</option>
+                                <option value="BD">Bangladesh</option>
+                                <option value="BE">Belgium</option>
+                                <option value="BR">Brazil</option>
+                                <option value="CA">Canada</option>
+                                <option value="CL">Chile</option>
+                                <option value="CN">China</option>
+                                <option value="CO">Colombia</option>
+                                <option value="HR">Croatia</option>
+                                <option value="CZ">Czech Republic</option>
+                                <option value="DK">Denmark</option>
+                                <option value="EG">Egypt</option>
+                                <option value="FI">Finland</option>
+                                <option value="FR">France</option>
+                                <option value="DE">Germany</option>
+                                <option value="GR">Greece</option>
+                                <option value="HK">Hong Kong</option>
+                                <option value="HU">Hungary</option>
+                                <option value="IN">India</option>
+                                <option value="ID">Indonesia</option>
+                                <option value="IE">Ireland</option>
+                                <option value="IT">Italy</option>
+                                <option value="JP">Japan</option>
+                                <option value="JO">Jordan</option>
+                                <option value="KE">Kenya</option>
+                                <option value="KW">Kuwait</option>
+                                <option value="MY">Malaysia</option>
+                                <option value="MX">Mexico</option>
+                                <option value="MA">Morocco</option>
+                                <option value="NL">Netherlands</option>
+                                <option value="NZ">New Zealand</option>
+                                <option value="NG">Nigeria</option>
+                                <option value="NO">Norway</option>
+                                <option value="OM">Oman</option>
+                                <option value="PK">Pakistan</option>
+                                <option value="PE">Peru</option>
+                                <option value="PH">Philippines</option>
+                                <option value="PL">Poland</option>
+                                <option value="PT">Portugal</option>
+                                <option value="QA">Qatar</option>
+                                <option value="RO">Romania</option>
+                                <option value="RU">Russia</option>
+                                <option value="SA">Saudi Arabia</option>
+                                <option value="SG">Singapore</option>
+                                <option value="ZA">South Africa</option>
+                                <option value="KR">South Korea</option>
+                                <option value="ES">Spain</option>
+                                <option value="SE">Sweden</option>
+                                <option value="CH">Switzerland</option>
+                                <option value="TW">Taiwan</option>
+                                <option value="TH">Thailand</option>
+                                <option value="TR">Turkey</option>
+                                <option value="AE">United Arab Emirates</option>
+                                <option value="GB">United Kingdom</option>
+                                <option value="US">United States</option>
+                                <option value="VN">Vietnam</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="form-group">
-                    <label class="form-label">Confirm Password</label>
-                    <div class="input-group">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" name="confirm_password" id="confirm_password" placeholder="••••••••" required>
-                        <button type="button" class="password-toggle" onclick="toggleConfirmPassword()">
-                            <i class="fas fa-eye" id="confirm-password-icon"></i>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <div class="input-group">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" name="password" id="password" placeholder="••••••••" required>
+                            <button type="button" class="password-toggle" onclick="togglePassword()">
+                                <i class="fas fa-eye" id="password-icon"></i>
+                            </button>
+                        </div>
+                        <div class="password-strength">
+                            <div class="strength-bar">
+                                <div class="strength-fill" id="strength-fill"></div>
+                            </div>
+                            <span class="strength-text" id="strength-text">Password strength</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Confirm Password</label>
+                        <div class="input-group">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" name="confirm_password" id="confirm_password" placeholder="••••••••" required>
+                            <button type="button" class="password-toggle" onclick="toggleConfirmPassword()">
+                                <i class="fas fa-eye" id="confirm-password-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-actions">
+                    <button type="button" class="btn-secondary-outline" onclick="prevStep()">
+                        <i class="fas fa-arrow-left"></i>
+                        Back
+                    </button>
+                    <button type="button" class="btn-primary" onclick="nextStep()">
+                        Continue
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+                
+                <!-- Step 3: Final Details & Confirmation -->
+                <div class="form-step" id="step3">
+                    <h3 class="step-title">Almost Done!</h3>
+                    <p class="step-subtitle">Review your information and complete registration</p>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Referral Code (Optional)</label>
+                        <div class="input-group">
+                            <i class="fas fa-gift"></i>
+                            <input type="text" name="referral_code" placeholder="Enter referral code">
+                        </div>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="terms" required>
+                            <span class="checkmark"></span>
+                            I agree to the <a href="terms.html" target="_blank">Terms of Service</a> and <a href="privacy.html" target="_blank">Privacy Policy</a>
+                        </label>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="newsletter">
+                            <span class="checkmark"></span>
+                            Subscribe to our newsletter for updates and offers
+                        </label>
+                    </div>
+                    
+                    <div class="step-actions">
+                        <button type="button" class="btn-secondary-outline" onclick="prevStep()">
+                            <i class="fas fa-arrow-left"></i>
+                            Back
+                        </button>
+                        <button type="submit" class="btn-primary">
+                            <span class="btn-text">Create Account</span>
+                            <span class="btn-loading" style="display: none;">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                Creating account...
+                            </span>
                         </button>
                     </div>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Phone Number (Optional)</label>
-                    <div class="input-group">
-                        <i class="fas fa-phone"></i>
-                        <input type="tel" name="phone" placeholder="+1 (555) 123-4567">
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Referral Code (Optional)</label>
-                    <div class="input-group">
-                        <i class="fas fa-gift"></i>
-                        <input type="text" name="referral_code" placeholder="Enter referral code">
-                    </div>
-                </div>
-                
-                <div class="form-options">
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="terms" required>
-                        <span class="checkmark"></span>
-                        I agree to the <a href="terms.html" target="_blank">Terms of Service</a> and <a href="privacy.html" target="_blank">Privacy Policy</a>
-                    </label>
-                </div>
-                
-                <div class="form-options">
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="newsletter">
-                        <span class="checkmark"></span>
-                        Subscribe to our newsletter for updates and offers
-                    </label>
-                </div>
-                
-                <button type="submit" class="btn-primary">
-                    <span class="btn-text">Create Account</span>
-                    <span class="btn-loading" style="display: none;">
-                        <i class="fas fa-spinner fa-spin"></i>
-                        Creating account...
-                    </span>
-                </button>
-                
-                <div class="divider">
-                    <span>or</span>
-                </div>
-                
-                <div class="social-login">
-                    <button type="button" class="btn-social google" onclick="socialRegister('google')">
-                        <i class="fab fa-google"></i>
-                        Continue with Google
-                    </button>
-                    <button type="button" class="btn-social facebook" onclick="socialRegister('facebook')">
-                        <i class="fab fa-facebook-f"></i>
-                        Continue with Facebook
-                    </button>
-                    <button type="button" class="btn-social apple" onclick="socialRegister('apple')">
-                        <i class="fab fa-apple"></i>
-                        Continue with Apple
-                    </button>
                 </div>
             </form>
             
             <div class="auth-footer">
                 <p>Already have an account? <a href="login.html">Sign in here</a></p>
             </div>
-        </div>
-        
-        <!-- Benefits -->
-        <div class="benefits-section">
-            <h3>Why Choose SMM Turk?</h3>
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <i class="fas fa-dollar-sign"></i>
-                    <h4>Cheapest Prices</h4>
-                    <p>Starting from $0.01</p>
+            </div>
+            
+            <!-- Side Benefits Panel -->
+            <div class="benefits-sidebar">
+                <div class="sidebar-header">
+                    <h3>Why Join SMM Turk?</h3>
+                    <p>Join thousands of satisfied customers worldwide</p>
                 </div>
-                <div class="benefit-item">
-                    <i class="fas fa-bolt"></i>
-                    <h4>Fastest Delivery</h4>
-                    <p>0.3 seconds average</p>
+                
+                <div class="benefits-list">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Cheapest Prices</h4>
+                            <p>Starting from $0.01 per 1K</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Lightning Fast</h4>
+                            <p>0.3 seconds average delivery</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>100% Secure</h4>
+                            <p>SSL encrypted transactions</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>24/7 Support</h4>
+                            <p>Always here to help you</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>50,000+ Orders</h4>
+                            <p>Completed successfully daily</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Worldwide</h4>
+                            <p>Serving customers globally</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="benefit-item">
-                    <i class="fas fa-shield-alt"></i>
-                    <h4>100% Secure</h4>
-                    <p>SSL encrypted</p>
-                </div>
-                <div class="benefit-item">
-                    <i class="fas fa-headset"></i>
-                    <h4>24/7 Support</h4>
-                    <p>Always here to help</p>
+                
+                <div class="sidebar-footer">
+                    <div class="trust-badge">
+                        <i class="fas fa-shield-check"></i>
+                        <span>ğŸ”’ 100% Secure & Encrypted</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     
-    <!-- JavaScript -->
+    <!-- JavaScript -->`r`n    <script src="assets/js/error-suppress.js"></script>
     <script src="assets/js/auth.js"></script>
     <script>
-        function handleRegister(event) {
-            event.preventDefault();
-            
-            const form = event.target;
-            const submitBtn = form.querySelector('.btn-primary');
-            const btnText = submitBtn.querySelector('.btn-text');
-            const btnLoading = submitBtn.querySelector('.btn-loading');
-            
-            // Validate passwords match
-            const password = form.querySelector('input[name="password"]').value;
-            const confirmPassword = form.querySelector('input[name="confirm_password"]').value;
-            
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
-            }
-            
-            // Show loading state
-            btnText.style.display = 'none';
-            btnLoading.style.display = 'inline-flex';
-            submitBtn.disabled = true;
-            
-            // Simulate registration process
-            setTimeout(() => {
-                // Reset button state
-                btnText.style.display = 'inline';
-                btnLoading.style.display = 'none';
-                submitBtn.disabled = false;
-                
-                // Show success message
-                alert('Account created successfully! Welcome to SMM Turk!');
-                
-                // Redirect to login
-                window.location.href = 'login.html';
-            }, 2000);
-        }
-        
         function togglePassword() {
             const passwordInput = document.getElementById('password');
             const passwordIcon = document.getElementById('password-icon');
@@ -324,6 +658,186 @@
             strengthText.textContent = strengthLabel;
             strengthText.style.color = strengthColor;
         });
+        
+        // Multi-Step Form Navigation
+        let currentStep = 1;
+        const totalSteps = 3;
+        
+        function updateProgress() {
+            // Update step indicators
+            for (let i = 1; i <= totalSteps; i++) {
+                const stepIndicator = document.querySelector(`.form-steps .step[data-step="${i}"]`);
+                if (i < currentStep) {
+                    stepIndicator.classList.add('completed');
+                    stepIndicator.classList.remove('active');
+                } else if (i === currentStep) {
+                    stepIndicator.classList.add('active');
+                    stepIndicator.classList.remove('completed');
+                } else {
+                    stepIndicator.classList.remove('active', 'completed');
+                }
+            }
+            
+            // Show/hide form steps
+            for (let i = 1; i <= totalSteps; i++) {
+                const formStep = document.getElementById(`step${i}`);
+                if (i === currentStep) {
+                    formStep.classList.add('active');
+                } else {
+                    formStep.classList.remove('active');
+                }
+            }
+        }
+        
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                // Validate current step
+                const currentStepEl = document.getElementById(`step${currentStep}`);
+                const requiredFields = currentStepEl.querySelectorAll('[required]');
+                let isValid = true;
+                
+                requiredFields.forEach(field => {
+                    if (!field.value) {
+                        field.style.borderColor = '#ef4444';
+                        isValid = false;
+                    } else {
+                        field.style.borderColor = '';
+                    }
+                });
+                
+                if (isValid) {
+                    currentStep++;
+                    updateProgress();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            }
+        }
+        
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateProgress();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+        
+        // Change User Type Function
+        function changeUserType(userType) {
+            const agencyFields = document.getElementById('agencyFields');
+            const phoneIndividual = document.getElementById('phoneIndividual');
+            const companyName = document.getElementById('companyName');
+            const phoneNumber = document.getElementById('phoneNumber');
+            
+            if (userType === 'agency' || userType === 'company') {
+                if (agencyFields) agencyFields.style.display = 'block';
+                if (phoneIndividual) phoneIndividual.style.display = 'none';
+                
+                // Make company name and phone required for agency/company
+                if (companyName) companyName.required = true;
+                if (phoneNumber) phoneNumber.required = true;
+            } else {
+                if (agencyFields) agencyFields.style.display = 'none';
+                if (phoneIndividual) phoneIndividual.style.display = 'block';
+                
+                // Remove required for individual
+                if (companyName) companyName.required = false;
+                if (phoneNumber) phoneNumber.required = false;
+            }
+        }
+        
+        // Initialize
+        updateProgress();
+        
+        // Update handleRegister to include user type
+        function handleRegister(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const submitBtn = form.querySelector('.btn-primary');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const btnLoading = submitBtn.querySelector('.btn-loading');
+            
+            // Get user type
+            const userType = document.querySelector('input[name="user_type"]:checked').value;
+            
+            // Validate passwords match
+            const password = form.querySelector('input[name="password"]').value;
+            const confirmPassword = form.querySelector('input[name="confirm_password"]').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            // Validate agency/company fields
+            if (userType === 'agency' || userType === 'company') {
+                const companyName = form.querySelector('input[name="company_name"]').value;
+                const phone = form.querySelector('input[name="phone"]').value;
+                
+                if (!companyName || !phone) {
+                    alert('Company name and phone number are required for Agency/Company registration!');
+                    return;
+                }
+            }
+            
+            // Show loading state
+            btnText.style.display = 'none';
+            btnLoading.style.display = 'inline-flex';
+            submitBtn.disabled = true;
+            
+            // Prepare form data
+            const formData = new FormData(form);
+            const data = {
+                user_type: userType,
+                username: formData.get('username'),
+                email: formData.get('email'),
+                password: password,
+                first_name: formData.get('first_name'),
+                last_name: formData.get('last_name'),
+                phone: userType === 'individual' ? formData.get('phone_individual') : formData.get('phone'),
+                company_name: formData.get('company_name') || null,
+                tax_id: formData.get('tax_id') || null,
+                website: formData.get('website') || null,
+                address: formData.get('address') || null,
+                city: formData.get('city') || null,
+                state: formData.get('state') || null,
+                zip_code: formData.get('zip_code') || null,
+                country: formData.get('country') || null,
+                referral_code: formData.get('referral_code') || null
+            };
+            
+            // Send registration request
+            fetch('../api/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    showSuccessMessage(result.message);
+                    
+                    // Redirect after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 2000);
+                } else {
+                    alert(result.message);
+                    btnText.style.display = 'inline';
+                    btnLoading.style.display = 'none';
+                    submitBtn.disabled = false;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Registration failed. Please try again.');
+                btnText.style.display = 'inline';
+                btnLoading.style.display = 'none';
+                submitBtn.disabled = false;
+            });
+        }
     </script>
 </body>
 </html>

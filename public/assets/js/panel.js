@@ -43,6 +43,31 @@ class PanelSystem {
                 sidebar.classList.remove('open');
             }
         });
+        
+        // Set active menu item based on current page
+        this.setActiveMenuItem();
+    }
+    
+    setActiveMenuItem() {
+        // Get current page filename
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            
+            // Get the href from the link
+            const href = link.getAttribute('href');
+            
+            if (href) {
+                const linkPage = href.split('/').pop();
+                
+                // Check if this link matches current page
+                if (linkPage === currentPage || (currentPage === 'index.html' && linkPage === 'index.html')) {
+                    link.classList.add('active');
+                }
+            }
+        });
     }
     
     setupNotifications() {
@@ -587,12 +612,90 @@ style.textContent = `
     
     .sort-asc::after {
         content: ' ↑';
-        color: #e74c3c;
+        color: #dc2626;
     }
     
     .sort-desc::after {
         content: ' ↓';
-        color: #e74c3c;
+        color: #dc2626;
     }
 `;
 document.head.appendChild(style);
+
+// Global function for sidebar toggle
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar) {
+        sidebar.classList.toggle('open');
+    }
+}
+
+// Handle Add Funds
+function handleAddFunds() {
+    // Redirect to Add Funds page
+    window.location.href = 'add-funds.html';
+}
+
+// Handle Settings
+function handleSettings() {
+    // Redirect to Settings page
+    window.location.href = 'settings.html';
+}
+
+// Toggle Theme - Enhanced with localStorage
+let isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+// Apply saved theme on page load
+if (isDarkMode) {
+    document.body.classList.add('dark-mode');
+    updateThemeIcon();
+}
+
+function updateThemeIcon() {
+    const themeIcon = document.querySelector('[title="Theme"] i');
+    if (themeIcon) {
+        if (isDarkMode) {
+            themeIcon.className = 'fas fa-moon';
+        } else {
+            themeIcon.className = 'fas fa-sun';
+        }
+    }
+}
+
+function toggleTheme() {
+    isDarkMode = !isDarkMode;
+    localStorage.setItem('darkMode', isDarkMode);
+    
+    if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+    
+    updateThemeIcon();
+    
+    // Add smooth transition
+    document.body.style.transition = 'background 0.3s ease, color 0.3s ease';
+}
+
+// Handle Settings
+function handleSettings() {
+    window.location.href = 'settings.html';
+}
+
+// Handle Logout
+function handleLogout() {
+    if (confirm('Are you sure you want to logout?')) {
+        // Clear session
+        sessionStorage.clear();
+        localStorage.clear();
+        
+        // Redirect to login
+        window.location.href = '../login.html';
+    }
+}
+
+// Initialize Panel System
+document.addEventListener('DOMContentLoaded', () => {
+    window.panelSystem = new PanelSystem();
+});

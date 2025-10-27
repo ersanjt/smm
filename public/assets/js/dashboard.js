@@ -239,12 +239,12 @@ class DashboardManager {
                 datasets: [{
                     label: 'Orders',
                     data: [12, 19, 3, 5, 2, 3, 8, 15, 22, 18, 25, 30],
-                    borderColor: '#667eea',
-                    backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                    borderColor: '#dc2626',
+                    backgroundColor: 'rgba(220, 38, 38, 0.1)',
                     borderWidth: 3,
                     fill: true,
                     tension: 0.4,
-                    pointBackgroundColor: '#667eea',
+                    pointBackgroundColor: '#dc2626',
                     pointBorderColor: '#ffffff',
                     pointBorderWidth: 2,
                     pointRadius: 6,
@@ -287,7 +287,7 @@ class DashboardManager {
                 },
                 elements: {
                     point: {
-                        hoverBackgroundColor: '#667eea'
+                        hoverBackgroundColor: '#dc2626'
                     }
                 }
             }
@@ -306,8 +306,8 @@ class DashboardManager {
                 datasets: [{
                     label: 'Revenue ($)',
                     data: [120, 190, 300, 500, 200, 300, 800, 1500, 2200, 1800, 2500, 3000],
-                    backgroundColor: 'rgba(102, 126, 234, 0.8)',
-                    borderColor: '#667eea',
+                    backgroundColor: 'rgba(220, 38, 38, 0.8)',
+                    borderColor: '#dc2626',
                     borderWidth: 0,
                     borderRadius: 6,
                     borderSkipped: false

@@ -5,9 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - SMM Turk</title>
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon-180x180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
+    
     <!-- CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="../assets/css/shared.css" rel="stylesheet">
     <link href="../assets/css/admin.css" rel="stylesheet">
 </head>
 <body>
@@ -64,13 +71,19 @@
                 </a>
             </div>
             <div class="nav-item">
+                <a href="#landing" class="nav-link" onclick="switchAdminTab('landing')">
+                    <i class="fas fa-globe"></i>
+                    Landing Page
+                </a>
+            </div>
+            <div class="nav-item">
                 <a href="#settings" class="nav-link" onclick="switchAdminTab('settings')">
                     <i class="fas fa-cog"></i>
                     System Settings
                 </a>
             </div>
             <div class="nav-item">
-                <a href="../panel/index.html" class="nav-link">
+                <a href="../panel/index.html" class="nav-link" onclick="window.location.href='../panel/index.html'; return false;">
                     <i class="fas fa-user"></i>
                     User Panel
                 </a>
@@ -87,33 +100,114 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="breadcrumb">
-                    <span id="currentPage">Dashboard</span>
+                    <a href="index.html" class="breadcrumb-home">
+                        <i class="fas fa-home"></i>
+                    </a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span id="currentPage" class="breadcrumb-current">Dashboard</span>
                 </div>
             </div>
             
             <div class="header-right">
                 <div class="admin-info">
-                    <div class="admin-item">
+                    <div class="admin-item success-badge">
                         <i class="fas fa-shield-alt"></i>
                         <span>Admin Access</span>
                     </div>
-                    <div class="admin-item">
+                    <div class="admin-item time-badge">
                         <i class="fas fa-clock"></i>
                         <span id="currentTime">Loading...</span>
+                    </div>
+                    <div class="admin-item notification-badge">
+                        <i class="fas fa-bell"></i>
+                        <span>3 New</span>
                     </div>
                 </div>
                 
                 <div class="header-actions">
-                    <button class="btn-icon" title="Notifications">
-                        <i class="fas fa-bell"></i>
-                        <span class="badge">3</span>
+                    <button class="btn-icon theme-toggle-btn" title="Toggle Dark Mode" onclick="toggleTheme()">
+                        <i class="fas fa-moon" id="themeIcon"></i>
                     </button>
-                    <button class="btn-icon" title="Settings">
-                        <i class="fas fa-cog"></i>
-                    </button>
-                    <button class="btn-icon" title="Logout">
-                        <i class="fas fa-power-off"></i>
-                    </button>
+                    <div class="notification-container">
+                        <button class="btn-icon notification-btn" title="Notifications" onclick="toggleNotifications()">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge pulse" id="notificationCount">3</span>
+                        </button>
+                        <div class="notifications-dropdown" id="notificationsDropdown">
+                            <div class="notifications-header">
+                                <h3>Notifications</h3>
+                                <button class="btn-icon-sm" onclick="clearAllNotifications()">
+                                    <i class="fas fa-trash"></i> Clear All
+                                </button>
+                            </div>
+                            <div class="notifications-list" id="notificationsList">
+                                <div class="notification-item unread">
+                                    <div class="notification-icon success">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <h4>New User Registration</h4>
+                                        <p>john_doe has just registered</p>
+                                        <span class="notification-time">2 minutes ago</span>
+                                    </div>
+                                </div>
+                                <div class="notification-item unread">
+                                    <div class="notification-icon info">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <h4>New Order Received</h4>
+                                        <p>Order #12345 from jane_smith</p>
+                                        <span class="notification-time">5 minutes ago</span>
+                                    </div>
+                                </div>
+                                <div class="notification-item unread">
+                                    <div class="notification-icon warning">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <h4>Low Balance Warning</h4>
+                                        <p>API balance is below 10%</p>
+                                        <span class="notification-time">1 hour ago</span>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-icon success">
+                                        <i class="fas fa-ticket-alt"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <h4>Ticket Resolved</h4>
+                                        <p>Ticket #789 has been closed</p>
+                                        <span class="notification-time">3 hours ago</span>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-icon info">
+                                        <i class="fas fa-server"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <h4>System Update Available</h4>
+                                        <p>New version v2.1.0 is available</p>
+                                        <span class="notification-time">1 day ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notifications-footer">
+                                <a href="#" onclick="viewAllNotifications()">View All Notifications</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="admin-profile" onclick="toggleProfileMenu()">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <div class="profile-dropdown" id="profileDropdown">
+                            <a href="#profile" onclick="viewProfile()"><i class="fas fa-user"></i> Profile</a>
+                            <a href="#settings" onclick="switchAdminTab('settings')"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="#" onclick="window.location.href='../panel/index.html'; return false;"><i class="fas fa-exchange-alt"></i> Switch to User Panel</a>
+                            <a href="#" onclick="logout()" class="danger"><i class="fas fa-power-off"></i> Logout</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </header>
@@ -827,6 +921,311 @@
                 </div>
             </div>
             
+            <!-- Landing Page Management Tab -->
+            <div class="admin-tab" id="landing">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h3>Landing Page Content Management</h3>
+                        <button class="btn-primary" onclick="saveLandingContent()">
+                            <i class="fas fa-save"></i>
+                            Save Changes
+                        </button>
+                    </div>
+                    
+                    <!-- Logo & Branding Section -->
+                    <div class="content-section">
+                        <h4><i class="fas fa-image"></i> Logo & Branding</h4>
+                        <div class="form-group">
+                            <label>Website Logo</label>
+                            <div class="upload-area">
+                                <div class="logo-preview">
+                                    <img id="logoPreview" src="../assets/images/logo.png" alt="Logo Preview" onerror="this.style.display='none'">
+                                    <button type="button" class="btn-secondary" onclick="document.getElementById('logoUpload').click()">
+                                        <i class="fas fa-upload"></i> Upload Logo
+                                    </button>
+                                    <input type="file" id="logoUpload" accept="image/*" style="display: none;" onchange="previewLogo(this)">
+                                </div>
+                                <input type="text" id="logoUrl" class="form-control" placeholder="Or enter logo URL">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Favicon</label>
+                            <div class="upload-area">
+                                <div class="favicon-preview">
+                                    <img id="faviconPreview" src="../assets/images/favicon.ico" alt="Favicon Preview" onerror="this.style.display='none'">
+                                    <button type="button" class="btn-secondary" onclick="document.getElementById('faviconUpload').click()">
+                                        <i class="fas fa-upload"></i> Upload Favicon
+                                    </button>
+                                    <input type="file" id="faviconUpload" accept="image/*" style="display: none;" onchange="previewFavicon(this)">
+                                </div>
+                                <input type="text" id="faviconUrl" class="form-control" placeholder="Or enter favicon URL">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hero Section -->
+                    <div class="content-section">
+                        <h4><i class="fas fa-hero"></i> Hero Section (Main Banner)</h4>
+                        <div class="form-group">
+                            <label>Main Title</label>
+                            <input type="text" id="heroTitle" class="form-control" placeholder="Best SMM Panel for Social Media Growth" value="Best SMM Panel for Social Media Growth">
+                        </div>
+                        <div class="form-group">
+                            <label>Subtitle</label>
+                            <textarea id="heroSubtitle" class="form-control" rows="3" placeholder="Get hundreds of High Quality Social Media Services...">Get hundreds of High Quality Social Media Services from SMM Turk in a distance of a click.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>CTA Button Text</label>
+                            <input type="text" id="heroCta" class="form-control" placeholder="Get Started" value="Get Started">
+                        </div>
+                    </div>
+                    
+                    <!-- Features Section -->
+                    <div class="content-section">
+                        <h4><i class="fas fa-star"></i> Features Section</h4>
+                        <div class="features-editor">
+                            <div id="featuresList" class="features-list">
+                                <div class="feature-item-editable">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Icon (FontAwesome class)</label>
+                                            <input type="text" class="form-control feature-icon" placeholder="fas fa-rocket" value="fas fa-rocket">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Title</label>
+                                            <input type="text" class="form-control feature-title" placeholder="Feature Title" value="Fast Delivery">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea class="form-control feature-description" rows="2" placeholder="Feature description...">We promise to deliver your order quickly</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-secondary" onclick="addFeature()">
+                                <i class="fas fa-plus"></i> Add Feature
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Information -->
+                    <div class="content-section">
+                        <h4><i class="fas fa-address-card"></i> Contact Information</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" id="contactEmail" class="form-control" placeholder="contact@smmturk.com" value="contact@smmturk.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" id="contactPhone" class="form-control" placeholder="+1 234 567 8900">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Address</label>
+                                <input type="text" id="contactAddress" class="form-control" placeholder="123 Main St, City, Country">
+                            </div>
+                            <div class="form-group">
+                                <label>Business Hours</label>
+                                <input type="text" id="businessHours" class="form-control" placeholder="24/7" value="24/7">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Media Links -->
+                    <div class="content-section">
+                        <h4><i class="fas fa-share-alt"></i> Social Media Links</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fab fa-twitter"></i> Twitter</label>
+                                <input type="url" id="socialTwitter" class="form-control" placeholder="https://twitter.com/smmturk">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fab fa-facebook"></i> Facebook</label>
+                                <input type="url" id="socialFacebook" class="form-control" placeholder="https://facebook.com/smmturk">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fab fa-instagram"></i> Instagram</label>
+                                <input type="url" id="socialInstagram" class="form-control" placeholder="https://instagram.com/smmturk">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fab fa-telegram"></i> Telegram</label>
+                                <input type="url" id="socialTelegram" class="form-control" placeholder="https://t.me/smmturk">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Services Section (Previously missing) -->
+                    <div class="content-section">
+                        <h4><i class="fas fa-list"></i> Services Section</h4>
+                        <div class="services-editor">
+                            <div id="servicesList" class="services-list">
+                                <div class="service-item-editable">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Service Icon</label>
+                                            <input type="text" class="form-control service-icon" placeholder="fab fa-instagram" value="fab fa-instagram">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Service Title</label>
+                                            <input type="text" class="form-control service-title" placeholder="Instagram Followers" value="Instagram">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Service Description</label>
+                                        <textarea class="form-control service-description" rows="2" placeholder="Service description...">Followers, Likes, Views, Comments, Story Views, IGTV, Reels</textarea>
+                                    </div>
+                                    <button type="button" class="btn-icon danger" onclick="removeService(this)">
+                                        <i class="fas fa-trash"></i> Remove
+                                    </button>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-secondary" onclick="addService()">
+                                <i class="fas fa-plus"></i> Add Service
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Stats Section -->
+                    <div class="content-section">
+                        <h4><i class="fas fa-chart-line"></i> Statistics Section</h4>
+                        <div class="stats-editor">
+                            <div id="statsList" class="stats-list">
+                                <div class="stat-item-editable">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Stat Icon</label>
+                                            <input type="text" class="form-control stat-icon" placeholder="fas fa-clock" value="fas fa-clock">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Stat Value</label>
+                                            <input type="text" class="form-control stat-value" placeholder="0.3 Sec" value="0.3 Sec">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Stat Label</label>
+                                        <input type="text" class="form-control stat-label" placeholder="An Order is made every" value="An Order is made every">
+                                    </div>
+                                    <button type="button" class="btn-icon danger" onclick="removeStat(this)">
+                                        <i class="fas fa-trash"></i> Remove
+                                    </button>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-secondary" onclick="addStat()">
+                                <i class="fas fa-plus"></i> Add Statistic
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonials Section -->
+                    <div class="content-section">
+                        <h4><i class="fas fa-quote-left"></i> Testimonials Section</h4>
+                        <div class="testimonials-editor">
+                            <div id="testimonialsList" class="testimonials-list">
+                                <div class="testimonial-item-editable">
+                                    <div class="form-group">
+                                        <label>Customer Name</label>
+                                        <input type="text" class="form-control testimonial-name" placeholder="John Doe" value="John Doe">
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Customer Position</label>
+                                            <input type="text" class="form-control testimonial-position" placeholder="CEO, Company Name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Customer Avatar URL</label>
+                                            <input type="url" class="form-control testimonial-avatar" placeholder="https://example.com/avatar.jpg">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Rating (1-5)</label>
+                                        <input type="number" class="form-control testimonial-rating" min="1" max="5" value="5">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Testimonial Text</label>
+                                        <textarea class="form-control testimonial-text" rows="3" placeholder="Great service! Very fast delivery...">Excellent service with fast delivery!</textarea>
+                                    </div>
+                                    <button type="button" class="btn-icon danger" onclick="removeTestimonial(this)">
+                                        <i class="fas fa-trash"></i> Remove
+                                    </button>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-secondary" onclick="addTestimonial()">
+                                <i class="fas fa-plus"></i> Add Testimonial
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Section (Previously exists but incomplete) -->
+                    <div class="content-section">
+                        <h4><i class="fas fa-question-circle"></i> FAQ Section</h4>
+                        <div class="faq-editor">
+                            <div id="faqList" class="faq-list">
+                                <div class="faq-item-editable">
+                                    <div class="form-group">
+                                        <label>Question</label>
+                                        <input type="text" class="form-control faq-question" placeholder="What are SMM panels?" value="What are SMM panels?">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Answer</label>
+                                        <textarea class="form-control faq-answer" rows="3" placeholder="Answer...">SMM (Social Media Marketing) panels are platforms that provide social media services like followers, likes, views, and comments across various platforms such as Instagram, Facebook, Twitter, YouTube, and more.</textarea>
+                                    </div>
+                                    <button type="button" class="btn-icon danger" onclick="removeFAQ(this)">
+                                        <i class="fas fa-trash"></i> Remove
+                                    </button>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-secondary" onclick="addFAQ()">
+                                <i class="fas fa-plus"></i> Add FAQ
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Footer Settings (Previously exists but incomplete) -->
+                    <div class="content-section">
+                        <h4><i class="fas fa-info-circle"></i> Footer Settings</h4>
+                        <div class="form-group">
+                            <label>Copyright Text</label>
+                            <input type="text" id="footerCopyright" class="form-control" placeholder="&copy; Copyright 2025. All Rights Reserved by SMM Turk." value="&copy; Copyright 2025. All Rights Reserved by SMM Turk.">
+                        </div>
+                        <div class="form-group">
+                            <label>Footer Description</label>
+                            <textarea id="footerDescription" class="form-control" rows="3" placeholder="World's Best Cheap & Easy SMM Panel. Your partner in business expansion for the last 8 years.">World's Best Cheap & Easy SMM Panel. Your partner in business expansion for the last 8 years.</textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Footer Logo URL</label>
+                                <input type="url" id="footerLogo" class="form-control" placeholder="https://smmturk.com/assets/images/logo.png">
+                            </div>
+                            <div class="form-group">
+                                <label>Footer Background Color</label>
+                                <input type="color" id="footerBgColor" class="form-control" value="#1a1a2e">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- SEO Settings -->
+                    <div class="content-section">
+                        <h4><i class="fas fa-search"></i> SEO Settings</h4>
+                        <div class="form-group">
+                            <label>Meta Title</label>
+                            <input type="text" id="metaTitle" class="form-control" placeholder="SMM Turk - Best SMM Panel" value="SMM Turk - Best SMM Panel">
+                        </div>
+                        <div class="form-group">
+                            <label>Meta Description</label>
+                            <textarea id="metaDescription" class="form-control" rows="3" placeholder="Best SMM panel for social media services...">Best SMM panel for social media services with fast delivery and competitive prices.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Keywords (comma separated)</label>
+                            <input type="text" id="metaKeywords" class="form-control" placeholder="smm panel, social media marketing, instagram followers">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <!-- System Settings Tab -->
             <div class="admin-tab" id="settings">
                 <div class="admin-section">
@@ -1245,6 +1644,7 @@
     </div>
     
     <!-- JavaScript -->
+    <script src="../assets/js/error-suppress.js"></script>
     <script src="../assets/js/admin.js"></script>
     <script>
         // Initialize Admin Panel
@@ -1310,6 +1710,73 @@
             }
         }
         
+        function toggleProfileMenu() {
+            const dropdown = document.getElementById('profileDropdown');
+            dropdown.classList.toggle('show');
+        }
+        
+        function toggleNotifications() {
+            const dropdown = document.getElementById('notificationsDropdown');
+            dropdown.classList.toggle('show');
+            
+            // Close on click outside
+            document.addEventListener('click', function closeNotifications(event) {
+                if (!event.target.closest('.notification-container')) {
+                    dropdown.classList.remove('show');
+                    document.removeEventListener('click', closeNotifications);
+                }
+            });
+        }
+        
+        function clearAllNotifications() {
+            const list = document.getElementById('notificationsList');
+            const items = list.querySelectorAll('.notification-item.unread');
+            
+            items.forEach(item => {
+                item.classList.remove('unread');
+            });
+            
+            updateNotificationCount(0);
+            
+            // Show confirmation
+            alert('All notifications cleared!');
+        }
+        
+        function viewAllNotifications() {
+            window.location.href = '#dashboard';
+        }
+        
+        function updateNotificationCount(count) {
+            const badge = document.getElementById('notificationCount');
+            if (badge) {
+                badge.textContent = count;
+                
+                if (count === 0) {
+                    badge.style.display = 'none';
+                } else {
+                    badge.style.display = 'inline-flex';
+                }
+            }
+        }
+        
+        function viewProfile() {
+            alert('View profile');
+        }
+        
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                alert('Logging out...');
+            }
+        }
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            const profileDropdown = document.getElementById('profileDropdown');
+            if (profileDropdown && !e.target.closest('.admin-profile')) {
+                profileDropdown.classList.remove('show');
+            }
+        });
+        
         function closeModal() {
             const modals = document.querySelectorAll('.modal-overlay');
             modals.forEach(modal => {
@@ -1339,6 +1806,157 @@
                 closeModal();
             }
         });
+    </script>
+    
+    <script>
+        // Landing Page Management Functions
+        function previewLogo(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('logoPreview').src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        
+        function previewFavicon(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('faviconPreview').src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        
+        function addFeature() {
+            const featuresList = document.getElementById('featuresList');
+            const newFeature = document.createElement('div');
+            newFeature.className = 'feature-item-editable';
+            newFeature.innerHTML = `
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Icon (FontAwesome class)</label>
+                        <input type="text" class="form-control feature-icon" placeholder="fas fa-rocket" value="">
+                    </div>
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" class="form-control feature-title" placeholder="Feature Title" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-control feature-description" rows="2" placeholder="Feature description..."></textarea>
+                </div>
+                <button type="button" class="btn-action danger" onclick="this.closest('.feature-item-editable').remove()">
+                    <i class="fas fa-trash"></i> Remove
+                </button>
+            `;
+            featuresList.appendChild(newFeature);
+        }
+        
+        function addService() {
+            const servicesList = document.getElementById('servicesList');
+            const newService = document.createElement('div');
+            newService.className = 'service-item-editable';
+            newService.innerHTML = `
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Service Icon</label>
+                        <input type="text" class="form-control service-icon" placeholder="fab fa-instagram" value="">
+                    </div>
+                    <div class="form-group">
+                        <label>Service Title</label>
+                        <input type="text" class="form-control service-title" placeholder="Instagram Followers" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Service Description</label>
+                    <textarea class="form-control service-description" rows="2" placeholder="Service description..."></textarea>
+                </div>
+                <button type="button" class="btn-action danger" onclick="this.closest('.service-item-editable').remove()">
+                    <i class="fas fa-trash"></i> Remove
+                </button>
+            `;
+            servicesList.appendChild(newService);
+        }
+        
+        function addFAQ() {
+            const faqList = document.getElementById('faqList');
+            const newFAQ = document.createElement('div');
+            newFAQ.className = 'faq-item-editable';
+            newFAQ.innerHTML = `
+                <div class="form-group">
+                    <label>Question</label>
+                    <input type="text" class="form-control faq-question" placeholder="What is SMM Panel?" value="">
+                </div>
+                <div class="form-group">
+                    <label>Answer</label>
+                    <textarea class="form-control faq-answer" rows="3" placeholder="Answer..."></textarea>
+                </div>
+                <button type="button" class="btn-action danger" onclick="this.closest('.faq-item-editable').remove()">
+                    <i class="fas fa-trash"></i> Remove
+                </button>
+            `;
+            faqList.appendChild(newFAQ);
+        }
+        
+        function saveLandingContent() {
+            const data = {
+                logo: document.getElementById('logoUrl').value || document.getElementById('logoPreview').src,
+                favicon: document.getElementById('faviconUrl').value || document.getElementById('faviconPreview').src,
+                hero: {
+                    title: document.getElementById('heroTitle').value,
+                    subtitle: document.getElementById('heroSubtitle').value,
+                    cta: document.getElementById('heroCta').value
+                },
+                features: [],
+                contact: {
+                    email: document.getElementById('contactEmail').value,
+                    phone: document.getElementById('contactPhone').value,
+                    address: document.getElementById('contactAddress').value,
+                    hours: document.getElementById('businessHours').value
+                },
+                social: {
+                    twitter: document.getElementById('socialTwitter').value,
+                    facebook: document.getElementById('socialFacebook').value,
+                    instagram: document.getElementById('socialInstagram').value,
+                    telegram: document.getElementById('socialTelegram').value
+                },
+                seo: {
+                    title: document.getElementById('metaTitle').value,
+                    description: document.getElementById('metaDescription').value,
+                    keywords: document.getElementById('metaKeywords').value
+                }
+            };
+            
+            // Extract features
+            document.querySelectorAll('.feature-item-editable').forEach(item => {
+                data.features.push({
+                    icon: item.querySelector('.feature-icon').value,
+                    title: item.querySelector('.feature-title').value,
+                    description: item.querySelector('.feature-description').value
+                });
+            });
+            
+            console.log('Saving landing page content:', data);
+            
+            // Here you would send data to server
+            alert('Landing page content saved successfully!');
+        }
+        
+        // Initialize landing page content on tab switch
+        if (window.adminPanel) {
+            const originalSwitchTab = window.adminPanel.switchTab;
+            window.adminPanel.switchTab = function(tabName) {
+                originalSwitchTab.call(this, tabName);
+                if (tabName === 'landing') {
+                    // Load existing landing page content
+                    console.log('Loading landing page content...');
+                }
+            };
+        }
     </script>
 </body>
 </html>
