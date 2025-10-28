@@ -1,102 +1,40 @@
-# SMM Turk Panel - Security Configuration
-# Apache .htaccess file for enhanced security
-
-# Enable rewrite engine
 RewriteEngine On
 
-# Redirect all requests to public directory
-RewriteRule ^$ public/ [L]
-RewriteRule (.*) public/$1 [L]
+# Redirect to public directory
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.*)$ /public/$1 [L,R=301]
 
-# Security Headers
+# Security headers
 <IfModule mod_headers.c>
-    # Prevent clickjacking
-    Header always append X-Frame-Options SAMEORIGIN
-    
-    # Prevent MIME type sniffing
     Header always set X-Content-Type-Options nosniff
-    
-    # Enable XSS protection
+    Header always set X-Frame-Options DENY
     Header always set X-XSS-Protection "1; mode=block"
-    
-    # Strict Transport Security (HTTPS only)
-    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
-    
-    # Content Security Policy
-    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://smmfa.com https://smmfollows.com;"
-    
-    # Referrer Policy
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
-    
-    # Permissions Policy
-    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
 </IfModule>
 
-# Block access to sensitive files
-<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|inc|bak|sql|conf)$">
+# Prevent access to sensitive files
+<Files "*.sql">
     Order Allow,Deny
     Deny from all
-</FilesMatch>
-
-# Block access to application directory
-<Directory "application">
-    Order Allow,Deny
-    Deny from all
-</Directory>
-
-# Block access to system directory
-<Directory "system">
-    Order Allow,Deny
-    Deny from all
-</Directory>
-
-# Block access to logs directory
-<Directory "application/logs">
-    Order Allow,Deny
-    Deny from all
-</Directory>
-
-# Block access to cache directory
-<Directory "application/cache">
-    Order Allow,Deny
-    Deny from all
-</Directory>
-
-# Block access to sessions directory
-<Directory "application/sessions">
-    Order Allow,Deny
-    Deny from all
-</Directory>
-
-# Block access to config files
-<Files "*.php">
-    <IfModule mod_rewrite.c>
-        RewriteEngine On
-        RewriteCond %{REQUEST_URI} !^/public/
-        RewriteRule ^(.*)$ public/$1 [L]
-    </IfModule>
 </Files>
 
-# Prevent directory browsing
-Options -Indexes
-
-# Block access to hidden files
-<FilesMatch "^\.">
+<Files "*.md">
     Order Allow,Deny
     Deny from all
-</FilesMatch>
+</Files>
 
-# Rate limiting (if mod_evasive is available)
-<IfModule mod_evasive24.c>
-    DOSHashTableSize    2048
-    DOSPageCount        20
-    DOSPageInterval     1
-    DOSSiteCount        50
-    DOSSiteInterval     1
-    DOSBlockingPeriod   600
+<Files "composer.json">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Prevent access to application directory
+<IfModule mod_rewrite.c>
+    RewriteRule ^application/ - [F,L]
+    RewriteRule ^system/ - [F,L]
 </IfModule>
 
-# Compression
+# Enable compression
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/plain
     AddOutputFilterByType DEFLATE text/html
@@ -109,14 +47,19 @@ Options -Indexes
     AddOutputFilterByType DEFLATE application/x-javascript
 </IfModule>
 
-# Cache control
+# Cache static files
 <IfModule mod_expires.c>
     ExpiresActive On
-    ExpiresByType text/css "access plus 1 month"
-    ExpiresByType application/javascript "access plus 1 month"
-    ExpiresByType image/png "access plus 1 month"
     ExpiresByType image/jpg "access plus 1 month"
     ExpiresByType image/jpeg "access plus 1 month"
     ExpiresByType image/gif "access plus 1 month"
-    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/pdf "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType application/x-javascript "access plus 1 month"
+    ExpiresByType application/x-shockwave-flash "access plus 1 month"
+    ExpiresByType image/x-icon "access plus 1 year"
+    ExpiresDefault "access plus 2 days"
 </IfModule>
