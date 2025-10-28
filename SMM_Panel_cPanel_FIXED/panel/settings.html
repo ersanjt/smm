@@ -1,0 +1,509 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - SMM Turk</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon-180x180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
+    
+    <!-- CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="../assets/css/panel.css" rel="stylesheet">
+    <link href="../assets/css/settings.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="panel-header">
+        <div class="header-left">
+            <button class="sidebar-toggle" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="breadcrumb">
+                <span>Settings</span>
+            </div>
+        </div>
+        
+        <div class="header-right">
+            <div class="account-info">
+                <div class="account-item">
+                    <i class="fas fa-star"></i>
+                    <span>Account Points: 1,250 ≈ $12.50</span>
+                </div>
+                <div class="account-item">
+                    <i class="fas fa-dollar-sign"></i>
+                    <span>Account Spending: $156.80</span>
+                </div>
+                <div class="account-item">
+                    <i class="fas fa-wallet"></i>
+                    <span>Account Balance: $45.20</span>
+                </div>
+            </div>
+            
+            <div class="header-actions">
+                <button class="btn-icon" onclick="handleAddFunds()" title="Add Funds">
+                    <i class="fas fa-plus"></i>
+                </button>
+                <button class="btn-icon" onclick="handleSettings()" title="Settings">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <button class="btn-icon" onclick="toggleTheme()" title="Toggle Theme">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+                <button class="btn-icon" onclick="handleLogout()" title="Logout">
+                    <i class="fas fa-power-off"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="panel-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="#" class="sidebar-brand">
+                    <i class="fas fa-rocket"></i>
+                    SMM Turk
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="new-order.html" class="nav-link">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>New Order</span>
+                </a>
+                <a href="mass-order.html" class="nav-link">
+                    <i class="fas fa-layer-group"></i>
+                    <span>Mass Order</span>
+                </a>
+                <a href="services.html" class="nav-link">
+                    <i class="fas fa-list"></i>
+                    <span>Services</span>
+                </a>
+                <a href="orders.html" class="nav-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Orders</span>
+                </a>
+                <a href="add-funds.html" class="nav-link">
+                    <i class="fas fa-wallet"></i>
+                    <span>Add Funds</span>
+                </a>
+                <a href="tickets.html" class="nav-link">
+                    <i class="fas fa-ticket-alt"></i>
+                    <span>Tickets</span>
+                    <span class="notification-badge">3</span>
+                </a>
+                <a href="api.html" class="nav-link">
+                    <i class="fas fa-code"></i>
+                    <span>API</span>
+                </a>
+                <a href="affiliates.html" class="nav-link">
+                    <i class="fas fa-users"></i>
+                    <span>Affiliates</span>
+                </a>
+                <a href="child-panel.html" class="nav-link">
+                    <i class="fas fa-share-alt"></i>
+                    <span>Child Panel</span>
+                </a>
+                <a href="settings.html" class="nav-link active">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+                <a href="../login.html" class="nav-link logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="panel-content">
+            <div class="settings-container">
+                <!-- Settings Tabs Navigation -->
+                <div class="settings-tabs-nav">
+                    <button class="settings-tab-btn active" onclick="switchSettingsTab('profile')">
+                        <i class="fas fa-user"></i>
+                        Profile
+                    </button>
+                    <button class="settings-tab-btn" onclick="switchSettingsTab('security')">
+                        <i class="fas fa-shield-alt"></i>
+                        Security
+                    </button>
+                    <button class="settings-tab-btn" onclick="switchSettingsTab('notifications')">
+                        <i class="fas fa-bell"></i>
+                        Notifications
+                    </button>
+                    <button class="settings-tab-btn" onclick="switchSettingsTab('preferences')">
+                        <i class="fas fa-cog"></i>
+                        Preferences
+                    </button>
+                    <button class="settings-tab-btn" onclick="switchSettingsTab('billing')">
+                        <i class="fas fa-credit-card"></i>
+                        Billing
+                    </button>
+                </div>
+                
+                <!-- Profile Settings Tab -->
+                <div class="settings-tab active" id="profileTab">
+                    <div class="settings-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-user"></i> Profile Settings</h3>
+                        </div>
+                        
+                        <form class="settings-form" id="profileForm">
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" class="form-control" id="username" value="john_doe" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" class="form-control" id="email" value="john.doe@example.com" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" class="form-control" id="fullName" value="John Doe" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" value="+1 234 567 8900">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Country</label>
+                                <select class="form-control" id="country">
+                                    <option value="us" selected>United States</option>
+                                    <option value="uk">United Kingdom</option>
+                                    <option value="ca">Canada</option>
+                                    <option value="de">Germany</option>
+                                    <option value="fr">France</option>
+                                    <!-- Add more countries -->
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Account Type</label>
+                                <select class="form-control" id="accountType" disabled>
+                                    <option value="individual">Individual</option>
+                                    <option value="agency" selected>Agency</option>
+                                    <option value="company">Company</option>
+                                </select>
+                                <small class="form-text">Account type cannot be changed</small>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-save"></i>
+                                Save Changes
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Security Settings Tab -->
+                <div class="settings-tab" id="securityTab">
+                    <div class="settings-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-shield-alt"></i> Security Settings</h3>
+                        </div>
+                        
+                        <form class="settings-form" id="securityForm">
+                            <div class="form-group">
+                                <label>Current Password</label>
+                                <input type="password" class="form-control" id="currentPassword" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>New Password</label>
+                                <input type="password" class="form-control" id="newPassword" required minlength="8">
+                                <small class="form-text">Minimum 8 characters</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Confirm New Password</label>
+                                <input type="password" class="form-control" id="confirmPassword" required>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-key"></i>
+                                Update Password
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-lock"></i> Two-Factor Authentication</h3>
+                        </div>
+                        
+                        <div class="switch-group">
+                            <div class="switch-item">
+                                <div class="switch-info">
+                                    <h4>Enable 2FA</h4>
+                                    <p>Add an extra layer of security to your account</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="enable2FA">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Notification Settings Tab -->
+                <div class="settings-tab" id="notificationsTab">
+                    <div class="settings-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-bell"></i> Notification Preferences</h3>
+                        </div>
+                        
+                        <div class="switch-group">
+                            <div class="switch-item">
+                                <div class="switch-info">
+                                    <h4>Email Notifications</h4>
+                                    <p>Receive notifications via email</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="emailNotifications" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="switch-item">
+                                <div class="switch-info">
+                                    <h4>Order Updates</h4>
+                                    <p>Get notified when your orders are completed</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="orderNotifications" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="switch-item">
+                                <div class="switch-info">
+                                    <h4>Payment Alerts</h4>
+                                    <p>Receive alerts for payments and transactions</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="paymentNotifications">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="switch-item">
+                                <div class="switch-info">
+                                    <h4>Promotional Emails</h4>
+                                    <p>Receive offers and promotions</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="promoNotifications">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <button type="button" class="btn-primary" onclick="saveNotificationSettings()">
+                            <i class="fas fa-save"></i>
+                            Save Notification Settings
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Preferences Tab -->
+                <div class="settings-tab" id="preferencesTab">
+                    <div class="settings-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-palette"></i> Display Preferences</h3>
+                        </div>
+                        
+                        <div class="switch-group">
+                            <div class="switch-item">
+                                <div class="switch-info">
+                                    <h4>Dark Mode</h4>
+                                    <p>Switch between light and dark theme</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="darkModeToggle">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="switch-item">
+                                <div class="switch-info">
+                                    <h4>Compact View</h4>
+                                    <p>Show more items per page</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="compactView">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-globe"></i> Language & Region</h3>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Language</label>
+                            <select class="form-control" id="language">
+                                <option value="en" selected>English</option>
+                                <option value="es">Spanish</option>
+                                <option value="fr">French</option>
+                                <option value="de">German</option>
+                                <option value="it">Italian</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Timezone</label>
+                            <select class="form-control" id="timezone">
+                                <option value="UTC" selected>UTC (Coordinated Universal Time)</option>
+                                <option value="America/New_York">Eastern Time (ET)</option>
+                                <option value="America/Chicago">Central Time (CT)</option>
+                                <option value="America/Denver">Mountain Time (MT)</option>
+                                <option value="America/Los_Angeles">Pacific Time (PT)</option>
+                                <option value="Europe/London">London (GMT)</option>
+                                <option value="Europe/Paris">Paris (CET)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Date Format</label>
+                            <select class="form-control" id="dateFormat">
+                                <option value="YYYY-MM-DD" selected>YYYY-MM-DD</option>
+                                <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+                                <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+                            </select>
+                        </div>
+                        
+                        <button type="button" class="btn-primary" onclick="savePreferences()">
+                            <i class="fas fa-save"></i>
+                            Save Preferences
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Billing Tab -->
+                <div class="settings-tab" id="billingTab">
+                    <div class="settings-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-receipt"></i> Billing History</h3>
+                        </div>
+                        
+                        <div class="billing-history">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Description</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2025-01-15</td>
+                                        <td>Add Funds - PayPal</td>
+                                        <td>$50.00</td>
+                                        <td><span class="status-badge completed">Completed</span></td>
+                                        <td>
+                                            <button class="btn-icon-sm" onclick="downloadInvoice(1)">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2025-01-10</td>
+                                        <td>Order Payment - Instagram Followers</td>
+                                        <td>$25.00</td>
+                                        <td><span class="status-badge completed">Completed</span></td>
+                                        <td>
+                                            <button class="btn-icon-sm" onclick="downloadInvoice(2)">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2025-01-05</td>
+                                        <td>Add Funds - Stripe</td>
+                                        <td>$100.00</td>
+                                        <td><span class="status-badge completed">Completed</span></td>
+                                        <td>
+                                            <button class="btn-icon-sm" onclick="downloadInvoice(3)">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-credit-card"></i> Payment Methods</h3>
+                        </div>
+                        
+                        <div class="payment-methods-list">
+                            <div class="payment-method-card">
+                                <div class="method-icon">
+                                    <i class="fab fa-paypal"></i>
+                                </div>
+                                <div class="method-info">
+                                    <h4>PayPal</h4>
+                                    <p>john.doe@example.com</p>
+                                    <p class="method-status active">Active</p>
+                                </div>
+                                <button class="btn-secondary" onclick="removePaymentMethod('paypal')">
+                                    <i class="fas fa-trash"></i> Remove
+                                </button>
+                            </div>
+                            
+                            <div class="payment-method-card">
+                                <div class="method-icon">
+                                    <i class="fas fa-credit-card"></i>
+                                </div>
+                                <div class="method-info">
+                                    <h4>Credit Card</h4>
+                                    <p>•••• •••• •••• 4242</p>
+                                    <p class="method-status active">Active</p>
+                                </div>
+                                <button class="btn-secondary" onclick="removePaymentMethod('card')">
+                                    <i class="fas fa-trash"></i> Remove
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <button type="button" class="btn-primary" onclick="addPaymentMethod()">
+                            <i class="fas fa-plus"></i>
+                            Add Payment Method
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../assets/js/error-suppress.js"></script>
+    <script src="../assets/js/panel.js"></script>
+    <script src="../assets/js/settings.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,1375 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation - SMM Turk Panel</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon-180x180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
+    
+    <!-- CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="../assets/css/panel.css" rel="stylesheet">
+    <link href="../assets/css/api.css" rel="stylesheet">
+    <link href="../assets/css/api-enhanced.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="#" class="sidebar-brand">
+                <i class="fas fa-rocket"></i>
+                SMM Turk
+            </a>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <div class="nav-item">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="new-order.html" class="nav-link">
+                    <i class="fas fa-plus"></i>
+                    New Order
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="mass-order.html" class="nav-link">
+                    <i class="fas fa-layer-group"></i>
+                    Mass Order
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="services.html" class="nav-link">
+                    <i class="fas fa-list"></i>
+                    Services
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="orders.html" class="nav-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    Orders
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="add-funds.html" class="nav-link">
+                    <i class="fas fa-credit-card"></i>
+                    Add Funds
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="tickets.html" class="nav-link">
+                    <i class="fas fa-ticket-alt"></i>
+                    Tickets
+                    <span class="badge">1
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="api.html" class="nav-link active">
+                    <i class="fas fa-code"></i>
+                    API
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="affiliates.html" class="nav-link">
+                    <i class="fas fa-users"></i>
+                    Affiliates
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="child-panel.html" class="nav-link">
+                    <i class="fas fa-share-alt"></i>
+                    Child Panel
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="settings.html" class="nav-link">
+                    <i class="fas fa-cog"></i>
+                    Settings
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="../login.html" class="nav-link logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </div>
+        </nav>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Header -->
+        <header class="top-header">
+            <div class="header-left">
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="breadcrumb">
+                    API Documentation
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <div class="account-info">
+                    <div class="account-item">
+                        <i class="fas fa-star"></i>
+                        Account Points: 0 â‰ˆ $0.00
+                    </div>
+                    <div class="account-item">
+                        <i class="fas fa-dollar-sign"></i>
+                        Account Spending: $0
+                    </div>
+                    <div class="account-item">
+                        <i class="fas fa-wallet"></i>
+                        Account Balance: $0
+                    </div>
+                </div>
+                
+                <div class="header-actions">
+                    <button class="btn-icon" title="Add Funds" onclick="handleAddFunds()">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button class="btn-icon" title="Settings" onclick="handleSettings()">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                    <button class="btn-icon" title="Theme" onclick="toggleTheme()">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    <button class="btn-icon" title="Logout" onclick="handleLogout()">
+                        <i class="fas fa-power-off"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+        
+        <!-- API Content -->
+        <div class="dashboard-content">
+            <div class="api-header">
+                <div class="api-title-section">
+                    <h2>API Documentation Center</h2>
+                    <p>Integrate SMM Turk services into your applications with our powerful and secure API</p>
+                </div>
+                
+                <div class="api-overview">
+                    <div class="api-key-section">
+                        <div class="key-header">
+                            <h3>Your API Key</h3>
+                            <div class="key-actions">
+                                <button class="btn-copy" onclick="copyApiKey()" title="Copy API Key">
+                                    <i class="fas fa-copy"></i>
+                                    Copy
+                                </button>
+                                <button class="btn-regenerate" onclick="regenerateApiKey()" title="Regenerate API Key">
+                                    <i class="fas fa-sync-alt"></i>
+                                    Regenerate
+                                </button>
+                            </div>
+                        </div>
+                        <div class="api-key-display">
+                            <code id="api-key">8b8e733ae816f10b6955250ace84c019</code>
+                            <div class="key-status">
+                                <span class="status-indicator active">
+                            </div>
+                        </div>
+                        <div class="key-info">
+                            <p><i class="fas fa-info-circle"></i> Keep your API key secure and never share it publicly</p>
+                        </div>
+                    </div>
+                    
+                    <div class="api-stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="apiCallsToday">0</h3>
+                                <p>API Calls Today</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="totalApiCalls">0</h3>
+                                <p>Total API Calls</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="avgResponseTime">0ms</h3>
+                                <p>Avg Response Time</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="successRate">100%</h3>
+                                <p>Success Rate</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- API Usage Chart -->
+                <div class="api-usage-chart">
+                    <div class="chart-header">
+                        <h4>API Usage Analytics</h4>
+                        <div class="chart-controls">
+                            <select id="chartPeriod" onchange="updateChart()">
+                                <option value="7">Last 7 Days</option>
+                                <option value="30">Last 30 Days</option>
+                                <option value="90">Last 90 Days</option>
+                            </select>
+                        </div>
+                    </div>
+                    <canvas id="apiUsageChart" width="400" height="200"></canvas>
+                </div>
+            </div>
+            
+            <!-- API Tabs -->
+            <div class="api-tabs">
+                <button class="tab-btn active" onclick="switchApiTab('overview')">
+                    <i class="fas fa-info-circle"></i>
+                    Overview
+                </button>
+                <button class="tab-btn" onclick="switchApiTab('endpoints')">
+                    <i class="fas fa-list"></i>
+                    Endpoints
+                </button>
+                <button class="tab-btn" onclick="switchApiTab('examples')">
+                    <i class="fas fa-code"></i>
+                    Examples
+                </button>
+                <button class="tab-btn" onclick="switchApiTab('testing')">
+                    <i class="fas fa-flask"></i>
+                    Testing
+                </button>
+                <button class="tab-btn" onclick="switchApiTab('webhooks')">
+                    <i class="fas fa-webhook"></i>
+                    Webhooks
+                </button>
+                <button class="tab-btn" onclick="switchApiTab('sdk')">
+                    <i class="fas fa-download"></i>
+                    SDK
+                </button>
+            </div>
+            
+            <!-- Overview Tab -->
+            <div class="tab-content active" id="overview">
+                <div class="api-section">
+                    <h3>API Overview</h3>
+                    <p>Our API allows you to integrate SMM Turk services into your applications. You can create orders, check status, manage services, and more.</p>
+                    
+                    <div class="api-features">
+                        <div class="feature-item">
+                            <i class="fas fa-plus-circle"></i>
+                            <h4>Create Orders</h4>
+                            <p>Automatically create orders for any service</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-chart-line"></i>
+                            <h4>Check Status</h4>
+                            <p>Monitor order progress in real-time</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-list"></i>
+                            <h4>Get Services</h4>
+                            <p>Retrieve all available services and pricing</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-wallet"></i>
+                            <h4>Check Balance</h4>
+                            <p>Monitor your account balance</p>
+                        </div>
+                    </div>
+                    
+                    <div class="api-base-url">
+                        <h4>Base URL</h4>
+                        <code>https://smmturk.com/api/v2</code>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Endpoints Tab -->
+            <div class="tab-content" id="endpoints">
+                <div class="api-section">
+                    <h3>API Endpoints</h3>
+                    
+                    <div class="endpoint-item">
+                        <div class="endpoint-header">
+                            <span class="method post">POST
+                            <span class="endpoint-url">/api/v2
+                        </div>
+                        <div class="endpoint-content">
+                            <h4>Create Order</h4>
+                            <p>Create a new order for any service</p>
+                            
+                            <div class="parameters">
+                                <h5>Parameters:</h5>
+                                <ul>
+                                    <li><code>key</code> - Your API key (required)</li>
+                                    <li><code>action</code> - "add" (required)</li>
+                                    <li><code>service</code> - Service ID (required)</li>
+                                    <li><code>link</code> - Target URL (required)</li>
+                                    <li><code>quantity</code> - Quantity (required)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="response">
+                                <h5>Response:</h5>
+                                <pre><code>{
+  "order": 12345,
+  "charge": 1.20
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="endpoint-item">
+                        <div class="endpoint-header">
+                            <span class="method post">POST
+                            <span class="endpoint-url">/api/v2
+                        </div>
+                        <div class="endpoint-content">
+                            <h4>Check Order Status</h4>
+                            <p>Get the status of a specific order</p>
+                            
+                            <div class="parameters">
+                                <h5>Parameters:</h5>
+                                <ul>
+                                    <li><code>key</code> - Your API key (required)</li>
+                                    <li><code>action</code> - "status" (required)</li>
+                                    <li><code>order</code> - Order ID (required)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="response">
+                                <h5>Response:</h5>
+                                <pre><code>{
+  "status": "Completed",
+  "charge": 1.20,
+  "start_count": 150,
+  "remains": 0,
+  "currency": "USD"
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="endpoint-item">
+                        <div class="endpoint-header">
+                            <span class="method post">POST
+                            <span class="endpoint-url">/api/v2
+                        </div>
+                        <div class="endpoint-content">
+                            <h4>Get Services</h4>
+                            <p>Retrieve all available services</p>
+                            
+                            <div class="parameters">
+                                <h5>Parameters:</h5>
+                                <ul>
+                                    <li><code>key</code> - Your API key (required)</li>
+                                    <li><code>action</code> - "services" (required)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="response">
+                                <h5>Response:</h5>
+                                <pre><code>[
+  {
+    "service": 1,
+    "name": "Facebook Page Likes",
+    "type": "Default",
+    "rate": 0.50,
+    "min": 100,
+    "max": 100000
+  }
+]</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="endpoint-item">
+                        <div class="endpoint-header">
+                            <span class="method post">POST
+                            <span class="endpoint-url">/api/v2
+                        </div>
+                        <div class="endpoint-content">
+                            <h4>Get Balance</h4>
+                            <p>Check your account balance</p>
+                            
+                            <div class="parameters">
+                                <h5>Parameters:</h5>
+                                <ul>
+                                    <li><code>key</code> - Your API key (required)</li>
+                                    <li><code>action</code> - "balance" (required)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="response">
+                                <h5>Response:</h5>
+                                <pre><code>{
+  "balance": 50.00,
+  "currency": "USD"
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Examples Tab -->
+            <div class="tab-content" id="examples">
+                <div class="api-section">
+                    <h3>Code Examples</h3>
+                    
+                    <div class="example-tabs">
+                        <button class="example-tab active" onclick="switchExampleTab('php')">PHP</button>
+                        <button class="example-tab" onclick="switchExampleTab('python')">Python</button>
+                        <button class="example-tab" onclick="switchExampleTab('javascript')">JavaScript</button>
+                        <button class="example-tab" onclick="switchExampleTab('curl')">cURL</button>
+                    </div>
+                    
+                    <!-- PHP Example -->
+                    <div class="example-content active" id="php-example">
+                        <h4>PHP Example</h4>
+                        <pre><code>&lt;?php
+class SMMTurkAPI {
+    private $api_url = 'https://smmturk.com/api/v2';
+    private $api_key = '8b8e733ae816f10b6955250ace84c019';
+    
+    public function order($service, $link, $quantity) {
+        $post = [
+            'key' => $this->api_key,
+            'action' => 'add',
+            'service' => $service,
+            'link' => $link,
+            'quantity' => $quantity
+        ];
+        
+        return $this->connect($post);
+    }
+    
+    public function status($order_id) {
+        $post = [
+            'key' => $this->api_key,
+            'action' => 'status',
+            'order' => $order_id
+        ];
+        
+        return $this->connect($post);
+    }
+    
+    private function connect($post) {
+        $ch = curl_init($this->api_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
+        $result = curl_exec($ch);
+        curl_close($ch);
+        return json_decode($result);
+    }
+}
+
+// Usage
+$api = new SMMTurkAPI();
+
+// Create order
+$order = $api->order(1, 'https://facebook.com/yourpage', 1000);
+echo "Order ID: " . $order->order;
+
+// Check status
+$status = $api->status($order->order);
+echo "Status: " . $status->status;
+?&gt;</code></pre>
+                    </div>
+                    
+                    <!-- Python Example -->
+                    <div class="example-content" id="python-example">
+                        <h4>Python Example</h4>
+                        <pre><code>import requests
+import json
+
+class SMMTurkAPI:
+    def __init__(self, api_key):
+        self.api_url = 'https://smmturk.com/api/v2'
+        self.api_key = api_key
+    
+    def order(self, service, link, quantity):
+        data = {
+            'key': self.api_key,
+            'action': 'add',
+            'service': service,
+            'link': link,
+            'quantity': quantity
+        }
+        
+        response = requests.post(self.api_url, data=data)
+        return response.json()
+    
+    def status(self, order_id):
+        data = {
+            'key': self.api_key,
+            'action': 'status',
+            'order': order_id
+        }
+        
+        response = requests.post(self.api_url, data=data)
+        return response.json()
+
+# Usage
+api = SMMTurkAPI('8b8e733ae816f10b6955250ace84c019')
+
+# Create order
+order = api.order(1, 'https://facebook.com/yourpage', 1000)
+print(f"Order ID: {order['order']}")
+
+# Check status
+status = api.status(order['order'])
+print(f"Status: {status['status']}")</code></pre>
+                    </div>
+                    
+                    <!-- JavaScript Example -->
+                    <div class="example-content" id="javascript-example">
+                        <h4>JavaScript Example</h4>
+                        <pre><code>class SMMTurkAPI {
+    constructor(apiKey) {
+        this.apiUrl = 'https://smmturk.com/api/v2';
+        this.apiKey = apiKey;
+    }
+    
+    async order(service, link, quantity) {
+        const data = {
+            key: this.apiKey,
+            action: 'add',
+            service: service,
+            link: link,
+            quantity: quantity
+        };
+        
+        const response = await fetch(this.apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams(data)
+        });
+        
+        return await response.json();
+    }
+    
+    async status(orderId) {
+        const data = {
+            key: this.apiKey,
+            action: 'status',
+            order: orderId
+        };
+        
+        const response = await fetch(this.apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams(data)
+        });
+        
+        return await response.json();
+    }
+}
+
+// Usage
+const api = new SMMTurkAPI('8b8e733ae816f10b6955250ace84c019');
+
+// Create order
+api.order(1, 'https://facebook.com/yourpage', 1000)
+    .then(order => {
+        console.log('Order ID:', order.order);
+        return api.status(order.order);
+    })
+    .then(status => {
+        console.log('Status:', status.status);
+    });</code></pre>
+                    </div>
+                    
+                    <!-- cURL Example -->
+                    <div class="example-content" id="curl-example">
+                        <h4>cURL Examples</h4>
+                        <pre><code># Create Order
+curl -X POST https://smmturk.com/api/v2 \
+  -d "key=8b8e733ae816f10b6955250ace84c019" \
+  -d "action=add" \
+  -d "service=1" \
+  -d "link=https://facebook.com/yourpage" \
+  -d "quantity=1000"
+
+# Check Status
+curl -X POST https://smmturk.com/api/v2 \
+  -d "key=8b8e733ae816f10b6955250ace84c019" \
+  -d "action=status" \
+  -d "order=12345"
+
+# Get Services
+curl -X POST https://smmturk.com/api/v2 \
+  -d "key=8b8e733ae816f10b6955250ace84c019" \
+  -d "action=services"
+
+# Get Balance
+curl -X POST https://smmturk.com/api/v2 \
+  -d "key=8b8e733ae816f10b6955250ace84c019" \
+  -d "action=balance"</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Webhooks Tab -->
+            <div class="tab-content" id="webhooks">
+                <div class="webhooks-section">
+                    <h3>Webhooks Configuration</h3>
+                    <p>Configure webhooks to receive real-time notifications about your orders and account events</p>
+                    
+                    <div class="webhook-config">
+                        <div class="webhook-form">
+                            <h4>Add New Webhook</h4>
+                            <form onsubmit="addWebhook(event)">
+                                <div class="form-group">
+                                    <label>Webhook URL</label>
+                                    <input type="url" class="form-control" placeholder="https://your-domain.com/webhook" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Events</label>
+                                    <div class="event-checkboxes">
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" value="order.completed">
+                                            Order Completed
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" value="order.failed">
+                                            Order Failed
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" value="order.refilled">
+                                            Order Refilled
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" value="order.cancelled">
+                                            Order Cancelled
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Secret Key</label>
+                                    <input type="text" class="form-control" placeholder="Optional secret for verification">
+                                </div>
+                                <button type="submit" class="btn-primary">
+                                    <i class="fas fa-plus"></i>
+                                    Add Webhook
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <div class="webhook-list">
+                            <h4>Active Webhooks</h4>
+                            <div class="webhook-items">
+                                <div class="webhook-item">
+                                    <div class="webhook-info">
+                                        <div class="webhook-url">https://example.com/webhook</div>
+                                        <div class="webhook-events">
+                                            <span class="event-tag">Order Completed
+                                            <span class="event-tag">Order Failed
+                                        </div>
+                                    </div>
+                                    <div class="webhook-status">
+                                        <span class="status-badge success">Active
+                                    </div>
+                                    <div class="webhook-actions">
+                                        <button class="btn-icon" onclick="testWebhook(1)" title="Test Webhook">
+                                            <i class="fas fa-play"></i>
+                                        </button>
+                                        <button class="btn-icon" onclick="editWebhook(1)" title="Edit Webhook">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn-icon" onclick="deleteWebhook(1)" title="Delete Webhook">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="webhook-docs">
+                        <h4>Webhook Documentation</h4>
+                        <div class="docs-content">
+                            <h5>Webhook Payload Example</h5>
+                            <pre><code>{
+  "event": "order.completed",
+  "data": {
+    "order_id": "12345",
+    "service": "Instagram Followers",
+    "link": "https://instagram.com/username",
+    "quantity": 1000,
+    "charge": "$1.20",
+    "status": "Completed",
+    "start_count": 500,
+    "remains": 0,
+    "currency": "USD"
+  },
+  "timestamp": "2024-01-15T10:30:00Z"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SDK Tab -->
+            <div class="tab-content" id="sdk">
+                <div class="sdk-section">
+                    <h3>Software Development Kits</h3>
+                    <p>Download our official SDKs to integrate with your preferred programming language</p>
+                    
+                    <div class="sdk-grid">
+                        <div class="sdk-card">
+                            <div class="sdk-icon">
+                                <i class="fab fa-php"></i>
+                            </div>
+                            <h4>PHP SDK</h4>
+                            <p>Official PHP library for SMM Turk API</p>
+                            <div class="sdk-actions">
+                                <button class="btn-download" onclick="downloadSDK('php')">
+                                    <i class="fas fa-download"></i>
+                                    Download
+                                </button>
+                                <button class="btn-docs" onclick="viewSDKDocs('php')">
+                                    <i class="fas fa-book"></i>
+                                    Docs
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="sdk-card">
+                            <div class="sdk-icon">
+                                <i class="fab fa-python"></i>
+                            </div>
+                            <h4>Python SDK</h4>
+                            <p>Official Python library for SMM Turk API</p>
+                            <div class="sdk-actions">
+                                <button class="btn-download" onclick="downloadSDK('python')">
+                                    <i class="fas fa-download"></i>
+                                    Download
+                                </button>
+                                <button class="btn-docs" onclick="viewSDKDocs('python')">
+                                    <i class="fas fa-book"></i>
+                                    Docs
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="sdk-card">
+                            <div class="sdk-icon">
+                                <i class="fab fa-node-js"></i>
+                            </div>
+                            <h4>Node.js SDK</h4>
+                            <p>Official Node.js library for SMM Turk API</p>
+                            <div class="sdk-actions">
+                                <button class="btn-download" onclick="downloadSDK('nodejs')">
+                                    <i class="fas fa-download"></i>
+                                    Download
+                                </button>
+                                <button class="btn-docs" onclick="viewSDKDocs('nodejs')">
+                                    <i class="fas fa-book"></i>
+                                    Docs
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="sdk-card">
+                            <div class="sdk-icon">
+                                <i class="fab fa-java"></i>
+                            </div>
+                            <h4>Java SDK</h4>
+                            <p>Official Java library for SMM Turk API</p>
+                            <div class="sdk-actions">
+                                <button class="btn-download" onclick="downloadSDK('java')">
+                                    <i class="fas fa-download"></i>
+                                    Download
+                                </button>
+                                <button class="btn-docs" onclick="viewSDKDocs('java')">
+                                    <i class="fas fa-book"></i>
+                                    Docs
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="sdk-card">
+                            <div class="sdk-icon">
+                                <i class="fab fa-csharp"></i>
+                            </div>
+                            <h4>C# SDK</h4>
+                            <p>Official C# library for SMM Turk API</p>
+                            <div class="sdk-actions">
+                                <button class="btn-download" onclick="downloadSDK('csharp')">
+                                    <i class="fas fa-download"></i>
+                                    Download
+                                </button>
+                                <button class="btn-docs" onclick="viewSDKDocs('csharp')">
+                                    <i class="fas fa-book"></i>
+                                    Docs
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="sdk-card">
+                            <div class="sdk-icon">
+                                <i class="fab fa-golang"></i>
+                            </div>
+                            <h4>Go SDK</h4>
+                            <p>Official Go library for SMM Turk API</p>
+                            <div class="sdk-actions">
+                                <button class="btn-download" onclick="downloadSDK('go')">
+                                    <i class="fas fa-download"></i>
+                                    Download
+                                </button>
+                                <button class="btn-docs" onclick="viewSDKDocs('go')">
+                                    <i class="fas fa-book"></i>
+                                    Docs
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sdk-installation">
+                        <h4>Quick Installation</h4>
+                        <div class="installation-tabs">
+                            <button class="install-tab active" onclick="switchInstallTab('composer')">Composer</button>
+                            <button class="install-tab" onclick="switchInstallTab('npm')">NPM</button>
+                            <button class="install-tab" onclick="switchInstallTab('pip')">Pip</button>
+                            <button class="install-tab" onclick="switchInstallTab('maven')">Maven</button>
+                        </div>
+                        <div class="install-content">
+                            <pre id="installCode"><code>composer require smmturk/api-client</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testing Tab -->
+            <div class="tab-content" id="testing">
+                <div class="api-section">
+                    <h3>API Testing</h3>
+                    <p>Test your API integration with our interactive testing tool</p>
+                    
+                    <div class="api-tester">
+                        <div class="tester-form">
+                            <h4>Test API Endpoint</h4>
+                            <form onsubmit="testApiEndpoint(event)">
+                                <div class="form-group">
+                                    <label class="form-label">Action</label>
+                                    <select class="form-control" name="action" required onchange="toggleFormFields()">
+                                        <option value="balance">Get Balance</option>
+                                        <option value="services">Get Services</option>
+                                        <option value="add">Create Order</option>
+                                        <option value="status">Check Status</option>
+                                        <option value="refill">Refill Order</option>
+                                        <option value="cancel">Cancel Order</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group" id="service-group" style="display: none;">
+                                    <label class="form-label">Service ID</label>
+                                    <select class="form-control" name="service" id="service-select">
+                                        <option value="">Select Service</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group" id="link-group" style="display: none;">
+                                    <label class="form-label">Link</label>
+                                    <input type="url" class="form-control" name="link" placeholder="https://facebook.com/yourpage">
+                                </div>
+                                
+                                <div class="form-group" id="quantity-group" style="display: none;">
+                                    <label class="form-label">Quantity</label>
+                                    <input type="number" class="form-control" name="quantity" placeholder="1000" min="1">
+                                </div>
+                                
+                                <div class="form-group" id="order-group" style="display: none;">
+                                    <label class="form-label">Order ID</label>
+                                    <input type="number" class="form-control" name="order" placeholder="12345">
+                                </div>
+                                
+                                <div class="form-group" id="runs-group" style="display: none;">
+                                    <label class="form-label">Runs</label>
+                                    <input type="number" class="form-control" name="runs" placeholder="1" min="1">
+                                </div>
+                                
+                                <div class="form-group" id="interval-group" style="display: none;">
+                                    <label class="form-label">Interval (minutes)</label>
+                                    <input type="number" class="form-control" name="interval" placeholder="60" min="1">
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="submit" class="btn-primary">
+                                        <i class="fas fa-play"></i>
+                                        Test API
+                                    </button>
+                                    <button type="button" class="btn-secondary" onclick="clearForm()">
+                                        <i class="fas fa-times"></i>
+                                        Clear
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div class="tester-result">
+                            <div class="result-header">
+                                <h4>API Response</h4>
+                                <div class="result-actions">
+                                    <button class="btn-icon" onclick="copyResponse()" title="Copy Response">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                    <button class="btn-icon" onclick="clearResponse()" title="Clear Response">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="response-info">
+                                <span class="response-status" id="response-status">Ready
+                                <span class="response-time" id="response-time">
+                            </div>
+                            <pre id="api-response">Click "Test API" to see the response</pre>
+                        </div>
+                    </div>
+                    
+                    <!-- API History -->
+                    <div class="api-history">
+                        <h4>Recent API Calls</h4>
+                        <div class="history-list" id="apiHistory">
+                            <div class="history-item">
+                                <div class="history-method">GET</div>
+                                <div class="history-endpoint">/api/v2?action=balance</div>
+                                <div class="history-status success">200</div>
+                                <div class="history-time">2 minutes ago</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Notification Bell -->
+    <div class="notification-bell">
+        <i class="fas fa-bell"></i>
+        <span class="badge">1
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="../assets/js/error-suppress.js"></script>
+    <script src="../assets/js/panel.js"></script>
+    <script src="../assets/js/api.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        let apiUsageChart;
+        let apiHistory = [];
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('API page loaded');
+            
+            // Initialize API page
+            initializeApiPage();
+            
+            // Load services for testing
+            loadServicesForTesting();
+            
+            // Initialize usage chart
+            initializeUsageChart();
+            
+            // Load API stats
+            loadApiStats();
+        });
+        
+        function initializeApiPage() {
+            console.log('Initializing API page...');
+            
+            // Set up form field toggling
+            const actionSelect = document.querySelector('select[name="action"]');
+            if (actionSelect) {
+                actionSelect.addEventListener('change', toggleFormFields);
+            }
+        }
+        
+        async function loadServicesForTesting() {
+            try {
+                console.log('Loading services for testing...');
+                const response = await window.apiManager.getServices('all');
+                
+                if (response.success) {
+                    updateServiceSelect(response.data);
+                    console.log('Services loaded for testing');
+                }
+            } catch (error) {
+                console.error('Failed to load services for testing:', error);
+            }
+        }
+        
+        function updateServiceSelect(servicesData) {
+            const serviceSelect = document.getElementById('service-select');
+            if (!serviceSelect) return;
+            
+            // Clear existing options
+            serviceSelect.innerHTML = '<option value="">Select Service</option>';
+            
+            // Flatten services
+            const allServices = [];
+            Object.values(servicesData).forEach(categoryServices => {
+                if (Array.isArray(categoryServices)) {
+                    allServices.push(...categoryServices);
+                }
+            });
+            
+            // Add services to select
+            allServices.forEach(service => {
+                const option = document.createElement('option');
+                option.value = service.id || service.service;
+                option.textContent = `${service.name} - $${service.price || service.rate}`;
+                serviceSelect.appendChild(option);
+            });
+        }
+        
+        function initializeUsageChart() {
+            const ctx = document.getElementById('apiUsageChart');
+            if (!ctx) return;
+            
+            apiUsageChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'API Calls',
+                        data: [12, 19, 3, 5, 2, 3, 8],
+                        borderColor: '#f59e0b',
+                        backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+        
+        async function loadApiStats() {
+            try {
+                console.log('Loading API stats...');
+                
+                // Simulate API stats loading
+                const stats = {
+                    callsToday: Math.floor(Math.random() * 100),
+                    totalCalls: Math.floor(Math.random() * 1000),
+                    lastCall: new Date().toLocaleString(),
+                    status: 'Online'
+                };
+                
+                updateApiStats(stats);
+            } catch (error) {
+                console.error('Failed to load API stats:', error);
+            }
+        }
+        
+        function updateApiStats(stats) {
+            document.getElementById('apiCallsToday').textContent = stats.callsToday;
+            document.getElementById('totalApiCalls').textContent = stats.totalCalls;
+            document.getElementById('lastApiCall').textContent = stats.lastCall;
+            
+            const statusElement = document.getElementById('apiStatus');
+            statusElement.textContent = stats.status;
+            statusElement.className = `stat-value status-${stats.status.toLowerCase()}`;
+        }
+        
+        function switchApiTab(tabName) {
+            console.log('Switching to tab:', tabName);
+            
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+        
+        function switchExampleTab(language) {
+            console.log('Switching to example tab:', language);
+            
+            // Hide all example contents
+            document.querySelectorAll('.example-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all example tabs
+            document.querySelectorAll('.example-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected example content
+            document.getElementById(language + '-example').classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+        
+        function copyApiKey() {
+            const apiKey = document.getElementById('api-key').textContent;
+            navigator.clipboard.writeText(apiKey).then(() => {
+                showNotification('API Key copied to clipboard!', 'success');
+            }).catch(() => {
+                showNotification('Failed to copy API key', 'error');
+            });
+        }
+        
+        function regenerateApiKey() {
+            if (confirm('Are you sure you want to regenerate your API key? This will invalidate the current key.')) {
+                // Generate new API key (in real app, this would make an API call)
+                const newKey = generateApiKey();
+                document.getElementById('api-key').textContent = newKey;
+                showNotification('API Key regenerated successfully!', 'success');
+            }
+        }
+        
+        function generateApiKey() {
+            const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+            let result = '';
+            for (let i = 0; i < 32; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        }
+        
+        function toggleFormFields() {
+            const action = document.querySelector('select[name="action"]').value;
+            const serviceGroup = document.getElementById('service-group');
+            const linkGroup = document.getElementById('link-group');
+            const quantityGroup = document.getElementById('quantity-group');
+            const orderGroup = document.getElementById('order-group');
+            const runsGroup = document.getElementById('runs-group');
+            const intervalGroup = document.getElementById('interval-group');
+            
+            // Hide all groups first
+            [serviceGroup, linkGroup, quantityGroup, orderGroup, runsGroup, intervalGroup].forEach(group => {
+                if (group) group.style.display = 'none';
+            });
+            
+            // Show relevant groups based on action
+            switch(action) {
+                case 'add':
+                    serviceGroup.style.display = 'block';
+                    linkGroup.style.display = 'block';
+                    quantityGroup.style.display = 'block';
+                    runsGroup.style.display = 'block';
+                    intervalGroup.style.display = 'block';
+                    break;
+                case 'status':
+                case 'refill':
+                case 'cancel':
+                    orderGroup.style.display = 'block';
+                    break;
+            }
+        }
+        
+        async function testApiEndpoint(event) {
+            event.preventDefault();
+            console.log('Testing API endpoint...');
+            
+            const formData = new FormData(event.target);
+            const action = formData.get('action');
+            
+            // Update UI
+            updateResponseStatus('Testing...', 'testing');
+            const startTime = Date.now();
+            
+            try {
+                let response;
+                
+                // Make actual API call based on action
+                switch(action) {
+                    case 'balance':
+                        response = await window.apiManager.getBalance();
+                        break;
+                    case 'services':
+                        response = await window.apiManager.getServices('all');
+                        break;
+                    case 'add':
+                        const service = formData.get('service');
+                        const link = formData.get('link');
+                        const quantity = formData.get('quantity');
+                        const runs = formData.get('runs') || 1;
+                        const interval = formData.get('interval') || 60;
+                        
+                        if (!service || !link || !quantity) {
+                            throw new Error('Missing required fields');
+                        }
+                        
+                        response = await window.apiManager.createOrder({
+                            service_id: service,
+                            link: link,
+                            quantity: quantity,
+                            runs: runs,
+                            interval: interval
+                        });
+                        break;
+                    case 'status':
+                        const orderId = formData.get('order');
+                        if (!orderId) {
+                            throw new Error('Order ID is required');
+                        }
+                        response = await window.apiManager.getOrderStatus(orderId);
+                        break;
+                    default:
+                        response = { error: 'Invalid action' };
+                }
+                
+                const endTime = Date.now();
+                const responseTime = endTime - startTime;
+                
+                updateResponseStatus('Success', 'success');
+                updateResponseTime(responseTime);
+                displayResponse(response);
+                
+                // Add to history
+                addToHistory(action, response, responseTime);
+                
+            } catch (error) {
+                console.error('API test failed:', error);
+                updateResponseStatus('Error', 'error');
+                displayResponse({ error: error.message });
+            }
+        }
+        
+        function updateResponseStatus(status, type) {
+            const statusElement = document.getElementById('response-status');
+            if (statusElement) {
+                statusElement.textContent = status;
+                statusElement.className = `response-status ${type}`;
+            }
+        }
+        
+        function updateResponseTime(time) {
+            const timeElement = document.getElementById('response-time');
+            if (timeElement) {
+                timeElement.textContent = `${time}ms`;
+            }
+        }
+        
+        function displayResponse(response) {
+            const responseElement = document.getElementById('api-response');
+            if (responseElement) {
+                responseElement.textContent = JSON.stringify(response, null, 2);
+            }
+        }
+        
+        function addToHistory(action, response, responseTime) {
+            const historyItem = {
+                method: 'POST',
+                endpoint: `/api/v2?action=${action}`,
+                status: response.error ? '400' : '200',
+                time: new Date().toLocaleString(),
+                responseTime: responseTime
+            };
+            
+            apiHistory.unshift(historyItem);
+            updateHistoryDisplay();
+        }
+        
+        function updateHistoryDisplay() {
+            const historyList = document.getElementById('apiHistory');
+            if (!historyList) return;
+            
+            historyList.innerHTML = '';
+            
+            apiHistory.slice(0, 10).forEach(item => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item';
+                historyItem.innerHTML = `
+                    <div class="history-method">${item.method}</div>
+                    <div class="history-endpoint">${item.endpoint}</div>
+                    <div class="history-status ${item.status === '200' ? 'success' : 'error'}">${item.status}</div>
+                    <div class="history-time">${item.time}</div>
+                `;
+                historyList.appendChild(historyItem);
+            });
+        }
+        
+        function copyResponse() {
+            const response = document.getElementById('api-response').textContent;
+            navigator.clipboard.writeText(response).then(() => {
+                showNotification('Response copied to clipboard!', 'success');
+            }).catch(() => {
+                showNotification('Failed to copy response', 'error');
+            });
+        }
+        
+        function clearResponse() {
+            document.getElementById('api-response').textContent = 'Click "Test API" to see the response';
+            updateResponseStatus('Ready', 'ready');
+            document.getElementById('response-time').textContent = '';
+        }
+        
+        function clearForm() {
+            document.querySelector('form').reset();
+            toggleFormFields();
+            clearResponse();
+        }
+        
+        function showNotification(message, type) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = 
+otification ${type}`;
+            notification.textContent = message;
+            
+            // Add to page
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
+

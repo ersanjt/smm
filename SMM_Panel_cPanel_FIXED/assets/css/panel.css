@@ -1,0 +1,1944 @@
+/* SMM Turk Panel CSS - Unified Style System */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Light Theme Colors */
+    --bg-primary: #f8fafc;
+    --bg-secondary: #ffffff;
+    --bg-sidebar: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    --text-primary: #2c3e50;
+    --text-secondary: #64748b;
+    --text-white: #ffffff;
+    --border-color: #e2e8f0;
+    --shadow-sm: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-md: 0 8px 30px rgba(0,0,0,0.12);
+    --accent-red: #dc2626;
+    --accent-red-dark: #b91c1c;
+}
+
+body.dark-mode {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --text-primary: #f0f0f0;
+    --text-secondary: #94a3b8;
+    --border-color: #3d3d3d;
+    --shadow-sm: 0 4px 20px rgba(0,0,0,0.3);
+    --shadow-md: 0 8px 30px rgba(0,0,0,0.5);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Sidebar - Unified Style */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background: var(--bg-sidebar);
+    color: var(--text-white);
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+}
+
+.sidebar-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+}
+
+.sidebar-brand i {
+    color: #e74c3c;
+    font-size: 24px;
+}
+
+.sidebar-logo {
+    max-width: 120px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.sidebar-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Dark Mode Sidebar Header */
+body.dark-mode .sidebar-header h3 {
+    color: var(--text-primary);
+}
+
+.sidebar-nav {
+    padding: 20px 0;
+}
+
+.nav-item {
+    margin-bottom: 5px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.nav-link.active {
+    background: rgba(220, 38, 38, 0.15);
+    color: #dc2626;
+    border-right: 3px solid #dc2626;
+    font-weight: 600;
+}
+
+.nav-link.active i {
+    color: #dc2626;
+}
+
+.nav-link i {
+    width: 20px;
+    text-align: center;
+}
+
+.badge {
+    background: #e74c3c;
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: auto;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 280px;
+    min-height: 100vh;
+    transition: margin-left 0.3s ease;
+}
+
+/* Top Header */
+.top-header {
+    background: var(--bg-secondary);
+    padding: 20px 30px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.sidebar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #2c3e50;
+    cursor: pointer;
+}
+
+.breadcrumb {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: color 0.3s ease;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.account-info {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.account-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--text-primary);
+    font-weight: 500;
+    background: var(--bg-primary);
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.account-item:hover {
+    background: #fff5f5;
+    border-color: var(--accent-red);
+}
+
+body.dark-mode .account-item:hover {
+    background: #2d2d2d;
+}
+
+.account-item i {
+    color: var(--accent-red);
+    font-size: 16px;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-icon {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    background: var(--bg-primary);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-icon:hover {
+    background: var(--accent-red);
+    color: white;
+}
+
+/* Dashboard Content */
+.dashboard-content {
+    padding: 30px;
+}
+
+/* Cards */
+.card {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 24px;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+}
+
+.stat-icon.primary { background: var(--accent-red); }
+.stat-icon.success { background: #27ae60; }
+.stat-icon.warning { background: #f39c12; }
+.stat-icon.info { background: #3498db; }
+
+.stat-content {
+    flex: 1;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    transition: color 0.3s ease;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #e74c3c;
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
+
+.btn-secondary {
+    background: #f8fafc;
+    color: #2c3e50;
+    border: 2px solid #e5e7eb;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: #e5e7eb;
+    border-color: #d1d5db;
+}
+
+.btn-action {
+    background: #f8fafc;
+    color: #2c3e50;
+    border: 1px solid #e5e7eb;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-action:hover {
+    background: #e74c3c;
+    color: white;
+    border-color: #e74c3c;
+}
+
+/* Tables */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.data-table th {
+    background: #f8fafc;
+    padding: 16px;
+    text-align: left;
+    font-weight: 600;
+    color: #2c3e50;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.data-table td {
+    padding: 16px;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.data-table tr:hover {
+    background: #f8fafc;
+}
+
+/* Status Badges */
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-badge.pending { background: #fff3cd; color: #856404; }
+.status-badge.in_progress { background: #d1ecf1; color: #0c5460; }
+.status-badge.completed { background: #d4edda; color: #155724; }
+.status-badge.cancelled { background: #f8d7da; color: #721c24; }
+
+/* Service Cards */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.service-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid #e5e7eb;
+}
+
+.service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.service-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.service-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+}
+
+.service-icon.facebook { background: #4267B2; }
+.service-icon.instagram { background: #E4405F; }
+.service-icon.youtube { background: #FF0000; }
+.service-icon.twitter { background: #1DA1F2; }
+.service-icon.tiktok { background: #000000; }
+.service-icon.linkedin { background: #0077B5; }
+
+.service-info h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 4px;
+}
+
+.service-info p {
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+.service-details {
+    margin-bottom: 20px;
+}
+
+.service-price {
+    font-size: 20px;
+    font-weight: 700;
+    color: #e74c3c;
+    margin-bottom: 8px;
+}
+
+.service-limits, .service-speed {
+    font-size: 14px;
+    color: #7f8c8d;
+    margin-bottom: 4px;
+}
+
+.service-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-order {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.btn-order:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+}
+
+.btn-info {
+    background: #f8fafc;
+    color: #2c3e50;
+    border: 1px solid #e5e7eb;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-info:hover {
+    background: #e5e7eb;
+}
+
+/* Modals */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 12px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    padding: 24px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #7f8c8d;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.modal-body {
+    padding: 24px;
+}
+
+.modal-footer {
+    padding: 24px;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+/* Tabs */
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #7f8c8d;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+    background: #e74c3c;
+    color: white;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Notification Bell */
+.notification-bell {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: #e74c3c;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.notification-bell:hover {
+    transform: scale(1.1);
+}
+
+.notification-bell .badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #f39c12;
+    color: white;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 10px;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+    
+    .sidebar.open {
+        transform: translateX(0);
+    }
+    
+    .main-content {
+        margin-left: 0;
+    }
+    
+    .sidebar-toggle {
+        display: block;
+    }
+    
+    .header-right {
+        flex-direction: row;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    
+    .account-info {
+        display: none;
+    }
+    
+    .header-actions {
+        gap: 5px;
+    }
+    
+    .btn-icon {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .notification-bell {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .dashboard-content {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .top-header {
+        padding: 10px 15px;
+    }
+    
+    .header-left {
+        flex: 1;
+    }
+    
+    .breadcrumb {
+        font-size: 16px;
+    }
+    
+    .header-right {
+        gap: 5px;
+    }
+    
+    .account-info {
+        display: none;
+    }
+    
+    .btn-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+    
+    .dashboard-content {
+        padding: 15px 10px;
+    }
+    
+    .card {
+        padding: 15px;
+    }
+    
+    .stat-card {
+        padding: 15px;
+    }
+    
+    .notification-bell {
+        bottom: 15px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+}
+
+/* Dark Mode - Comprehensive Theme Support */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6,
+body.dark-mode p,
+body.dark-mode span,
+body.dark-mode label,
+body.dark-mode li,
+body.dark-mode td,
+body.dark-mode th,
+body.dark-mode .text-primary {
+    color: var(--text-primary);
+}
+
+body.dark-mode .card,
+body.dark-mode .stat-card,
+body.dark-mode .chart-card,
+body.dark-mode table,
+body.dark-mode .modal-content,
+body.dark-mode .api-key-section,
+body.dark-mode .order-content,
+body.dark-mode .service-card,
+body.dark-mode .affiliates-header,
+body.dark-mode .child-panel-header,
+body.dark-mode .tickets-header {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%) !important;
+    border-color: var(--border-color) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+}
+
+body.dark-mode .tickets-header h2,
+body.dark-mode .tickets-header p {
+    color: white !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+body.dark-mode .tickets-stats .stat-card {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+body.dark-mode .tickets-stats .stat-icon {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-mode .tickets-stats .stat-value {
+    color: white !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+body.dark-mode .tickets-stats .stat-label {
+    color: rgba(255, 255, 255, 0.85) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Add Funds - Bonus Info Dark Mode */
+body.dark-mode .bonus-info-container {
+    background: var(--bg-secondary) !important;
+}
+
+body.dark-mode .bonus-calculator {
+    background: var(--bg-secondary) !important;
+}
+
+body.dark-mode .bonus-result {
+    background: var(--bg-primary) !important;
+}
+
+body.dark-mode .calculator-form select,
+body.dark-mode .calculator-form input {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .result-item span:last-child {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .result-item.total span:last-child {
+    color: var(--accent-red) !important;
+}
+
+/* API Dark Mode Overrides */
+body.dark-mode .api-header {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%) !important;
+}
+
+body.dark-mode .api-header h2,
+body.dark-mode .api-header p {
+    color: white !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+body.dark-mode .key-info {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.dark-mode .key-info p {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .stat-card {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.dark-mode .stat-content h3 {
+    color: white !important;
+    font-weight: 800;
+}
+
+body.dark-mode .stat-content p {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-weight: 500;
+}
+
+body.dark-mode .child-panel-header h2,
+body.dark-mode .child-panel-header p {
+    color: white !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea,
+body.dark-mode .form-input,
+body.dark-mode .api-input {
+    background: var(--bg-secondary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+body.dark-mode input:focus,
+body.dark-mode select:focus,
+body.dark-mode textarea:focus,
+body.dark-mode .form-input:focus {
+    border-color: var(--accent-red);
+}
+
+/* Specific Page Elements */
+body.dark-mode .mass-order-container,
+body.dark-mode .api-container,
+body.dark-mode .affiliates-container,
+body.dark-mode .child-panel-container {
+    background: var(--bg-primary);
+}
+
+body.dark-mode .server-tabs,
+body.dark-mode .category-tabs,
+body.dark-mode .affiliate-tabs,
+body.dark-mode .child-panel-tabs {
+    background: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+body.dark-mode .tab-btn {
+    background: transparent;
+    color: var(--text-secondary);
+}
+
+body.dark-mode .tab-btn:hover {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+body.dark-mode .tab-btn.active {
+    background: var(--accent-red);
+    color: white;
+}
+
+/* Universal Dark Mode Overrides - Fix ALL white backgrounds */
+body.dark-mode * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+/* Ensure all text elements are visible in dark mode - final override for ALL headings and paragraphs */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6,
+body.dark-mode p,
+body.dark-mode span,
+body.dark-mode label,
+body.dark-mode div:not([class*="gradient"]):not([style*="background"]),
+body.dark-mode section:not([class*="gradient"]):not([style*="background"]),
+body.dark-mode article:not([class*="gradient"]):not([style*="background"]) {
+    color: var(--text-primary) !important;
+}
+
+/* Ensure secondary text elements are visible */
+body.dark-mode small,
+body.dark-mode code:not(pre code),
+body.dark-mode .text-secondary,
+body.dark-mode .description {
+    color: var(--text-secondary) !important;
+}
+
+body.dark-mode .affiliates-header p,
+body.dark-mode .child-panel-header p {
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+}
+
+body.dark-mode .child-panel-stats .stat-card {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+body.dark-mode .child-panel-stats .stat-icon {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-mode .child-panel-stats .stat-value {
+    color: white !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+body.dark-mode .child-panel-stats .stat-label {
+    color: rgba(255, 255, 255, 0.85) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Form elements in dark mode */
+body.dark-mode button:not(.sidebar-toggle):not(.btn-icon) {
+    background: var(--bg-secondary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+body.dark-mode button:hover:not(.sidebar-toggle):not(.btn-icon) {
+    background: var(--accent-red);
+    color: white;
+}
+
+/* Tables in dark mode */
+body.dark-mode thead {
+    background: var(--bg-secondary);
+}
+
+body.dark-mode th {
+    color: var(--text-primary);
+}
+
+body.dark-mode td {
+    color: var(--text-primary);
+}
+
+body.dark-mode tr:hover {
+    background: var(--bg-secondary);
+}
+
+/* Force ALL white backgrounds to dark in dark mode - Comprehensive */
+body.dark-mode div[style*="background: white"],
+body.dark-mode div[style*="background-color: white"],
+body.dark-mode div[style*="background:#ffffff"],
+body.dark-mode div[style*="background-color:#ffffff"],
+body.dark-mode section[style*="background: white"],
+body.dark-mode article[style*="background: white"],
+body.dark-mode .card-content,
+body.dark-mode .quick-action,
+body.dark-mode .activity-item,
+body.dark-mode .recent-activity,
+body.dark-mode .stats-card,
+body.dark-mode .chart-container,
+body.dark-mode .order-item,
+body.dark-mode .service-item,
+body.dark-mode .ticket-item,
+body.dark-mode .modal-content,
+body.dark-mode .dropdown-menu,
+body.dark-mode .notification-item,
+body.dark-mode .tab-content,
+body.dark-mode .form-group,
+body.dark-mode .payment-card,
+body.dark-mode .api-card,
+body.dark-mode .accordion-item,
+body.dark-mode .code-block,
+body.dark-mode pre {
+    background: var(--bg-secondary) !important;
+}
+
+body.dark-mode p,
+body.dark-mode span,
+body.dark-mode div,
+body.dark-mode .label,
+body.dark-mode .description {
+    color: var(--text-primary) !important;
+}
+
+/* Override any white background classes */
+body.dark-mode [class*="white"],
+body.dark-mode [class*="bg-white"],
+body.dark-mode [style*="background: white"],
+body.dark-mode [style*="background-color: white"] {
+    background: var(--bg-secondary) !important;
+}
+
+/* Force specific elements - Most Aggressive Override */
+body.dark-mode .mass-order-container > *,
+body.dark-mode .api-container > *,
+body.dark-mode .affiliates-container > *,
+body.dark-mode .child-panel-container > *,
+body.dark-mode .dashboard-content > *,
+body.dark-mode .card,
+body.dark-mode .info-card,
+body.dark-mode .content-card {
+    background: var(--bg-secondary) !important;
+}
+
+/* Ultimate Override - Selective approach */
+body.dark-mode {
+    background: var(--bg-primary) !important;
+}
+
+/* Apply dark background to common content containers */
+body.dark-mode .dashboard-content .card,
+body.dark-mode .main-content .card,
+body.dark-mode .dashboard-content > div:not(.header),
+body.dark-mode .main-content > div:not(.header) {
+    background: var(--bg-secondary) !important;
+}
+
+/* Override any remaining white backgrounds */
+body.dark-mode .dashboard-content > div,
+body.dark-mode .dashboard-content > section,
+body.dark-mode .main-content > div,
+body.dark-mode .main-content > section {
+    background: transparent !important;
+}
+
+body.dark-mode .dashboard-content .card,
+body.dark-mode .dashboard-content .stat-card,
+body.dark-mode .dashboard-content .performance-card,
+body.dark-mode .dashboard-content .quick-action-card,
+body.dark-mode .dashboard-content .activity-list,
+body.dark-mode .main-content .card,
+body.dark-mode .main-content .stat-card,
+body.dark-mode .main-content .performance-card,
+body.dark-mode .main-content .quick-action-card,
+body.dark-mode .main-content .activity-list {
+    background: var(--bg-secondary) !important;
+}
+
+/* Mass Order specific overrides */
+body.dark-mode .upload-section,
+body.dark-mode .manual-entry-section,
+body.dark-mode .order-summary,
+body.dark-mode .order-item,
+body.dark-mode .link-item {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.dark-mode .upload-area,
+body.dark-mode .upload-instructions {
+    background: var(--bg-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Filters and sections - Comprehensive override */
+body.dark-mode .services-filters,
+body.dark-mode .orders-filters,
+body.dark-mode .tickets-filters,
+body.dark-mode .filter-group,
+body.dark-mode .form-container,
+body.dark-mode .balance-card,
+body.dark-mode .error-state,
+body.dark-mode .api-section,
+body.dark-mode .affiliate-section,
+body.dark-mode .child-panel-section {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Filter elements */
+body.dark-mode .filter-group label,
+body.dark-mode .filter-group select,
+body.dark-mode .filter-group input,
+body.dark-mode .filter-select {
+    color: var(--text-primary) !important;
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Balance card */
+body.dark-mode .balance-content h3,
+body.dark-mode .balance-content p {
+    color: var(--text-primary) !important;
+}
+
+/* Form elements */
+body.dark-mode .form-label,
+body.dark-mode .form-container label {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .form-control,
+body.dark-mode textarea,
+body.dark-mode .payment-form select,
+body.dark-mode .payment-form input {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Error state */
+body.dark-mode .error-state h3,
+body.dark-mode .error-state p {
+    color: var(--text-primary) !important;
+}
+
+/* API section */
+body.dark-mode .api-section h3,
+body.dark-mode .api-section h4,
+body.dark-mode .api-section p,
+body.dark-mode .feature-item h4,
+body.dark-mode .feature-item p {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .api-features,
+body.dark-mode .feature-item {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.dark-mode .api-features .feature-item {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    transition: all 0.3s ease !important;
+}
+
+body.dark-mode .api-features .feature-item:hover {
+    background: var(--bg-primary) !important;
+    transform: translateY(-2px) !important;
+}
+
+body.dark-mode .api-features .feature-item i {
+    color: var(--accent-red) !important;
+}
+
+body.dark-mode .api-features .feature-item h4 {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .api-features .feature-item p {
+    color: var(--text-secondary) !important;
+}
+
+body.dark-mode .api-base-url {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 12px !important;
+    padding: 1.5rem !important;
+}
+
+body.dark-mode .api-base-url h4 {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .api-base-url code {
+    background: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-color) !important;
+    padding: 0.75rem 1rem !important;
+    border-radius: 8px !important;
+    display: inline-block !important;
+    font-family: 'Monaco', 'Menlo', monospace !important;
+}
+
+/* Affiliate section */
+body.dark-mode .affiliate-section h3,
+body.dark-mode .affiliate-section h4,
+body.dark-mode .affiliate-section p,
+body.dark-mode .affiliate-section h5 {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .referral-link-section,
+body.dark-mode .commission-info,
+body.dark-mode .how-it-works {
+    background: var(--bg-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Level items and step items */
+body.dark-mode .level-item,
+body.dark-mode .step-item {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    transition: all 0.3s ease !important;
+}
+
+body.dark-mode .level-item:hover,
+body.dark-mode .step-item:hover {
+    background: var(--bg-primary) !important;
+    transform: translateY(-2px) !important;
+}
+
+body.dark-mode .level-badge,
+body.dark-mode .step-number {
+    background: var(--accent-red) !important;
+    color: white !important;
+}
+
+body.dark-mode .level-info h5,
+body.dark-mode .step-content h5 {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .level-info p,
+body.dark-mode .step-content p {
+    color: var(--text-secondary) !important;
+}
+
+body.dark-mode .referral-link input,
+body.dark-mode .referral-link-section input {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.dark-mode .referral-note {
+    color: var(--text-secondary) !important;
+}
+
+body.dark-mode .commission-levels,
+body.dark-mode .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Child panel section */
+body.dark-mode .child-panel-section h3,
+body.dark-mode .child-panel-section h4,
+body.dark-mode .child-panel-section p,
+body.dark-mode .child-panel-section h5 {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .features-grid,
+body.dark-mode .feature-content {
+    background: var(--bg-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.dark-mode .pricing-info {
+    background: transparent !important;
+}
+
+body.dark-mode .pricing-info h4 {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .pricing-cards {
+    display: grid !important;
+    gap: 1.5rem !important;
+}
+
+body.dark-mode .pricing-card {
+    background: var(--bg-secondary) !important;
+    border: 2px solid var(--border-color) !important;
+    transition: all 0.3s ease !important;
+}
+
+body.dark-mode .pricing-card:hover {
+    background: var(--bg-primary) !important;
+    transform: translateY(-4px) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+body.dark-mode .pricing-card.featured {
+    border-color: var(--accent-red) !important;
+}
+
+body.dark-mode .pricing-card h5 {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .pricing-card .price {
+    color: var(--accent-red) !important;
+}
+
+body.dark-mode .pricing-card ul {
+    color: var(--text-secondary) !important;
+}
+
+body.dark-mode .pricing-card ul li {
+    color: var(--text-secondary) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+}
+
+body.dark-mode .pricing-card ul li:last-child {
+    border-bottom: none !important;
+}
+
+/* API History */
+body.dark-mode .api-history {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 12px !important;
+    padding: 1.5rem !important;
+}
+
+body.dark-mode .api-history h4 {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .history-item {
+    background: var(--bg-primary) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+    transition: all 0.3s ease !important;
+}
+
+body.dark-mode .history-item:hover {
+    background: var(--bg-secondary) !important;
+}
+
+body.dark-mode .history-method,
+body.dark-mode .history-endpoint,
+body.dark-mode .history-status,
+body.dark-mode .history-time {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .history-status.success {
+    color: #34d399 !important;
+}
+
+/* SDK Section */
+body.dark-mode .sdk-section h3,
+body.dark-mode .sdk-section h4,
+body.dark-mode .sdk-section p {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .sdk-grid,
+body.dark-mode .sdk-card {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+body.dark-mode .sdk-card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: var(--shadow-md) !important;
+    background: var(--bg-primary) !important;
+}
+
+body.dark-mode .sdk-card h4 {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .sdk-card p {
+    color: var(--text-secondary) !important;
+}
+
+body.dark-mode .sdk-icon {
+    background: var(--accent-red) !important;
+}
+
+body.dark-mode .sdk-installation {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+body.dark-mode .installation-tabs {
+    border-bottom: 1px solid var(--border-color) !important;
+}
+
+body.dark-mode .install-tab {
+    background: transparent !important;
+    color: var(--text-secondary) !important;
+    border-bottom: 2px solid transparent !important;
+}
+
+body.dark-mode .install-tab.active {
+    border-bottom-color: var(--accent-red) !important;
+    color: var(--accent-red) !important;
+}
+
+body.dark-mode #installCode {
+    background: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+/* Payment Methods */
+body.dark-mode .payment-methods-container,
+body.dark-mode .payment-methods-grid,
+body.dark-mode .payment-method-card,
+body.dark-mode .payment-security {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.dark-mode .payment-methods-container h3,
+body.dark-mode .payment-methods-container p {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .payment-method-card {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+body.dark-mode .payment-method-card:hover {
+    background: var(--bg-primary) !important;
+    transform: translateY(-2px) !important;
+}
+
+body.dark-mode .payment-method-card h4,
+body.dark-mode .payment-method-card p {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .security-features,
+body.dark-mode .security-item {
+    background: var(--bg-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.dark-mode .security-item span {
+    color: var(--text-primary) !important;
+}
+
+/* History Container / Data Table */
+body.dark-mode .history-container,
+body.dark-mode .table-container {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.dark-mode table.data-table {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.dark-mode table.data-table thead {
+    background: var(--bg-primary) !important;
+}
+
+body.dark-mode table.data-table th {
+    background: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.dark-mode table.data-table td {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.dark-mode table.data-table tbody tr:hover {
+    background: var(--bg-primary) !important;
+}
+
+body.dark-mode table.data-table tbody tr:last-child td {
+    border-bottom: none !important;
+}
+
+/* Bonus Info Container */
+body.dark-mode .bonus-info-container,
+body.dark-mode .bonus-rules,
+body.dark-mode .bonus-calculator,
+body.dark-mode .bonus-history {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.dark-mode .bonus-info-container h3,
+body.dark-mode .bonus-info-container h4,
+body.dark-mode .bonus-rules h4,
+body.dark-mode .bonus-calculator h4,
+body.dark-mode .bonus-history h4 {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .bonus-rules ul li {
+    color: var(--text-secondary) !important;
+    list-style: disc !important;
+}
+
+body.dark-mode .calculator-form,
+body.dark-mode .bonus-result {
+    background: var(--bg-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.dark-mode .result-item {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.dark-mode .result-item span {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .bonus-list,
+body.dark-mode .bonus-item {
+    background: var(--bg-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.dark-mode .bonus-date,
+body.dark-mode .bonus-method,
+body.dark-mode .bonus-amount {
+    color: var(--text-primary) !important;
+}
+
+/* Tickets Section */
+body.dark-mode .tickets-section,
+body.dark-mode .ticket-form {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.dark-mode .tickets-section h3,
+body.dark-mode .tickets-section p {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .form-section h4 {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .form-section {
+    background: var(--bg-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Tester Result */
+body.dark-mode .tester-result {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+body.dark-mode .result-header h4 {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .response-info,
+body.dark-mode .response-status,
+body.dark-mode .response-time {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode #api-response {
+    background: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+/* Webhooks Section */
+body.dark-mode .webhooks-section,
+body.dark-mode .webhook-config,
+body.dark-mode .webhook-form,
+body.dark-mode .webhook-list {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.dark-mode .webhooks-section h3,
+body.dark-mode .webhooks-section h4,
+body.dark-mode .webhooks-section h5 {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .webhook-items,
+body.dark-mode .webhook-item {
+    background: var(--bg-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.dark-mode .webhook-url,
+body.dark-mode .webhook-events,
+body.dark-mode .event-tag {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .webhook-docs,
+body.dark-mode .docs-content {
+    background: var(--bg-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.dark-mode .docs-content pre,
+body.dark-mode .docs-content code {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+/* Panel Card */
+body.dark-mode .panel-card,
+body.dark-mode .panel-header,
+body.dark-mode .panel-info,
+body.dark-mode .panel-status {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.dark-mode .panel-info h4,
+body.dark-mode .panel-info p {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .panels-grid {
+    display: grid !important;
+    gap: 1.5rem !important;
+}
+
+body.dark-mode .panel-card {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+body.dark-mode .panel-card:hover {
+    background: var(--bg-primary) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+body.dark-mode .panel-stats {
+    background: var(--bg-primary) !important;
+}
+
+body.dark-mode .stat-item .stat-label {
+    color: var(--text-secondary) !important;
+}
+
+body.dark-mode .stat-item .stat-value {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .btn-action {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .btn-action:hover {
+    background: var(--bg-primary) !important;
+    border-color: var(--accent-red) !important;
+    color: var(--accent-red) !important;
+}
+
+/* Text Center */
+body.dark-mode .text-center {
+    color: var(--text-secondary) !important;
+}
+
+/* Final universal dark mode text color fix */
+body.dark-mode .child-panel-section h3,
+body.dark-mode .child-panel-section p,
+body.dark-mode .child-panel-section h4 {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .features-grid,
+body.dark-mode .feature-item {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.dark-mode .feature-item:hover {
+    background: var(--bg-primary) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Make sure all feature icons are red */
+body.dark-mode .feature-icon {
+    background: var(--accent-red) !important;
+    color: white !important;
+}
+
+/* Ensure all children of child-panel-section have proper colors */
+body.dark-mode .child-panel-section * {
+    color: inherit !important;
+}
+
+/* Instruction tips and bonus display */
+body.dark-mode .instruction-tips {
+    background: var(--bg-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.dark-mode .instruction-tips p {
+    color: var(--text-secondary) !important;
+}
+
+body.dark-mode .instruction-tips a {
+    color: var(--accent-red) !important;
+}
+
+body.dark-mode .bonus-display {
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.1) 0%, rgba(220, 38, 38, 0.05) 100%) !important;
+    border-color: var(--accent-red) !important;
+}
+
+body.dark-mode .bonus-amount,
+body.dark-mode .bonus-text {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .bonus-display i {
+    color: var(--accent-red) !important;
+}
+
+/* Status and Priority Badges - Dark Mode Adaptable */
+body.dark-mode .status-badge,
+body.dark-mode .priority-badge {
+    opacity: 0.9;
+}
+
+body.dark-mode .status-badge.pending,
+body.dark-mode .status-badge.in_progress,
+body.dark-mode .status-badge.completed,
+body.dark-mode .status-badge.cancelled,
+body.dark-mode .status-badge.open,
+body.dark-mode .status-badge.resolved,
+body.dark-mode .status-badge.active,
+body.dark-mode .status-badge.inactive,
+body.dark-mode .status-badge.success {
+    background: rgba(59, 130, 246, 0.2) !important;
+    color: #60a5fa !important;
+    border: 1px solid rgba(59, 130, 246, 0.3) !important;
+}
+
+body.dark-mode .status-badge.completed,
+body.dark-mode .status-badge.active,
+body.dark-mode .status-badge.success,
+body.dark-mode .status-badge.resolved {
+    background: rgba(16, 185, 129, 0.2) !important;
+    color: #34d399 !important;
+    border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+body.dark-mode .status-badge.pending,
+body.dark-mode .priority-badge.medium {
+    background: rgba(245, 158, 11, 0.2) !important;
+    color: #fbbf24 !important;
+    border-color: rgba(245, 158, 11, 0.3) !important;
+}
+
+body.dark-mode .status-badge.cancelled,
+body.dark-mode .status-badge.open,
+body.dark-mode .status-badge.inactive,
+body.dark-mode .priority-badge.high,
+body.dark-mode .priority-badge.urgent {
+    background: rgba(239, 68, 68, 0.2) !important;
+    color: #f87171 !important;
+    border-color: rgba(239, 68, 68, 0.3) !important;
+}
+
+body.dark-mode .priority-badge.low {
+    background: rgba(148, 163, 184, 0.2) !important;
+    color: #94a3b8 !important;
+    border-color: rgba(148, 163, 184, 0.3) !important;
+}
+
+/* API Usage Chart */
+body.dark-mode .api-usage-chart {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+}
+
+body.dark-mode .chart-header h4 {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .chart-header select {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Key Info */
+body.dark-mode .key-info {
+    background: rgba(59, 130, 246, 0.1) !important;
+    border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+body.dark-mode .key-info p {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .key-info i {
+    color: #60a5fa !important;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease;
+}
+
+.slide-in {
+    animation: slideIn 0.3s ease;
+}
+
+/* Loading States */
+.loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}

@@ -1,0 +1,1962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - SMM Turk</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon-180x180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
+    
+    <!-- CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="../assets/css/shared.css" rel="stylesheet">
+    <link href="../assets/css/admin.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Admin Sidebar -->
+    <div class="admin-sidebar" id="adminSidebar">
+        <div class="sidebar-header">
+            <a href="#" class="sidebar-brand">
+                <i class="fas fa-crown"></i>
+                Admin Panel
+            </a>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <div class="nav-item">
+                <a href="#dashboard" class="nav-link active" onclick="switchAdminTab('dashboard')">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#users" class="nav-link" onclick="switchAdminTab('users')">
+                    <i class="fas fa-users"></i>
+                    Users Management
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#orders" class="nav-link" onclick="switchAdminTab('orders')">
+                    <i class="fas fa-shopping-cart"></i>
+                    Orders Management
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#services" class="nav-link" onclick="switchAdminTab('services')">
+                    <i class="fas fa-list"></i>
+                    Services Management
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#pricing" class="nav-link" onclick="switchAdminTab('pricing')">
+                    <i class="fas fa-dollar-sign"></i>
+                    Pricing Management
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#api" class="nav-link" onclick="switchAdminTab('api')">
+                    <i class="fas fa-code"></i>
+                    API Management
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#tickets" class="nav-link" onclick="switchAdminTab('tickets')">
+                    <i class="fas fa-ticket-alt"></i>
+                    Support Tickets
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#landing" class="nav-link" onclick="switchAdminTab('landing')">
+                    <i class="fas fa-globe"></i>
+                    Landing Page
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#settings" class="nav-link" onclick="switchAdminTab('settings')">
+                    <i class="fas fa-cog"></i>
+                    System Settings
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="../panel/index.html" class="nav-link" onclick="window.location.href='../panel/index.html'; return false;">
+                    <i class="fas fa-user"></i>
+                    User Panel
+                </a>
+            </div>
+        </nav>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="admin-main-content">
+        <!-- Top Header -->
+        <header class="admin-header">
+            <div class="header-left">
+                <button class="sidebar-toggle" onclick="toggleAdminSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="breadcrumb">
+                    <a href="index.html" class="breadcrumb-home">
+                        <i class="fas fa-home"></i>
+                    </a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span id="currentPage" class="breadcrumb-current">Dashboard</span>
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <div class="admin-info">
+                    <div class="admin-item success-badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Admin Access</span>
+                    </div>
+                    <div class="admin-item time-badge">
+                        <i class="fas fa-clock"></i>
+                        <span id="currentTime">Loading...</span>
+                    </div>
+                    <div class="admin-item notification-badge">
+                        <i class="fas fa-bell"></i>
+                        <span>3 New</span>
+                    </div>
+                </div>
+                
+                <div class="header-actions">
+                    <button class="btn-icon theme-toggle-btn" title="Toggle Dark Mode" onclick="toggleTheme()">
+                        <i class="fas fa-moon" id="themeIcon"></i>
+                    </button>
+                    <div class="notification-container">
+                        <button class="btn-icon notification-btn" title="Notifications" onclick="toggleNotifications()">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge pulse" id="notificationCount">3</span>
+                        </button>
+                        <div class="notifications-dropdown" id="notificationsDropdown">
+                            <div class="notifications-header">
+                                <h3>Notifications</h3>
+                                <button class="btn-icon-sm" onclick="clearAllNotifications()">
+                                    <i class="fas fa-trash"></i> Clear All
+                                </button>
+                            </div>
+                            <div class="notifications-list" id="notificationsList">
+                                <div class="notification-item unread">
+                                    <div class="notification-icon success">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <h4>New User Registration</h4>
+                                        <p>john_doe has just registered</p>
+                                        <span class="notification-time">2 minutes ago</span>
+                                    </div>
+                                </div>
+                                <div class="notification-item unread">
+                                    <div class="notification-icon info">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <h4>New Order Received</h4>
+                                        <p>Order #12345 from jane_smith</p>
+                                        <span class="notification-time">5 minutes ago</span>
+                                    </div>
+                                </div>
+                                <div class="notification-item unread">
+                                    <div class="notification-icon warning">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <h4>Low Balance Warning</h4>
+                                        <p>API balance is below 10%</p>
+                                        <span class="notification-time">1 hour ago</span>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-icon success">
+                                        <i class="fas fa-ticket-alt"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <h4>Ticket Resolved</h4>
+                                        <p>Ticket #789 has been closed</p>
+                                        <span class="notification-time">3 hours ago</span>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-icon info">
+                                        <i class="fas fa-server"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <h4>System Update Available</h4>
+                                        <p>New version v2.1.0 is available</p>
+                                        <span class="notification-time">1 day ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notifications-footer">
+                                <a href="#" onclick="viewAllNotifications()">View All Notifications</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="admin-profile" onclick="toggleProfileMenu()">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <div class="profile-dropdown" id="profileDropdown">
+                            <a href="#profile" onclick="viewProfile()"><i class="fas fa-user"></i> Profile</a>
+                            <a href="#settings" onclick="switchAdminTab('settings')"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="#" onclick="window.location.href='../panel/index.html'; return false;"><i class="fas fa-exchange-alt"></i> Switch to User Panel</a>
+                            <a href="#" onclick="logout()" class="danger"><i class="fas fa-power-off"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Admin Content -->
+        <div class="admin-content">
+            <!-- Dashboard Tab -->
+            <div class="admin-tab active" id="dashboard">
+                <div class="dashboard-header">
+                    <h2>Admin Dashboard</h2>
+                    <p>Overview of your SMM panel system</p>
+                </div>
+                
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value">1,234</div>
+                            <div class="stat-label">Total Users</div>
+                            <div class="stat-change positive">+12% this month</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value">5,678</div>
+                            <div class="stat-label">Total Orders</div>
+                            <div class="stat-change positive">+8% this month</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value">$45,678</div>
+                            <div class="stat-label">Total Revenue</div>
+                            <div class="stat-change positive">+15% this month</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value">89%</div>
+                            <div class="stat-label">Success Rate</div>
+                            <div class="stat-change positive">+2% this month</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="dashboard-section">
+                        <h3>Recent Orders</h3>
+                        <div class="orders-list">
+                            <div class="order-item">
+                                <div class="order-info">
+                                    <span class="order-id">#1001</span>
+                                    <span class="order-service">Instagram Followers</span>
+                                </div>
+                                <div class="order-status">
+                                    <span class="status-badge completed">Completed</span>
+                                    <span class="order-amount">$12.50</span>
+                                </div>
+                            </div>
+                            <div class="order-item">
+                                <div class="order-info">
+                                    <span class="order-id">#1002</span>
+                                    <span class="order-service">Facebook Likes</span>
+                                </div>
+                                <div class="order-status">
+                                    <span class="status-badge in-progress">In Progress</span>
+                                    <span class="order-amount">$8.75</span>
+                                </div>
+                            </div>
+                            <div class="order-item">
+                                <div class="order-info">
+                                    <span class="order-id">#1003</span>
+                                    <span class="order-service">YouTube Views</span>
+                                </div>
+                                <div class="order-status">
+                                    <span class="status-badge pending">Pending</span>
+                                    <span class="order-amount">$25.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-section">
+                        <h3>System Status</h3>
+                        <div class="system-status">
+                            <div class="status-item">
+                                <span class="status-label">API Status</span>
+                                <span class="status-value online">Online</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Database</span>
+                                <span class="status-value online">Connected</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">External APIs</span>
+                                <span class="status-value online">Active</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Server Load</span>
+                                <span class="status-value warning">45%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Users Management Tab -->
+            <div class="admin-tab" id="users">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h3>Users Management</h3>
+                        <button class="btn-primary" onclick="addUser()">
+                            <i class="fas fa-plus"></i>
+                            Add User
+                        </button>
+                    </div>
+                    
+                    <div class="users-filters">
+                        <div class="filter-group">
+                            <label>Search:</label>
+                            <input type="text" class="filter-input" placeholder="Search users...">
+                        </div>
+                        <div class="filter-group">
+                            <label>Status:</label>
+                            <select class="filter-select">
+                                <option value="all">All Status</option>
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="banned">Banned</option>
+                            </select>
+                        </div>
+                        <button class="btn-secondary" onclick="applyFilters()">
+                            <i class="fas fa-filter"></i>
+                            Apply Filters
+                        </button>
+                    </div>
+                    
+                    <div class="users-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Balance</th>
+                                    <th>Status</th>
+                                    <th>Join Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>john_doe</td>
+                                    <td>john@example.com</td>
+                                    <td>$125.50</td>
+                                    <td><span class="status-badge active">Active</span></td>
+                                    <td>2025-01-15</td>
+                                    <td>
+                                        <button class="btn-action" onclick="editUser(1)">Edit</button>
+                                        <button class="btn-action" onclick="viewUser(1)">View</button>
+                                        <button class="btn-action danger" onclick="banUser(1)">Ban</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>jane_smith</td>
+                                    <td>jane@example.com</td>
+                                    <td>$89.25</td>
+                                    <td><span class="status-badge active">Active</span></td>
+                                    <td>2025-01-20</td>
+                                    <td>
+                                        <button class="btn-action" onclick="editUser(2)">Edit</button>
+                                        <button class="btn-action" onclick="viewUser(2)">View</button>
+                                        <button class="btn-action danger" onclick="banUser(2)">Ban</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Orders Management Tab -->
+            <div class="admin-tab" id="orders">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h3>Orders Management</h3>
+                        <div class="header-actions">
+                            <button class="btn-secondary" onclick="exportOrders()">
+                                <i class="fas fa-download"></i>
+                                Export
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="orders-filters">
+                        <div class="filter-group">
+                            <label>Status:</label>
+                            <select class="filter-select">
+                                <option value="all">All Status</option>
+                                <option value="pending">Pending</option>
+                                <option value="in-progress">In Progress</option>
+                                <option value="completed">Completed</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Date Range:</label>
+                            <input type="date" class="filter-input">
+                            <input type="date" class="filter-input">
+                        </div>
+                        <button class="btn-secondary" onclick="applyFilters()">
+                            <i class="fas fa-filter"></i>
+                            Apply Filters
+                        </button>
+                    </div>
+                    
+                    <div class="orders-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>User</th>
+                                    <th>Service</th>
+                                    <th>Link</th>
+                                    <th>Quantity</th>
+                                    <th>Charge</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#1001</td>
+                                    <td>john_doe</td>
+                                    <td>Instagram Followers</td>
+                                    <td>@username</td>
+                                    <td>1000</td>
+                                    <td>$12.50</td>
+                                    <td><span class="status-badge completed">Completed</span></td>
+                                    <td>2025-01-24</td>
+                                    <td>
+                                        <button class="btn-action" onclick="viewOrder(1001)">View</button>
+                                        <button class="btn-action" onclick="refundOrder(1001)">Refund</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#1002</td>
+                                    <td>jane_smith</td>
+                                    <td>Facebook Likes</td>
+                                    <td>facebook.com/page</td>
+                                    <td>500</td>
+                                    <td>$8.75</td>
+                                    <td><span class="status-badge in-progress">In Progress</span></td>
+                                    <td>2025-01-24</td>
+                                    <td>
+                                        <button class="btn-action" onclick="viewOrder(1002)">View</button>
+                                        <button class="btn-action" onclick="cancelOrder(1002)">Cancel</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Services Management Tab -->
+            <div class="admin-tab" id="services">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h3>Services Management</h3>
+                        <button class="btn-primary" onclick="addService()">
+                            <i class="fas fa-plus"></i>
+                            Add Service
+                        </button>
+                    </div>
+                    
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-header">
+                                <h4>Instagram Followers</h4>
+                                <span class="service-status active">Active</span>
+                            </div>
+                            <div class="service-details">
+                                <p>High quality Instagram followers</p>
+                                <div class="service-stats">
+                                    <span>Rate: $0.50/1K</span>
+                                    <span>Orders: 1,234</span>
+                                </div>
+                            </div>
+                            <div class="service-actions">
+                                <button class="btn-action" onclick="editService(1)">Edit</button>
+                                <button class="btn-action" onclick="toggleService(1)">Toggle</button>
+                                <button class="btn-action danger" onclick="deleteService(1)">Delete</button>
+                            </div>
+                        </div>
+                        
+                        <div class="service-card">
+                            <div class="service-header">
+                                <h4>Facebook Page Likes</h4>
+                                <span class="service-status active">Active</span>
+                            </div>
+                            <div class="service-details">
+                                <p>Real Facebook page likes</p>
+                                <div class="service-stats">
+                                    <span>Rate: $0.80/1K</span>
+                                    <span>Orders: 856</span>
+                                </div>
+                            </div>
+                            <div class="service-actions">
+                                <button class="btn-action" onclick="editService(2)">Edit</button>
+                                <button class="btn-action" onclick="toggleService(2)">Toggle</button>
+                                <button class="btn-action danger" onclick="deleteService(2)">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pricing Management Tab -->
+            <div class="admin-tab" id="pricing">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h3>Pricing Management</h3>
+                        <button class="btn-primary" onclick="updatePricing()">
+                            <i class="fas fa-save"></i>
+                            Update Pricing
+                        </button>
+                    </div>
+                    
+                    <div class="pricing-settings">
+                        <div class="pricing-section">
+                            <h4>Markup Settings</h4>
+                            <div class="form-group">
+                                <label>Default Markup (%)</label>
+                                <input type="number" class="form-control" value="20" min="0" max="100">
+                            </div>
+                            <div class="form-group">
+                                <label>Minimum Markup (%)</label>
+                                <input type="number" class="form-control" value="5" min="0" max="100">
+                            </div>
+                        </div>
+                        
+                        <div class="pricing-section">
+                            <h4>Service Pricing</h4>
+                            <div class="pricing-table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Service</th>
+                                            <th>Cost Price</th>
+                                            <th>Sell Price</th>
+                                            <th>Markup</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Instagram Followers</td>
+                                            <td>$0.30</td>
+                                            <td>$0.50</td>
+                                            <td>66.7%</td>
+                                            <td>
+                                                <button class="btn-action" onclick="editPricing(1)">Edit</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Facebook Likes</td>
+                                            <td>$0.50</td>
+                                            <td>$0.80</td>
+                                            <td>60%</td>
+                                            <td>
+                                                <button class="btn-action" onclick="editPricing(2)">Edit</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- API Management Tab -->
+            <div class="admin-tab" id="api">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h3>API Management</h3>
+                        <button class="btn-primary" onclick="testAPIs()">
+                            <i class="fas fa-play"></i>
+                            Test All APIs
+                        </button>
+                    </div>
+                    
+                    <div class="api-status">
+                        <div class="api-card">
+                            <div class="api-header">
+                                <h4>SMMFA API</h4>
+                                <span class="api-status-badge online">Online</span>
+                            </div>
+                            <div class="api-details">
+                                <p>API Key: b9f64c03f177cc3dc754198a17b66bca</p>
+                                <p>Balance: $0.00 USD</p>
+                                <p>Last Check: 2 minutes ago</p>
+                            </div>
+                            <div class="api-actions">
+                                <button class="btn-action" onclick="editAPI('smmfa')">Edit</button>
+                                <button class="btn-action" onclick="testAPI('smmfa')">Test</button>
+                            </div>
+                        </div>
+                        
+                        <div class="api-card">
+                            <div class="api-header">
+                                <h4>SMMFollows API</h4>
+                                <span class="api-status-badge online">Online</span>
+                            </div>
+                            <div class="api-details">
+                                <p>API Key: fdbc545f49196428a53189f1ee14e015</p>
+                                <p>Balance: $0.00 USD</p>
+                                <p>Last Check: 2 minutes ago</p>
+                            </div>
+                            <div class="api-actions">
+                                <button class="btn-action" onclick="editAPI('smmfollows')">Edit</button>
+                                <button class="btn-action" onclick="testAPI('smmfollows')">Test</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Support Tickets Tab -->
+            <div class="admin-tab" id="tickets">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h3>Support Tickets</h3>
+                        <div class="header-actions">
+                            <button class="btn-secondary" onclick="refreshTickets()">
+                                <i class="fas fa-sync-alt"></i>
+                                Refresh
+                            </button>
+                            <button class="btn-secondary" onclick="createTicket()">
+                                <i class="fas fa-plus"></i>
+                                New Ticket
+                            </button>
+                            <button class="btn-primary" onclick="exportTickets()">
+                                <i class="fas fa-download"></i>
+                                Export
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Tickets Filters -->
+                    <div class="tickets-filters">
+                        <div class="filter-group">
+                            <label>Status:</label>
+                            <select id="statusFilter" onchange="filterTickets()">
+                                <option value="all">All</option>
+                                <option value="open">Open</option>
+                                <option value="pending">Pending</option>
+                                <option value="resolved">Resolved</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Priority:</label>
+                            <select id="priorityFilter" onchange="filterTickets()">
+                                <option value="all">All</option>
+                                <option value="high">High</option>
+                                <option value="medium">Medium</option>
+                                <option value="low">Low</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Category:</label>
+                            <select id="categoryFilter" onchange="filterTickets()">
+                                <option value="all">All</option>
+                                <option value="order">Order</option>
+                                <option value="payment">Payment</option>
+                                <option value="account">Account</option>
+                                <option value="service">Service</option>
+                                <option value="refund">Refund</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Search:</label>
+                            <input type="text" id="searchFilter" placeholder="Search tickets..." onkeyup="filterTickets()">
+                        </div>
+                    </div>
+                    
+                    <!-- Tickets Stats -->
+                    <div class="tickets-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon open">
+                                <i class="fas fa-exclamation-circle"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h4 id="openTickets">0</h4>
+                                <p>Open Tickets</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon pending">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h4 id="pendingTickets">0</h4>
+                                <p>Pending Tickets</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon resolved">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h4 id="resolvedTickets">0</h4>
+                                <p>Resolved Tickets</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon high">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h4 id="highPriorityTickets">0</h4>
+                                <p>High Priority</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tickets Table -->
+                    <div class="tickets-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Ticket ID</th>
+                                    <th>User</th>
+                                    <th>Subject</th>
+                                    <th>Priority</th>
+                                    <th>Status</th>
+                                    <th>Category</th>
+                                    <th>Assigned To</th>
+                                    <th>Created</th>
+                                    <th>Last Reply</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ticketsTableBody">
+                                <!-- Tickets will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="pagination" id="ticketsPagination">
+                        <!-- Pagination will be loaded here -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ticket Modal -->
+            <div class="modal-overlay" id="ticketModal">
+                <div class="modal-content ticket-modal">
+                    <div class="modal-header">
+                        <h3 id="ticketModalTitle">Ticket Details</h3>
+                        <button class="close-modal" onclick="closeTicketModal()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="ticket-details">
+                            <div class="ticket-info">
+                                <div class="info-item">
+                                    <label>Ticket ID:</label>
+                                    <span id="ticketId">-</span>
+                                </div>
+                                <div class="info-item">
+                                    <label>User:</label>
+                                    <span id="ticketUser">-</span>
+                                </div>
+                                <div class="info-item">
+                                    <label>Subject:</label>
+                                    <span id="ticketSubject">-</span>
+                                </div>
+                                <div class="info-item">
+                                    <label>Priority:</label>
+                                    <span id="ticketPriority">-</span>
+                                </div>
+                                <div class="info-item">
+                                    <label>Status:</label>
+                                    <span id="ticketStatus">-</span>
+                                </div>
+                                <div class="info-item">
+                                    <label>Created:</label>
+                                    <span id="ticketCreated">-</span>
+                                </div>
+                            </div>
+                            
+                            <div class="ticket-actions">
+                                <button class="btn-secondary" onclick="changeTicketStatus()">
+                                    <i class="fas fa-edit"></i>
+                                    Change Status
+                                </button>
+                                <button class="btn-secondary" onclick="assignTicket()">
+                                    <i class="fas fa-user"></i>
+                                    Assign
+                                </button>
+                                <button class="btn-primary" onclick="replyToTicket()">
+                                    <i class="fas fa-reply"></i>
+                                    Reply
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="ticket-messages" id="ticketMessages">
+                            <!-- Messages will be loaded here -->
+                        </div>
+                        
+                        <div class="reply-section" id="replySection" style="display: none;">
+                            <h4>Reply to Ticket</h4>
+                            <form id="replyForm">
+                                <div class="form-group">
+                                    <label>Message:</label>
+                                    <textarea id="replyMessage" rows="4" placeholder="Type your reply here..." required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" id="changeStatus" checked>
+                                        Change status to "Pending"
+                                    </label>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="button" class="btn-secondary" onclick="cancelReply()">Cancel</button>
+                                    <button type="submit" class="btn-primary">Send Reply</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Create Ticket Modal -->
+            <div class="modal-overlay" id="createTicketModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Create New Ticket</h3>
+                        <button class="close-modal" onclick="closeCreateTicketModal()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="createTicketForm">
+                            <div class="form-group">
+                                <label>User:</label>
+                                <select id="ticketUserSelect" required>
+                                    <option value="">Select User</option>
+                                    <option value="1">john_doe</option>
+                                    <option value="2">jane_smith</option>
+                                    <option value="3">mike_wilson</option>
+                                    <option value="4">sarah_jones</option>
+                                    <option value="5">alex_brown</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Subject:</label>
+                                <input type="text" id="ticketSubjectInput" placeholder="Enter ticket subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Category:</label>
+                                <select id="ticketCategory" required>
+                                    <option value="general">General</option>
+                                    <option value="order">Order</option>
+                                    <option value="payment">Payment</option>
+                                    <option value="account">Account</option>
+                                    <option value="service">Service</option>
+                                    <option value="refund">Refund</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Priority:</label>
+                                <select id="ticketPrioritySelect" required>
+                                    <option value="low">Low</option>
+                                    <option value="medium" selected>Medium</option>
+                                    <option value="high">High</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Message:</label>
+                                <textarea id="ticketMessageInput" rows="4" placeholder="Enter initial message" required></textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn-secondary" onclick="closeCreateTicketModal()">Cancel</button>
+                                <button type="submit" class="btn-primary">Create Ticket</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Landing Page Management Tab -->
+            <div class="admin-tab" id="landing">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h3>Landing Page Content Management</h3>
+                        <button class="btn-primary" onclick="saveLandingContent()">
+                            <i class="fas fa-save"></i>
+                            Save Changes
+                        </button>
+                    </div>
+                    
+                    <!-- Logo & Branding Section -->
+                    <div class="content-section">
+                        <h4><i class="fas fa-image"></i> Logo & Branding</h4>
+                        <div class="form-group">
+                            <label>Website Logo</label>
+                            <div class="upload-area">
+                                <div class="logo-preview">
+                                    <img id="logoPreview" src="../assets/images/logo.png" alt="Logo Preview" onerror="this.style.display='none'">
+                                    <button type="button" class="btn-secondary" onclick="document.getElementById('logoUpload').click()">
+                                        <i class="fas fa-upload"></i> Upload Logo
+                                    </button>
+                                    <input type="file" id="logoUpload" accept="image/*" style="display: none;" onchange="previewLogo(this)">
+                                </div>
+                                <input type="text" id="logoUrl" class="form-control" placeholder="Or enter logo URL">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Favicon</label>
+                            <div class="upload-area">
+                                <div class="favicon-preview">
+                                    <img id="faviconPreview" src="../assets/images/favicon.ico" alt="Favicon Preview" onerror="this.style.display='none'">
+                                    <button type="button" class="btn-secondary" onclick="document.getElementById('faviconUpload').click()">
+                                        <i class="fas fa-upload"></i> Upload Favicon
+                                    </button>
+                                    <input type="file" id="faviconUpload" accept="image/*" style="display: none;" onchange="previewFavicon(this)">
+                                </div>
+                                <input type="text" id="faviconUrl" class="form-control" placeholder="Or enter favicon URL">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hero Section -->
+                    <div class="content-section">
+                        <h4><i class="fas fa-hero"></i> Hero Section (Main Banner)</h4>
+                        <div class="form-group">
+                            <label>Main Title</label>
+                            <input type="text" id="heroTitle" class="form-control" placeholder="Best SMM Panel for Social Media Growth" value="Best SMM Panel for Social Media Growth">
+                        </div>
+                        <div class="form-group">
+                            <label>Subtitle</label>
+                            <textarea id="heroSubtitle" class="form-control" rows="3" placeholder="Get hundreds of High Quality Social Media Services...">Get hundreds of High Quality Social Media Services from SMM Turk in a distance of a click.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>CTA Button Text</label>
+                            <input type="text" id="heroCta" class="form-control" placeholder="Get Started" value="Get Started">
+                        </div>
+                    </div>
+                    
+                    <!-- Features Section -->
+                    <div class="content-section">
+                        <h4><i class="fas fa-star"></i> Features Section</h4>
+                        <div class="features-editor">
+                            <div id="featuresList" class="features-list">
+                                <div class="feature-item-editable">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Icon (FontAwesome class)</label>
+                                            <input type="text" class="form-control feature-icon" placeholder="fas fa-rocket" value="fas fa-rocket">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Title</label>
+                                            <input type="text" class="form-control feature-title" placeholder="Feature Title" value="Fast Delivery">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea class="form-control feature-description" rows="2" placeholder="Feature description...">We promise to deliver your order quickly</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-secondary" onclick="addFeature()">
+                                <i class="fas fa-plus"></i> Add Feature
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Information -->
+                    <div class="content-section">
+                        <h4><i class="fas fa-address-card"></i> Contact Information</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" id="contactEmail" class="form-control" placeholder="contact@smmturk.com" value="contact@smmturk.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" id="contactPhone" class="form-control" placeholder="+1 234 567 8900">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Address</label>
+                                <input type="text" id="contactAddress" class="form-control" placeholder="123 Main St, City, Country">
+                            </div>
+                            <div class="form-group">
+                                <label>Business Hours</label>
+                                <input type="text" id="businessHours" class="form-control" placeholder="24/7" value="24/7">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Media Links -->
+                    <div class="content-section">
+                        <h4><i class="fas fa-share-alt"></i> Social Media Links</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fab fa-twitter"></i> Twitter</label>
+                                <input type="url" id="socialTwitter" class="form-control" placeholder="https://twitter.com/smmturk">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fab fa-facebook"></i> Facebook</label>
+                                <input type="url" id="socialFacebook" class="form-control" placeholder="https://facebook.com/smmturk">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fab fa-instagram"></i> Instagram</label>
+                                <input type="url" id="socialInstagram" class="form-control" placeholder="https://instagram.com/smmturk">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fab fa-telegram"></i> Telegram</label>
+                                <input type="url" id="socialTelegram" class="form-control" placeholder="https://t.me/smmturk">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Services Section (Previously missing) -->
+                    <div class="content-section">
+                        <h4><i class="fas fa-list"></i> Services Section</h4>
+                        <div class="services-editor">
+                            <div id="servicesList" class="services-list">
+                                <div class="service-item-editable">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Service Icon</label>
+                                            <input type="text" class="form-control service-icon" placeholder="fab fa-instagram" value="fab fa-instagram">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Service Title</label>
+                                            <input type="text" class="form-control service-title" placeholder="Instagram Followers" value="Instagram">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Service Description</label>
+                                        <textarea class="form-control service-description" rows="2" placeholder="Service description...">Followers, Likes, Views, Comments, Story Views, IGTV, Reels</textarea>
+                                    </div>
+                                    <button type="button" class="btn-icon danger" onclick="removeService(this)">
+                                        <i class="fas fa-trash"></i> Remove
+                                    </button>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-secondary" onclick="addService()">
+                                <i class="fas fa-plus"></i> Add Service
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Stats Section -->
+                    <div class="content-section">
+                        <h4><i class="fas fa-chart-line"></i> Statistics Section</h4>
+                        <div class="stats-editor">
+                            <div id="statsList" class="stats-list">
+                                <div class="stat-item-editable">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Stat Icon</label>
+                                            <input type="text" class="form-control stat-icon" placeholder="fas fa-clock" value="fas fa-clock">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Stat Value</label>
+                                            <input type="text" class="form-control stat-value" placeholder="0.3 Sec" value="0.3 Sec">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Stat Label</label>
+                                        <input type="text" class="form-control stat-label" placeholder="An Order is made every" value="An Order is made every">
+                                    </div>
+                                    <button type="button" class="btn-icon danger" onclick="removeStat(this)">
+                                        <i class="fas fa-trash"></i> Remove
+                                    </button>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-secondary" onclick="addStat()">
+                                <i class="fas fa-plus"></i> Add Statistic
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonials Section -->
+                    <div class="content-section">
+                        <h4><i class="fas fa-quote-left"></i> Testimonials Section</h4>
+                        <div class="testimonials-editor">
+                            <div id="testimonialsList" class="testimonials-list">
+                                <div class="testimonial-item-editable">
+                                    <div class="form-group">
+                                        <label>Customer Name</label>
+                                        <input type="text" class="form-control testimonial-name" placeholder="John Doe" value="John Doe">
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Customer Position</label>
+                                            <input type="text" class="form-control testimonial-position" placeholder="CEO, Company Name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Customer Avatar URL</label>
+                                            <input type="url" class="form-control testimonial-avatar" placeholder="https://example.com/avatar.jpg">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Rating (1-5)</label>
+                                        <input type="number" class="form-control testimonial-rating" min="1" max="5" value="5">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Testimonial Text</label>
+                                        <textarea class="form-control testimonial-text" rows="3" placeholder="Great service! Very fast delivery...">Excellent service with fast delivery!</textarea>
+                                    </div>
+                                    <button type="button" class="btn-icon danger" onclick="removeTestimonial(this)">
+                                        <i class="fas fa-trash"></i> Remove
+                                    </button>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-secondary" onclick="addTestimonial()">
+                                <i class="fas fa-plus"></i> Add Testimonial
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Section (Previously exists but incomplete) -->
+                    <div class="content-section">
+                        <h4><i class="fas fa-question-circle"></i> FAQ Section</h4>
+                        <div class="faq-editor">
+                            <div id="faqList" class="faq-list">
+                                <div class="faq-item-editable">
+                                    <div class="form-group">
+                                        <label>Question</label>
+                                        <input type="text" class="form-control faq-question" placeholder="What are SMM panels?" value="What are SMM panels?">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Answer</label>
+                                        <textarea class="form-control faq-answer" rows="3" placeholder="Answer...">SMM (Social Media Marketing) panels are platforms that provide social media services like followers, likes, views, and comments across various platforms such as Instagram, Facebook, Twitter, YouTube, and more.</textarea>
+                                    </div>
+                                    <button type="button" class="btn-icon danger" onclick="removeFAQ(this)">
+                                        <i class="fas fa-trash"></i> Remove
+                                    </button>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-secondary" onclick="addFAQ()">
+                                <i class="fas fa-plus"></i> Add FAQ
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Footer Settings (Previously exists but incomplete) -->
+                    <div class="content-section">
+                        <h4><i class="fas fa-info-circle"></i> Footer Settings</h4>
+                        <div class="form-group">
+                            <label>Copyright Text</label>
+                            <input type="text" id="footerCopyright" class="form-control" placeholder="&copy; Copyright 2025. All Rights Reserved by SMM Turk." value="&copy; Copyright 2025. All Rights Reserved by SMM Turk.">
+                        </div>
+                        <div class="form-group">
+                            <label>Footer Description</label>
+                            <textarea id="footerDescription" class="form-control" rows="3" placeholder="World's Best Cheap & Easy SMM Panel. Your partner in business expansion for the last 8 years.">World's Best Cheap & Easy SMM Panel. Your partner in business expansion for the last 8 years.</textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Footer Logo URL</label>
+                                <input type="url" id="footerLogo" class="form-control" placeholder="https://smmturk.com/assets/images/logo.png">
+                            </div>
+                            <div class="form-group">
+                                <label>Footer Background Color</label>
+                                <input type="color" id="footerBgColor" class="form-control" value="#1a1a2e">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- SEO Settings -->
+                    <div class="content-section">
+                        <h4><i class="fas fa-search"></i> SEO Settings</h4>
+                        <div class="form-group">
+                            <label>Meta Title</label>
+                            <input type="text" id="metaTitle" class="form-control" placeholder="SMM Turk - Best SMM Panel" value="SMM Turk - Best SMM Panel">
+                        </div>
+                        <div class="form-group">
+                            <label>Meta Description</label>
+                            <textarea id="metaDescription" class="form-control" rows="3" placeholder="Best SMM panel for social media services...">Best SMM panel for social media services with fast delivery and competitive prices.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Keywords (comma separated)</label>
+                            <input type="text" id="metaKeywords" class="form-control" placeholder="smm panel, social media marketing, instagram followers">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- System Settings Tab -->
+            <div class="admin-tab" id="settings">
+                <div class="admin-section">
+                    <div class="section-header">
+                        <h3>System Settings</h3>
+                        <div class="header-actions">
+                            <button class="btn-secondary" onclick="testAllSettings()">
+                                <i class="fas fa-play"></i>
+                                Test All
+                            </button>
+                            <button class="btn-secondary" onclick="backupSettings()">
+                                <i class="fas fa-download"></i>
+                                Backup
+                            </button>
+                            <button class="btn-secondary" onclick="resetSettings()">
+                                <i class="fas fa-undo"></i>
+                                Reset
+                            </button>
+                            <button class="btn-primary" onclick="saveSettings()">
+                                <i class="fas fa-save"></i>
+                                Save Settings
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-tabs">
+                        <div class="settings-tab-nav">
+                            <button class="settings-tab-btn active" onclick="switchSettingsTab('general')">
+                                <i class="fas fa-cog"></i>
+                                General
+                            </button>
+                            <button class="settings-tab-btn" onclick="switchSettingsTab('security')">
+                                <i class="fas fa-shield-alt"></i>
+                                Security
+                            </button>
+                            <button class="settings-tab-btn" onclick="switchSettingsTab('email')">
+                                <i class="fas fa-envelope"></i>
+                                Email
+                            </button>
+                            <button class="settings-tab-btn" onclick="switchSettingsTab('payment')">
+                                <i class="fas fa-credit-card"></i>
+                                Payment
+                            </button>
+                            <button class="settings-tab-btn" onclick="switchSettingsTab('api')">
+                                <i class="fas fa-code"></i>
+                                API
+                            </button>
+                            <button class="settings-tab-btn" onclick="switchSettingsTab('appearance')">
+                                <i class="fas fa-palette"></i>
+                                Appearance
+                            </button>
+                            <button class="settings-tab-btn" onclick="switchSettingsTab('social')">
+                                <i class="fas fa-share-alt"></i>
+                                Social
+                            </button>
+                        </div>
+                        
+                        <!-- General Settings -->
+                        <div class="settings-tab-content active" id="general-settings">
+                            <div class="settings-grid">
+                                <div class="settings-section">
+                                    <h4>General Settings</h4>
+                                    <div class="form-group">
+                                        <label>Site Name</label>
+                                        <input type="text" class="form-control" id="site_name" value="SMM Turk Panel">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Site Description</label>
+                                        <textarea class="form-control" id="site_description" rows="3">Best SMM Panel for Social Media Marketing</textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Site URL</label>
+                                        <input type="url" class="form-control" id="site_url" value="http://localhost:8000">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Default Currency</label>
+                                        <select class="form-control" id="default_currency">
+                                            <option value="USD">USD</option>
+                                            <option value="EUR">EUR</option>
+                                            <option value="GBP">GBP</option>
+                                            <option value="TRY">TRY</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Timezone</label>
+                                        <select class="form-control" id="timezone">
+                                            <option value="UTC">UTC</option>
+                                            <option value="Europe/Istanbul">Europe/Istanbul</option>
+                                            <option value="America/New_York">America/New_York</option>
+                                            <option value="Europe/London">Europe/London</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Language</label>
+                                        <select class="form-control" id="language">
+                                            <option value="en">English</option>
+                                            <option value="tr">Turkish</option>
+                                            <option value="es">Spanish</option>
+                                            <option value="fr">French</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="settings-section">
+                                    <h4>Maintenance Mode</h4>
+                                    <div class="form-group">
+                                        <label>Enable Maintenance Mode</label>
+                                        <label class="switch">
+                                            <input type="checkbox" id="maintenance_mode">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Maintenance Message</label>
+                                        <textarea class="form-control" id="maintenance_message" rows="3">Site is under maintenance. Please check back later.</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Security Settings -->
+                        <div class="settings-tab-content" id="security-settings">
+                            <div class="settings-grid">
+                                <div class="settings-section">
+                                    <h4>Authentication</h4>
+                                    <div class="form-group">
+                                        <label>Enable 2FA</label>
+                                        <label class="switch">
+                                            <input type="checkbox" id="enable_2fa" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Session Timeout (minutes)</label>
+                                        <input type="number" class="form-control" id="session_timeout" value="30" min="5" max="1440">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Max Login Attempts</label>
+                                        <input type="number" class="form-control" id="max_login_attempts" value="5" min="3" max="10">
+                                    </div>
+                                </div>
+                                
+                                <div class="settings-section">
+                                    <h4>Password Policy</h4>
+                                    <div class="form-group">
+                                        <label>Minimum Password Length</label>
+                                        <input type="number" class="form-control" id="password_min_length" value="8" min="6" max="32">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Require Strong Password</label>
+                                        <label class="switch">
+                                            <input type="checkbox" id="require_strong_password" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Enable CAPTCHA</label>
+                                        <label class="switch">
+                                            <input type="checkbox" id="enable_captcha" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Email Settings -->
+                        <div class="settings-tab-content" id="email-settings">
+                            <div class="settings-grid">
+                                <div class="settings-section">
+                                    <h4>SMTP Configuration</h4>
+                                    <div class="form-group">
+                                        <label>SMTP Host</label>
+                                        <input type="text" class="form-control" id="smtp_host" value="smtp.gmail.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>SMTP Port</label>
+                                        <input type="number" class="form-control" id="smtp_port" value="587" min="1" max="65535">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>SMTP Username</label>
+                                        <input type="email" class="form-control" id="smtp_username" value="your-email@gmail.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>SMTP Password</label>
+                                        <input type="password" class="form-control" id="smtp_password" placeholder="Enter SMTP password">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>SMTP Encryption</label>
+                                        <select class="form-control" id="smtp_encryption">
+                                            <option value="tls">TLS</option>
+                                            <option value="ssl">SSL</option>
+                                            <option value="none">None</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn-secondary" onclick="testEmailSettings()">
+                                            <i class="fas fa-paper-plane"></i>
+                                            Test Email
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="settings-section">
+                                    <h4>Email Templates</h4>
+                                    <div class="form-group">
+                                        <label>From Email</label>
+                                        <input type="email" class="form-control" id="from_email" value="noreply@smmturk.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>From Name</label>
+                                        <input type="text" class="form-control" id="from_name" value="SMM Turk Panel">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Admin Email</label>
+                                        <input type="email" class="form-control" id="admin_email" value="admin@smmturk.com">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Payment Settings -->
+                        <div class="settings-tab-content" id="payment-settings">
+                            <div class="settings-grid">
+                                <div class="settings-section">
+                                    <h4>Payment Methods</h4>
+                                    <div class="form-group">
+                                        <label>Default Payment Method</label>
+                                        <select class="form-control" id="default_payment_method">
+                                            <option value="paypal">PayPal</option>
+                                            <option value="stripe">Stripe</option>
+                                            <option value="bank_transfer">Bank Transfer</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Minimum Deposit</label>
+                                        <input type="number" class="form-control" id="minimum_deposit" value="5.00" min="0" step="0.01">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Maximum Deposit</label>
+                                        <input type="number" class="form-control" id="maximum_deposit" value="1000.00" min="0" step="0.01">
+                                    </div>
+                                </div>
+                                
+                                <div class="settings-section">
+                                    <h4>PayPal Configuration</h4>
+                                    <div class="form-group">
+                                        <label>PayPal Client ID</label>
+                                        <input type="text" class="form-control" id="paypal_client_id" placeholder="Enter PayPal Client ID">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>PayPal Client Secret</label>
+                                        <input type="password" class="form-control" id="paypal_client_secret" placeholder="Enter PayPal Client Secret">
+                                    </div>
+                                </div>
+                                
+                                <div class="settings-section">
+                                    <h4>Stripe Configuration</h4>
+                                    <div class="form-group">
+                                        <label>Stripe Public Key</label>
+                                        <input type="text" class="form-control" id="stripe_public_key" placeholder="Enter Stripe Public Key">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Stripe Secret Key</label>
+                                        <input type="password" class="form-control" id="stripe_secret_key" placeholder="Enter Stripe Secret Key">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- API Settings -->
+                        <div class="settings-tab-content" id="api-settings">
+                            <div class="settings-grid">
+                                <div class="settings-section">
+                                    <h4>SMMFA API</h4>
+                                    <div class="form-group">
+                                        <label>API Key</label>
+                                        <input type="text" class="form-control" id="smmfa_api_key" value="b9f64c03f177cc3dc754198a17b66bca">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>API URL</label>
+                                        <input type="url" class="form-control" id="smmfa_api_url" value="https://smmfa.com/api/v2">
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn-secondary" onclick="testAPI('smmfa')">
+                                            <i class="fas fa-play"></i>
+                                            Test SMMFA API
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="settings-section">
+                                    <h4>SMMFollows API</h4>
+                                    <div class="form-group">
+                                        <label>API Key</label>
+                                        <input type="text" class="form-control" id="smmfollows_api_key" value="fdbc545f49196428a53189f1ee14e015">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>API URL</label>
+                                        <input type="url" class="form-control" id="smmfollows_api_url" value="https://smmfollows.com/api/v2">
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn-secondary" onclick="testAPI('smmfollows')">
+                                            <i class="fas fa-play"></i>
+                                            Test SMMFollows API
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="settings-section">
+                                    <h4>API Configuration</h4>
+                                    <div class="form-group">
+                                        <label>Rate Limit (requests per hour)</label>
+                                        <input type="number" class="form-control" id="api_rate_limit" value="1000" min="100" max="10000">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>API Timeout (seconds)</label>
+                                        <input type="number" class="form-control" id="api_timeout" value="30" min="5" max="300">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Appearance Settings -->
+                        <div class="settings-tab-content" id="appearance-settings">
+                            <div class="settings-grid">
+                                <div class="settings-section">
+                                    <h4>Theme Settings</h4>
+                                    <div class="form-group">
+                                        <label>Primary Color</label>
+                                        <input type="color" class="form-control" id="primary_color" value="#f59e0b">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Secondary Color</label>
+                                        <input type="color" class="form-control" id="secondary_color" value="#1e293b">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Logo URL</label>
+                                        <input type="url" class="form-control" id="logo_url" value="/assets/images/logo.png">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Favicon URL</label>
+                                        <input type="url" class="form-control" id="favicon_url" value="/assets/images/favicon.ico">
+                                    </div>
+                                </div>
+                                
+                                <div class="settings-section">
+                                    <h4>Custom CSS/JS</h4>
+                                    <div class="form-group">
+                                        <label>Custom CSS</label>
+                                        <textarea class="form-control" id="custom_css" rows="5" placeholder="Enter custom CSS code"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Custom JavaScript</label>
+                                        <textarea class="form-control" id="custom_js" rows="5" placeholder="Enter custom JavaScript code"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Social Settings -->
+                        <div class="settings-tab-content" id="social-settings">
+                            <div class="settings-grid">
+                                <div class="settings-section">
+                                    <h4>Google OAuth</h4>
+                                    <div class="form-group">
+                                        <label>Google Client ID</label>
+                                        <input type="text" class="form-control" id="google_client_id" placeholder="Enter Google Client ID">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Google Client Secret</label>
+                                        <input type="password" class="form-control" id="google_client_secret" placeholder="Enter Google Client Secret">
+                                    </div>
+                                </div>
+                                
+                                <div class="settings-section">
+                                    <h4>Facebook OAuth</h4>
+                                    <div class="form-group">
+                                        <label>Facebook App ID</label>
+                                        <input type="text" class="form-control" id="facebook_app_id" placeholder="Enter Facebook App ID">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Facebook App Secret</label>
+                                        <input type="password" class="form-control" id="facebook_app_secret" placeholder="Enter Facebook App Secret">
+                                    </div>
+                                </div>
+                                
+                                <div class="settings-section">
+                                    <h4>Apple OAuth</h4>
+                                    <div class="form-group">
+                                        <label>Apple Client ID</label>
+                                        <input type="text" class="form-control" id="apple_client_id" placeholder="Enter Apple Client ID">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Apple Client Secret</label>
+                                        <input type="password" class="form-control" id="apple_client_secret" placeholder="Enter Apple Client Secret">
+                                    </div>
+                                </div>
+                                
+                                <div class="settings-section">
+                                    <h4>Social Login Settings</h4>
+                                    <div class="form-group">
+                                        <label>Enable Social Login</label>
+                                        <label class="switch">
+                                            <input type="checkbox" id="enable_social_login" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="../assets/js/error-suppress.js"></script>
+    <script src="../assets/js/admin.js"></script>
+    <script>
+        // Initialize Admin Panel
+        let adminPanel;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Admin Panel loaded');
+            
+            // Initialize admin panel
+            adminPanel = new AdminPanel();
+            
+            // Set up global functions
+            window.switchAdminTab = switchAdminTab;
+            window.toggleSidebar = toggleSidebar;
+            window.closeModal = closeModal;
+            window.openModal = openModal;
+            
+            console.log('Admin Panel initialized successfully');
+        });
+        
+        function switchAdminTab(tabName) {
+            console.log('Switching to tab:', tabName);
+            
+            // Hide all tab contents
+            document.querySelectorAll('.admin-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all nav links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            const targetTab = document.getElementById(tabName);
+            if (targetTab) {
+                targetTab.classList.add('active');
+            }
+            
+            // Add active class to clicked nav link
+            const clickedLink = event.target.closest('.nav-link');
+            if (clickedLink) {
+                clickedLink.classList.add('active');
+            }
+            
+            // Update current tab
+            if (adminPanel) {
+                adminPanel.currentTab = tabName;
+            }
+        }
+        
+        function toggleSidebar() {
+            const sidebar = document.getElementById('adminSidebar');
+            const mainContent = document.querySelector('.admin-main-content');
+            
+            if (window.innerWidth <= 768) {
+                sidebar.classList.toggle('mobile-open');
+            } else {
+                sidebar.classList.toggle('collapsed');
+                if (mainContent) {
+                    mainContent.classList.toggle('sidebar-collapsed');
+                }
+            }
+        }
+        
+        function toggleProfileMenu() {
+            const dropdown = document.getElementById('profileDropdown');
+            dropdown.classList.toggle('show');
+        }
+        
+        function toggleNotifications() {
+            const dropdown = document.getElementById('notificationsDropdown');
+            dropdown.classList.toggle('show');
+            
+            // Close on click outside
+            document.addEventListener('click', function closeNotifications(event) {
+                if (!event.target.closest('.notification-container')) {
+                    dropdown.classList.remove('show');
+                    document.removeEventListener('click', closeNotifications);
+                }
+            });
+        }
+        
+        function clearAllNotifications() {
+            const list = document.getElementById('notificationsList');
+            const items = list.querySelectorAll('.notification-item.unread');
+            
+            items.forEach(item => {
+                item.classList.remove('unread');
+            });
+            
+            updateNotificationCount(0);
+            
+            // Show confirmation
+            alert('All notifications cleared!');
+        }
+        
+        function viewAllNotifications() {
+            window.location.href = '#dashboard';
+        }
+        
+        function updateNotificationCount(count) {
+            const badge = document.getElementById('notificationCount');
+            if (badge) {
+                badge.textContent = count;
+                
+                if (count === 0) {
+                    badge.style.display = 'none';
+                } else {
+                    badge.style.display = 'inline-flex';
+                }
+            }
+        }
+        
+        function viewProfile() {
+            alert('View profile');
+        }
+        
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                alert('Logging out...');
+            }
+        }
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            const profileDropdown = document.getElementById('profileDropdown');
+            if (profileDropdown && !e.target.closest('.admin-profile')) {
+                profileDropdown.classList.remove('show');
+            }
+        });
+        
+        function closeModal() {
+            const modals = document.querySelectorAll('.modal-overlay');
+            modals.forEach(modal => {
+                modal.classList.remove('show');
+            });
+            document.body.style.overflow = '';
+        }
+        
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        // Close modal when clicking outside
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal-overlay')) {
+                closeModal();
+            }
+        });
+        
+        // Close modal with escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+    
+    <script>
+        // Landing Page Management Functions
+        function previewLogo(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('logoPreview').src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        
+        function previewFavicon(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('faviconPreview').src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        
+        function addFeature() {
+            const featuresList = document.getElementById('featuresList');
+            const newFeature = document.createElement('div');
+            newFeature.className = 'feature-item-editable';
+            newFeature.innerHTML = `
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Icon (FontAwesome class)</label>
+                        <input type="text" class="form-control feature-icon" placeholder="fas fa-rocket" value="">
+                    </div>
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" class="form-control feature-title" placeholder="Feature Title" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-control feature-description" rows="2" placeholder="Feature description..."></textarea>
+                </div>
+                <button type="button" class="btn-action danger" onclick="this.closest('.feature-item-editable').remove()">
+                    <i class="fas fa-trash"></i> Remove
+                </button>
+            `;
+            featuresList.appendChild(newFeature);
+        }
+        
+        function addService() {
+            const servicesList = document.getElementById('servicesList');
+            const newService = document.createElement('div');
+            newService.className = 'service-item-editable';
+            newService.innerHTML = `
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Service Icon</label>
+                        <input type="text" class="form-control service-icon" placeholder="fab fa-instagram" value="">
+                    </div>
+                    <div class="form-group">
+                        <label>Service Title</label>
+                        <input type="text" class="form-control service-title" placeholder="Instagram Followers" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Service Description</label>
+                    <textarea class="form-control service-description" rows="2" placeholder="Service description..."></textarea>
+                </div>
+                <button type="button" class="btn-action danger" onclick="this.closest('.service-item-editable').remove()">
+                    <i class="fas fa-trash"></i> Remove
+                </button>
+            `;
+            servicesList.appendChild(newService);
+        }
+        
+        function addFAQ() {
+            const faqList = document.getElementById('faqList');
+            const newFAQ = document.createElement('div');
+            newFAQ.className = 'faq-item-editable';
+            newFAQ.innerHTML = `
+                <div class="form-group">
+                    <label>Question</label>
+                    <input type="text" class="form-control faq-question" placeholder="What is SMM Panel?" value="">
+                </div>
+                <div class="form-group">
+                    <label>Answer</label>
+                    <textarea class="form-control faq-answer" rows="3" placeholder="Answer..."></textarea>
+                </div>
+                <button type="button" class="btn-action danger" onclick="this.closest('.faq-item-editable').remove()">
+                    <i class="fas fa-trash"></i> Remove
+                </button>
+            `;
+            faqList.appendChild(newFAQ);
+        }
+        
+        function saveLandingContent() {
+            const data = {
+                logo: document.getElementById('logoUrl').value || document.getElementById('logoPreview').src,
+                favicon: document.getElementById('faviconUrl').value || document.getElementById('faviconPreview').src,
+                hero: {
+                    title: document.getElementById('heroTitle').value,
+                    subtitle: document.getElementById('heroSubtitle').value,
+                    cta: document.getElementById('heroCta').value
+                },
+                features: [],
+                contact: {
+                    email: document.getElementById('contactEmail').value,
+                    phone: document.getElementById('contactPhone').value,
+                    address: document.getElementById('contactAddress').value,
+                    hours: document.getElementById('businessHours').value
+                },
+                social: {
+                    twitter: document.getElementById('socialTwitter').value,
+                    facebook: document.getElementById('socialFacebook').value,
+                    instagram: document.getElementById('socialInstagram').value,
+                    telegram: document.getElementById('socialTelegram').value
+                },
+                seo: {
+                    title: document.getElementById('metaTitle').value,
+                    description: document.getElementById('metaDescription').value,
+                    keywords: document.getElementById('metaKeywords').value
+                }
+            };
+            
+            // Extract features
+            document.querySelectorAll('.feature-item-editable').forEach(item => {
+                data.features.push({
+                    icon: item.querySelector('.feature-icon').value,
+                    title: item.querySelector('.feature-title').value,
+                    description: item.querySelector('.feature-description').value
+                });
+            });
+            
+            console.log('Saving landing page content:', data);
+            
+            // Here you would send data to server
+            alert('Landing page content saved successfully!');
+        }
+        
+        // Initialize landing page content on tab switch
+        if (window.adminPanel) {
+            const originalSwitchTab = window.adminPanel.switchTab;
+            window.adminPanel.switchTab = function(tabName) {
+                originalSwitchTab.call(this, tabName);
+                if (tabName === 'landing') {
+                    // Load existing landing page content
+                    console.log('Loading landing page content...');
+                }
+            };
+        }
+    </script>
+</body>
+</html>

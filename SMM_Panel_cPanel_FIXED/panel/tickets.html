@@ -1,0 +1,585 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tickets - SMM Turk Panel</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon-180x180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
+    
+    <!-- CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="../assets/css/panel.css" rel="stylesheet">
+    <link href="../assets/css/tickets.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="#" class="sidebar-brand">
+                <i class="fas fa-rocket"></i>
+                SMM Turk
+            </a>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <div class="nav-item">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="new-order.html" class="nav-link">
+                    <i class="fas fa-plus"></i>
+                    New Order
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="mass-order.html" class="nav-link">
+                    <i class="fas fa-layer-group"></i>
+                    Mass Order
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="services.html" class="nav-link">
+                    <i class="fas fa-list"></i>
+                    Services
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="orders.html" class="nav-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    Orders
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="add-funds.html" class="nav-link">
+                    <i class="fas fa-credit-card"></i>
+                    Add Funds
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="tickets.html" class="nav-link active">
+                    <i class="fas fa-ticket-alt"></i>
+                    Tickets
+                    <span class="badge">1
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="api.html" class="nav-link">
+                    <i class="fas fa-code"></i>
+                    API
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="affiliates.html" class="nav-link">
+                    <i class="fas fa-users"></i>
+                    Affiliates
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="child-panel.html" class="nav-link">
+                    <i class="fas fa-share-alt"></i>
+                    Child Panel
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="settings.html" class="nav-link">
+                    <i class="fas fa-cog"></i>
+                    Settings
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="../login.html" class="nav-link logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </div>
+        </nav>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Header -->
+        <header class="top-header">
+            <div class="header-left">
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="breadcrumb">
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <div class="account-info">
+                    <div class="account-item">
+                        <i class="fas fa-star"></i>
+                        Account Points: 0 â‰ˆ $0.00
+                    </div>
+                    <div class="account-item">
+                        <i class="fas fa-dollar-sign"></i>
+                        Account Spending: $0
+                    </div>
+                    <div class="account-item">
+                        <i class="fas fa-wallet"></i>
+                        Account Balance: $0
+                    </div>
+                </div>
+                
+                <div class="header-actions">
+                    <button class="btn-icon" title="Add Funds" onclick="handleAddFunds()">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button class="btn-icon" title="Settings" onclick="handleSettings()">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                    <button class="btn-icon" title="Theme" onclick="toggleTheme()">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    <button class="btn-icon" title="Logout" onclick="handleLogout()">
+                        <i class="fas fa-power-off"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Tickets Content -->
+        <div class="dashboard-content">
+            <div class="tickets-header">
+                <h2>Support Tickets</h2>
+                <p>Get help with your orders and account issues</p>
+                
+                <div class="tickets-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-ticket-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value">1</div>
+                            <div class="stat-label">Open Tickets</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value">2h</div>
+                            <div class="stat-label">Avg Response</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value">5</div>
+                            <div class="stat-label">Resolved</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value">4.8</div>
+                            <div class="stat-label">Rating</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tickets Tabs -->
+            <div class="tickets-tabs">
+                <button class="tab-btn active" onclick="switchTicketTab('all')">All Tickets</button>
+                <button class="tab-btn" onclick="switchTicketTab('open')">Open</button>
+                <button class="tab-btn" onclick="switchTicketTab('pending')">Pending</button>
+                <button class="tab-btn" onclick="switchTicketTab('resolved')">Resolved</button>
+                <button class="tab-btn" onclick="switchTicketTab('create')">New Ticket</button>
+            </div>
+            
+            <!-- All Tickets Tab -->
+            <div class="tab-content active" id="all">
+                <div class="tickets-section">
+                    <div class="tickets-filters">
+                        <div class="filter-group">
+                            <label>Status:</label>
+                            <select class="filter-select">
+                                <option value="all">All Status</option>
+                                <option value="open">Open</option>
+                                <option value="pending">Pending</option>
+                                <option value="resolved">Resolved</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label>Priority:</label>
+                            <select class="filter-select">
+                                <option value="all">All Priority</option>
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                                <option value="urgent">Urgent</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label>Category:</label>
+                            <select class="filter-select">
+                                <option value="all">All Categories</option>
+                                <option value="order">Order Issue</option>
+                                <option value="payment">Payment</option>
+                                <option value="technical">Technical</option>
+                                <option value="general">General</option>
+                            </select>
+                        </div>
+                        
+                        <button class="btn-primary" onclick="applyFilters()">
+                            <i class="fas fa-filter"></i>
+                            Apply Filters
+                        </button>
+                    </div>
+                    
+                    <div class="tickets-list">
+                        <div class="ticket-item">
+                            <div class="ticket-header">
+                                <div class="ticket-info">
+                                    <h4>Order #1001 - Instagram Followers Not Delivered</h4>
+                                    <p>Created 2 hours ago â€¢ Order Issue</p>
+                                </div>
+                                <div class="ticket-status">
+                                    <span class="status-badge open">Open
+                                    <span class="priority-badge medium">Medium
+                                </div>
+                            </div>
+                            
+                            <div class="ticket-content">
+                                <p>I ordered 1000 Instagram followers for my account @myaccount but they haven't been delivered yet. The order was placed 3 days ago and it's still showing as "In Progress". Can you please check what's happening?</p>
+                                
+                                <div class="ticket-meta">
+                                    <i class="fas fa-user"></i> John Doe
+                                    <i class="fas fa-clock"></i> 2 hours ago
+                                    <i class="fas fa-comments"></i> 3 replies
+                                </div>
+                            </div>
+                            
+                            <div class="ticket-actions">
+                                <button class="btn-action" onclick="viewTicket('ticket1')">
+                                    <i class="fas fa-eye"></i>
+                                    View
+                                </button>
+                                <button class="btn-action" onclick="replyTicket('ticket1')">
+                                    <i class="fas fa-reply"></i>
+                                    Reply
+                                </button>
+                                <button class="btn-action" onclick="closeTicket('ticket1')">
+                                    <i class="fas fa-times"></i>
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="ticket-item">
+                            <div class="ticket-header">
+                                <div class="ticket-info">
+                                    <h4>Payment Issue - Refund Request</h4>
+                                    <p>Created 1 day ago â€¢ Payment</p>
+                                </div>
+                                <div class="ticket-status">
+                                    <span class="status-badge pending">Pending
+                                    <span class="priority-badge high">High
+                                </div>
+                            </div>
+                            
+                            <div class="ticket-content">
+                                <p>I need a refund for order #1002. The service was not delivered as promised and I want my money back. Please process the refund as soon as possible.</p>
+                                
+                                <div class="ticket-meta">
+                                    <i class="fas fa-user"></i> Jane Smith
+                                    <i class="fas fa-clock"></i> 1 day ago
+                                    <i class="fas fa-comments"></i> 1 reply
+                                </div>
+                            </div>
+                            
+                            <div class="ticket-actions">
+                                <button class="btn-action" onclick="viewTicket('ticket2')">
+                                    <i class="fas fa-eye"></i>
+                                    View
+                                </button>
+                                <button class="btn-action" onclick="replyTicket('ticket2')">
+                                    <i class="fas fa-reply"></i>
+                                    Reply
+                                </button>
+                                <button class="btn-action" onclick="closeTicket('ticket2')">
+                                    <i class="fas fa-times"></i>
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="ticket-item">
+                            <div class="ticket-header">
+                                <div class="ticket-info">
+                                    <h4>API Documentation Question</h4>
+                                    <p>Created 3 days ago â€¢ Technical</p>
+                                </div>
+                                <div class="ticket-status">
+                                    <span class="status-badge resolved">Resolved
+                                    <span class="priority-badge low">Low
+                                </div>
+                            </div>
+                            
+                            <div class="ticket-content">
+                                <p>I'm having trouble integrating your API. Can you provide more detailed documentation for the authentication process?</p>
+                                
+                                <div class="ticket-meta">
+                                    <i class="fas fa-user"></i> Mike Johnson
+                                    <i class="fas fa-clock"></i> 3 days ago
+                                    <i class="fas fa-comments"></i> 5 replies
+                                </div>
+                            </div>
+                            
+                            <div class="ticket-actions">
+                                <button class="btn-action" onclick="viewTicket('ticket3')">
+                                    <i class="fas fa-eye"></i>
+                                    View
+                                </button>
+                                <button class="btn-action" onclick="replyTicket('ticket3')">
+                                    <i class="fas fa-reply"></i>
+                                    Reply
+                                </button>
+                                <button class="btn-action" onclick="reopenTicket('ticket3')">
+                                    <i class="fas fa-redo"></i>
+                                    Reopen
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Create Ticket Tab -->
+            <div class="tab-content" id="create">
+                <div class="tickets-section">
+                    <h3>Create New Ticket</h3>
+                    <p>Describe your issue and we'll help you resolve it quickly</p>
+                    
+                    <form class="ticket-form" onsubmit="createTicket(event)">
+                        <div class="form-section">
+                            <h4>Ticket Information</h4>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Subject *</label>
+                                    <input type="text" class="form-control" name="subject" placeholder="Brief description of your issue" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Priority *</label>
+                                    <select class="form-control" name="priority" required>
+                                        <option value="low">Low</option>
+                                        <option value="medium" selected>Medium</option>
+                                        <option value="high">High</option>
+                                        <option value="urgent">Urgent</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Category *</label>
+                                    <select class="form-control" name="category" required>
+                                        <option value="order">Order Issue</option>
+                                        <option value="payment">Payment</option>
+                                        <option value="technical">Technical</option>
+                                        <option value="general">General</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Related Order (Optional)</label>
+                                    <input type="text" class="form-control" name="order_id" placeholder="Order ID if applicable">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h4>Message</h4>
+                            <div class="form-group">
+                                <label class="form-label">Description *</label>
+                                <textarea class="form-control" name="message" rows="6" placeholder="Please provide detailed information about your issue..." required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Attachments (Optional)</label>
+                                <input type="file" class="form-control" name="attachments" multiple accept="image/*,.pdf,.doc,.docx">
+                                <small class="form-help">You can attach screenshots, documents, or other files to help us understand your issue</small>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn-secondary" onclick="resetTicketForm()">Reset</button>
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-paper-plane"></i>
+                                Create Ticket
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Ticket Details Modal -->
+            <div class="ticket-modal" id="ticketModal">
+                <div class="modal-overlay">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>Ticket Details</h3>
+                            <button class="close-modal" onclick="closeTicketModal()">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="ticket-details">
+                                <div class="ticket-header">
+                                    <h4 id="modalTicketSubject">Order #1001 - Instagram Followers Not Delivered</h4>
+                                    <div class="ticket-meta">
+                                        <span class="status-badge open">Open
+                                        <span class="priority-badge medium">Medium
+                                        Created 2 hours ago
+                                    </div>
+                                </div>
+                                
+                                <div class="ticket-conversation">
+                                    <div class="message user-message">
+                                        <div class="message-header">
+                                            <span class="message-author">John Doe
+                                            <span class="message-time">2 hours ago
+                                        </div>
+                                        <div class="message-content">
+                                            <p>I ordered 1000 Instagram followers for my account @myaccount but they haven't been delivered yet. The order was placed 3 days ago and it's still showing as "In Progress". Can you please check what's happening?</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="message admin-message">
+                                        <div class="message-header">
+                                            <span class="message-author">Support Team
+                                            <span class="message-time">1 hour ago
+                                        </div>
+                                        <div class="message-content">
+                                            <p>Hello John,</p>
+                                            <p>Thank you for contacting us. I've checked your order #1001 and I can see that it's currently being processed. The delivery is taking longer than usual due to high demand. I've prioritized your order and it should be completed within the next 24 hours.</p>
+                                            <p>I'll keep you updated on the progress.</p>
+                                            <p>Best regards,<br>Support Team</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="ticket-reply">
+                                    <form class="reply-form" onsubmit="sendReply(event)">
+                        <div class="form-group">
+                            <label class="form-label">Your Reply</label>
+                            <textarea class="form-control" name="reply" rows="4" placeholder="Type your message here..." required></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-paper-plane"></i>
+                                Send Reply
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Notification Bell -->
+<div class="notification-bell">
+    <i class="fas fa-bell"></i>
+    <span class="badge">1
+</div>
+
+<!-- JavaScript -->
+    <script src="../assets/js/error-suppress.js"></script>
+<script src="../assets/js/panel.js"></script>
+<script>
+    function switchTicketTab(tabName) {
+        // Hide all tab contents
+        document.querySelectorAll('.tab-content').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        
+        // Remove active class from all tab buttons
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        // Show selected tab content
+        document.getElementById(tabName).classList.add('active');
+        
+        // Add active class to clicked button
+        event.target.classList.add('active');
+    }
+    
+    function applyFilters() {
+        alert('Filters applied successfully!');
+    }
+    
+    function viewTicket(ticketId) {
+        document.getElementById('ticketModal').style.display = 'block';
+    }
+    
+    function replyTicket(ticketId) {
+        document.getElementById('ticketModal').style.display = 'block';
+    }
+    
+    function closeTicket(ticketId) {
+        if (confirm('Are you sure you want to close this ticket?')) {
+            alert(`Ticket ${ticketId} closed successfully!`);
+        }
+    }
+    
+    function reopenTicket(ticketId) {
+        if (confirm('Are you sure you want to reopen this ticket?')) {
+            alert(`Ticket ${ticketId} reopened successfully!`);
+        }
+    }
+    
+    function createTicket(event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        
+        // Simulate ticket creation
+        alert('Ticket created successfully! We\'ll get back to you soon.');
+        
+        // Reset form
+        event.target.reset();
+    }
+    
+    function resetTicketForm() {
+        document.querySelector('.ticket-form').reset();
+    }
+    
+    function closeTicketModal() {
+        document.getElementById('ticketModal').style.display = 'none';
+    }
+    
+    function sendReply(event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        
+        // Simulate reply sending
+        alert('Reply sent successfully!');
+        
+        // Reset form
+        event.target.reset();
+    }
+</script>
+</body>
+</html>

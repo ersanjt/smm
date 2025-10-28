@@ -1,0 +1,17 @@
+# SMM Turk Panel - Application Directory Security
+# Block all access to application directory
+
+Order Allow,Deny
+Deny from all
+
+# Block access to all files
+<Files "*">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Block access to subdirectories
+<Directory "*">
+    Order Allow,Deny
+    Deny from all
+</Directory>

@@ -1,0 +1,16 @@
+{
+  "name": "boostpanel/smm",
+  "description": "BoostPanel SMM Application - Social Media Marketing Panel",
+  "type": "project",
+  "homepage": "https://github.com/ersanjt/smm",
+  "license": "MIT",
+  "require": {
+	"php": ">=7.4"
+  },
+  "scripts": {
+	"start": "php -S 0.0.0.0:$PORT"
+  },
+  "config": {
+	"optimize-autoloader": true
+  }
+}
